@@ -1,0 +1,38 @@
+City Name,Country,Continent,Coordinates,SOL
+Cairo,Egypt,Africa,"30.0500° N, 31.2333° E",3
+Lagos,Nigeria,Africa,"6.4531° N, 3.3958° E",2
+Johannesburg,South Africa,Africa,"26.2044° S, 28.0456° E",2
+Cape Town,South Africa,Africa,"33.9253° S, 18.4239° E",2
+Toronto,Canada,AmericaN,"43.7000° N, 79.4000° W",4
+New York,USA,AmericaN,"40.7127° N, 74.0059° W",4
+Los Angeles,USA,AmericaN,"34.0500° N, 118.2500° W",4
+Chicago,USA,AmericaN,"41.8369° N, 87.6847° W",4
+Miami,USA,AmericaN,"25.7753° N, 80.2089° W",4
+Buenos Aires,Argentina,AmericaS,"34.6033° S, 58.3817° W",3
+Sao Paulo,Brazil,AmericaS,"23.5500° S, 46.6333° W",3
+Rio de Janeiro,Brazil,AmericaS,"22.9068° S, 43.1729° W",2
+Mexico City,Mexico,AmericaS,"19.4333° N, 99.1333° W",2
+Lima,Peru,AmericaS,"12.0433° S, 77.0283° W",2
+Mumbai,India,Asia,"18.9750° N, 72.8258° E",2
+Delhi,India,Asia,"28.6139° N, 77.2090° E",2
+Tokyo,Japan,Asia,"35.6833° N, 139.6833° E",4
+Seoul,South Korea,Asia,"37.5667° N, 126.9667° E",4
+Jakarta,Indonesia,AsiaSE,"6.1745° S, 106.8227° E",3
+Manila,Philippines,AsiaSE,"14.5800° N, 121.0000° E",2
+Taipei,Taiwan,AsiaSE,"25.0333° N, 121.6333° E",3
+Bangkok,Thailand,AsiaSE,"13.7563° N, 100.5018° E",3
+Ho Chi Minh City,Vietnam,AsiaSE,"10.7500° N, 106.6667° E",2
+Shanghai,China,China,"31.2000° N, 121.5000° E",4
+Beijing,China,China,"39.9167° N, 116.3833° E",4
+Guangzhou,China,China,"23.1333° N, 113.2667° E",2
+Tianjin,China,China,"39.1333° N, 117.1833° E",2
+Chengdu,China,China,"30.6586° N, 104.0647° E",2
+Paris,France,Europe,"48.8567° N, 2.3508° E",4
+Berlin,Germany,Europe,"52.5167° N, 13.3833° E",4
+Milan,Italy,Europe,"45.4667° N, 9.1833° E",3
+Moscow,Russia,Europe,"55.7500° N, 37.6167° E",4
+London,UK,Europe,"51.5072° N, 0.1275° W",4
+Tehran,Iran,MiddleEast,"35.6961° N, 51.4231° E",2
+Baghdad,Iraq,MiddleEast,"33.3333° N, 44.4333° E",2
+Lahore,Pakistan,MiddleEast,"31.5497° N, 74.3436° E",2
+Istanbul,Turkey,MiddleEast,"41.0136° N, 28.9550° E",3
