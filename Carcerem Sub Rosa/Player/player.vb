@@ -12,12 +12,16 @@
         Dim longnameLength As Integer = getLongestShellcompanyNameLength("Departments:  ".Length, " Corp:  ")
 
         Console.WriteLine(ind & fakeTab("Money: ", 11) & withSign(money, "$"))
-        Console.WriteLine(ind & fakeTab("Income: ", 11) & withSign(income, "$"))
-        Console.WriteLine(indd & fakeTab("Base Income: ", longnameLength) & withSign(_baseIncome, "$"))
+        Console.WriteLine(ind & fakeTab("Income: ", 11) & withSign(incomeNet, "$"))
+        Console.WriteLine(indd & fakeTab("Funding: ", longnameLength) & withSign(_baseIncome, "$"))
         Console.WriteLine(indd & fakeTab("Departments: ", longnameLength) & withReverseSign(departmentBudgetTotal, "$"))
         For Each shellcompany In _shellcompanies
-            Console.WriteLine(indd & fakeTab(shellcompany.name & " Corp: ", longnameLength) & withSign(shellcompany.income, "$"))
+            Console.WriteLine(indd & fakeTab(shellcompany.name & " Corp: ", longnameLength) & withSign(shellcompany.incomeRaw, "$"))
         Next
+
+        Console.Write(ind & fakeTab("Project: ", 11))
+        If _researchProject Is Nothing = False Then Console.Write(_researchProject.briefReport)
+        Console.WriteLine()
         Console.WriteLine(ind & fakeTab("Research: ", 11) & withSign(research))
         For Each shellcompany In _shellcompanies
             Console.WriteLine(indd & fakeTab(shellcompany.name & " Corp: ", longnameLength) & withSign(shellcompany.research))
@@ -70,15 +74,22 @@
     End Property
     Private Property _researchProjectsCompleted As New List(Of researchProject)
     Private Property _researchSpilloverProgress As Integer
-    Friend ReadOnly Property activeResearchRequirements()
-        Get
-            Dim total As New List(Of requirement)
-            For Each shellcompany In _shellcompanies
-                total.AddRange(shellcompany.activeResearchRequirements)
-            Next
-            Return total
-        End Get
-    End Property
+    Friend Function getActiveResearchRequirements() As List(Of requirement)
+        Dim total As New List(Of requirement)
+        For Each shellcompany In _shellcompanies
+            total.AddRange(shellcompany.activeResearchRequirements)
+        Next
+        Return total
+    End Function
+    Friend Function changeResearchProject(newResearch As researchProject) As problem
+        If _researchProjectsReady.Contains(newResearch) = False Then Return New problem(Me, problemType.NotFound)
+
+        _researchProject = newResearch
+        Return Nothing
+    End Function
+    Friend Sub devAddResearchProjectOpen(research As researchProject)
+        _researchProjectsOpen.Add(research)
+    End Sub
 
     Private Property _money As Integer
     Friend ReadOnly Property money As Integer
@@ -121,17 +132,13 @@
     End Function
     Private Property _baseIncome As Integer = 5000
     Private Property _baseResearch As Integer
-    Friend ReadOnly Property income As Integer
+    Friend ReadOnly Property incomeNet As Integer
         Get
             Dim total As Integer = _baseIncome
+            total -= departmentBudgetTotal
             For Each shellcompany In _shellcompanies
-                total += shellcompany.income
+                total += shellcompany.incomeNet
             Next
-
-            For Each kvp In _departmentBudgets
-                total -= kvp.Value
-            Next
-
             Return total
         End Get
     End Property
@@ -169,8 +176,14 @@
     End Function
 
     Friend Sub tick()
+        'tick shellcompanies
+        For Each shellcompany In _shellcompanies
+            shellcompany.tick()
+        Next
+
+
         'add income
-        _money += income
+        _money += incomeNet
         _researchProject.addProgress(research)
 
 
@@ -184,6 +197,7 @@
 
             For Each projectName In _researchProject.childProjectNames
                 Dim newProject As researchProject = researchProject.fileget(projectName)
+                If newProject Is Nothing Then Exit For
                 newProject.player = Me
                 _researchProjectsOpen.Add(newProject)
             Next

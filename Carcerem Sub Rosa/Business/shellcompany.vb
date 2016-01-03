@@ -15,7 +15,8 @@
 
         Console.WriteLine(ind & """" & name & """ Corp in " & city.name & ", " & city.parseContinent(continent))
         Console.WriteLine(indd & fakeTab("Visibility: ", 13) & visibility)
-        Console.WriteLine(indd & fakeTab("Income: ", 13) & withSign(income, "$"))
+        Console.WriteLine(indd & fakeTab("Raw Income: ", 13) & withSign(incomeRaw, "$"))
+        Console.WriteLine(indd & fakeTab("Net Income: ", 13) & withSign(incomeNet, "$"))
         Console.WriteLine(indd & fakeTab("Research: ", 13) & withSign(research))
     End Sub
     Public Overrides Function ToString() As String
@@ -57,10 +58,9 @@
                 Dim researchlab As researchlab = CType(holding, researchlab)
                 If researchlab.scientist Is Nothing = False Then total.Add(researchlab.scientist)
                 If researchlab.artefact Is Nothing = False Then total.Add(researchlab.artefact)
-                'ElseIf TypeOf holding Is safehouse Then
-                '    Dim safehouse As safehouse = CType(holding, safehouse)
-                '    If safehouse.scientist Is Nothing = False Then total.Add(safehouse.scientist)
-                '    If safehouse.artefact Is Nothing = False Then total.Add(safehouse.artefact)
+            ElseIf TypeOf holding Is safehouse Then
+                Dim safehouse As safehouse = CType(holding, safehouse)
+                If safehouse.prisoner Is Nothing = False Then total.Add(safehouse.prisoner)
             End If
         Next
         Return total
@@ -75,8 +75,7 @@
         End Get
     End Property
 
-    Private Property _illegitMoney As Integer
-    Friend ReadOnly Property income As Integer
+    Friend ReadOnly Property incomeRaw As Integer
         Get
             Dim total As Integer = 0
             For Each holding In holdings
@@ -87,6 +86,23 @@
                 total -= holding.upkeep
             Next
             Return total
+        End Get
+    End Property
+    Friend ReadOnly Property incomeWashed As Integer
+        Get
+            Dim total As Integer = 0
+            For Each holding In holdings
+                If TypeOf holding Is laundry Then
+                    Dim laundry As laundry = CType(holding, laundry)
+                    total += laundry.laundryRate
+                End If
+            Next
+            Return total
+        End Get
+    End Property
+    Friend ReadOnly Property incomeNet As Integer
+        Get
+            Return Math.Min(incomeRaw, incomeWashed)
         End Get
     End Property
     Friend ReadOnly Property research As Integer
@@ -101,33 +117,7 @@
             Return total
         End Get
     End Property
-    Friend Function tick() As Integer()
-        Dim rawincome As Integer = 0
-        Dim washedincome As Integer = 0
-        Dim research As Integer = 0
+    Friend Sub tick()
 
-        For Each holding In holdings
-            rawincome -= holding.upkeep
-
-            If TypeOf holding Is factory Then
-                Dim factory As factory = CType(holding, factory)
-                rawincome += factory.income
-            ElseIf TypeOf holding Is researchlab Then
-                Dim researchlab As researchlab = CType(holding, researchlab)
-                research += researchlab.research
-            ElseIf TypeOf holding Is laundry Then
-                Dim laundry As laundry = CType(holding, laundry)
-                washedincome += laundry.laundryRate
-            End If
-        Next
-
-        Dim unwashedMoney As Integer = rawincome - washedincome
-        If unwashedMoney > 0 Then _illegitMoney = constrain(_illegitMoney + unwashedMoney, 0, 1000)
-        Dim money As Integer = Math.Min(rawincome, washedincome)
-
-        Dim total(1) As Integer
-        total(0) = money
-        total(1) = research
-        Return total
-    End Function
+    End Sub
 End Class

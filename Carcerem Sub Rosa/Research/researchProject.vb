@@ -1,4 +1,13 @@
 ﻿Public Class researchProject
+    Public Sub New()
+    End Sub
+    Public Sub New(aName As String, aCost As Integer, aRequirements As List(Of requirement), aChildProjectNames As List(Of String), Optional aModifiers As List(Of modifier) = Nothing)
+        name = aName
+        _cost = aCost
+        _requirements = aRequirements
+        childProjectNames = aChildProjectNames
+        modifiers = aModifiers
+    End Sub
     Friend Shared Function fileget(name As String)
         Dim raw As List(Of String()) = csvFileget("data/research.csv")
         For Each line In raw
@@ -26,6 +35,9 @@
         Next
         Return Nothing
     End Function
+    Friend Function briefReport() As String
+        Return name & " (" & _progress & "/" & _cost & ")"
+    End Function
 
     Friend Property player As player
     Friend Property name As String
@@ -45,7 +57,9 @@
     Private Property _requirements As New List(Of requirement)
     Friend ReadOnly Property requirementsMet As Boolean
         Get
-            Dim researchRequirements As List(Of requirement) = player.activeResearchRequirements
+            If _requirements Is Nothing OrElse _requirements.Count = 0 Then Return True
+
+            Dim researchRequirements As List(Of requirement) = player.getActiveResearchRequirements
             For Each requirement In _requirements
                 If researchRequirements.Contains(requirement) = False Then Return False
             Next
