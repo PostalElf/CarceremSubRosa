@@ -1,6 +1,5 @@
 ﻿Public Class tacsupport
     Inherits holding
-    Implements problemReporter
     Public Sub New()
     End Sub
     Public Sub New(aName As String, aCitysite As citysite, aShellcompany As shellcompany)
@@ -22,8 +21,6 @@
     Public Overrides Function ToString() As String
         Return name & " Tacsupport"
     End Function
-
-    Friend Property name As String Implements problemReporter.name
 
     Friend Overrides ReadOnly Property upkeep As Integer
         Get

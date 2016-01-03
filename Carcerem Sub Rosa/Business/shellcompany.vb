@@ -44,6 +44,12 @@
         _holdings.Add(holding)
         Return Nothing
     End Function
+    Friend Function removeHolding(holding As holding) As problem
+        If _holdings.Contains(holding) = False Then Return New problem(Me, problemType.NotFound)
+
+        _holdings.Remove(holding)
+        Return Nothing
+    End Function
     Friend Function activeResearchRequirements() As List(Of requirement)
         Dim total As New List(Of requirement)
         For Each holding In _holdings

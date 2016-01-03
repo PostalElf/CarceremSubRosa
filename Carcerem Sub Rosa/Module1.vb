@@ -24,12 +24,12 @@
         player.createTradeRoute(blueprint, factory, city2)
 
         player.consoleReport(0)
-        Console.WriteLine()
-        'shell.consoleReport(0)
-        'For Each holding In shell.holdings
-        '    Console.WriteLine()
-        '    holding.consoleReport(1)
-        'Next
+        Console.WriteLine(vbCrLf)
+        shell.consoleReport(0)
+        For Each holding In shell.holdings
+            Console.WriteLine()
+            holding.consoleReport(1)
+        Next
         Console.ReadKey()
     End Sub
 

@@ -1,6 +1,5 @@
 ﻿Public Class factory
     Inherits holding
-    Implements problemReporter
     Public Sub New()
     End Sub
     Public Sub New(aName As String, aCitysite As citysite, aShellcompany As shellcompany)
@@ -31,7 +30,6 @@
         Return name & " Factory"
     End Function
 
-    Friend Property name As String Implements problemReporter.name
     Friend ReadOnly Property player As player
         Get
             Return shellcompany.player
@@ -55,7 +53,7 @@
         End Get
     End Property
     Friend Function addExportProduct(product As product) As problem
-        If player.checkBlueprint(product.name) = False Then Return New problem(Me, problemType.BlueprintNotFound)
+        If player.checkBlueprint(product.name) = False Then Return New problem(Me, problemType.NotFound)
         If productCapacity - _exportProducts.Count < 1 Then Return New problem(Me, problemType.ExceedCapacity)
 
         product.manufacturer = Me

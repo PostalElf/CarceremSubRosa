@@ -78,10 +78,10 @@
         Return Nothing
     End Function
     Friend Function addHolding(holding As holding, citysite As citysite) As problem
-        If _citysites.Contains(citysite) = False Then Return New problem(Me, problemType.CitysiteNotFound)
-        If citysite.holding Is Nothing = False Then Return New problem(Me, problemType.CitysiteOccupied)
-        If holding.citysite Is Nothing = False Then Return New problem(Me, problemType.CitysiteOccupied)
-        If TypeOf holding Is laundry Then Return New problem(Me, problemType.CitysiteNotSuitable)
+        If _citysites.Contains(citysite) = False Then Return New problem(Me, problemType.NotFound)
+        If citysite.holding Is Nothing = False Then Return New problem(Me, problemType.Occupied)
+        If holding.citysite Is Nothing = False Then Return New problem(Me, problemType.Occupied)
+        If TypeOf holding Is laundry Then Return New problem(Me, problemType.NotSuitable)
         If TypeOf holding Is safehouse AndAlso getHoldings("safehouse").Count > 0 Then Return New problem(Me, problemType.ExceedCapacity)
         If TypeOf holding Is tacsupport AndAlso getHoldings("tacsupport").Count >= 3 Then Return New problem(Me, problemType.ExceedCapacity)
 

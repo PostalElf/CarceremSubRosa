@@ -1,6 +1,5 @@
 ﻿Public Class researchlab
     Inherits holding
-    Implements problemReporter
     Public Sub New()
     End Sub
     Public Sub New(aName As String, aCitysite As citysite, aShellcompany As shellcompany)
@@ -24,7 +23,6 @@
         Return name & " Laboratory"
     End Function
 
-    Friend Property name As String Implements problemReporter.name
     Private _artefact As artefact = Nothing
     Friend ReadOnly Property artefact As artefact
         Get
@@ -79,7 +77,10 @@
     End Property
     Friend Overrides ReadOnly Property visibility As Integer
         Get
-            Return 3
+            Dim total As Integer = 3
+            If scientist Is Nothing = False Then total += scientist.visibility
+            If artefact Is Nothing = False Then total += artefact.visibility
+            Return total
         End Get
     End Property
     Friend Overrides ReadOnly Property upkeep As Integer

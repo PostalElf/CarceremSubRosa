@@ -11,16 +11,14 @@
         Dim inddd As String = vbSpace(indent + 2)
         Dim longnameLength As Integer = getLongestShellcompanyNameLength("Departments:  ".Length, " Corp:  ")
 
-        Console.WriteLine(ind & "Income: " & withSign(income, "$"))
+        Console.WriteLine(ind & fakeTab("Money: ", 11) & withSign(money, "$"))
+        Console.WriteLine(ind & fakeTab("Income: ", 11) & withSign(income, "$"))
         Console.WriteLine(indd & fakeTab("Base Income: ", longnameLength) & withSign(_baseIncome, "$"))
         Console.WriteLine(indd & fakeTab("Departments: ", longnameLength) & withReverseSign(departmentBudgetTotal, "$"))
         For Each shellcompany In _shellcompanies
             Console.WriteLine(indd & fakeTab(shellcompany.name & " Corp: ", longnameLength) & withSign(shellcompany.income, "$"))
         Next
-
-        Console.WriteLine()
-
-        Console.WriteLine(ind & "Research: " & withSign(research))
+        Console.WriteLine(ind & fakeTab("Research: ", 11) & withSign(research))
         For Each shellcompany In _shellcompanies
             Console.WriteLine(indd & fakeTab(shellcompany.name & " Corp: ", longnameLength) & withSign(shellcompany.research))
         Next

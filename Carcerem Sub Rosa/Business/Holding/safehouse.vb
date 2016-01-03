@@ -1,6 +1,5 @@
 ﻿Public Class safehouse
     Inherits holding
-    Implements problemReporter
     Public Sub New()
     End Sub
     Public Sub New(aName As String, aCitysite As citysite, aShellcompany As shellcompany)
@@ -23,7 +22,6 @@
         Return name & " Safehouse"
     End Function
 
-    Friend Property name As String Implements problemReporter.name
     Private _artefact As artefact = Nothing
     Friend ReadOnly Property artefact As artefact
         Get

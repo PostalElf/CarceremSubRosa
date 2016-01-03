@@ -22,8 +22,6 @@
         Return name & " Laundry"
     End Function
 
-    Friend Property name As String
-
     Friend Overrides ReadOnly Property visibility As Integer
         Get
             Select Case laundryRate

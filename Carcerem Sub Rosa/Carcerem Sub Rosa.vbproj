@@ -73,7 +73,6 @@
     <Compile Include="Business\Holding\holding.vb" />
     <Compile Include="Business\Holding\safehouse.vb" />
     <Compile Include="Business\Holding\tacsupport.vb" />
-    <Compile Include="Business\industry.vb" />
     <Compile Include="Business\Holding\laundry.vb" />
     <Compile Include="Business\product.vb" />
     <Compile Include="Business\Holding\researchlab.vb" />

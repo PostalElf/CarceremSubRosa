@@ -10,10 +10,9 @@ End Class
 Public Enum problemType
     Duplicate = 1
     ExceedCapacity
-    BlueprintNotFound
-    CitysiteNotFound
-    CitysiteOccupied
-    CitysiteNotSuitable
+    NotFound
+    NotSuitable
+    Occupied
 End Enum
 
 Public Interface problemReporter
