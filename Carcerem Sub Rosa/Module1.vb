@@ -18,18 +18,18 @@
         Dim tacsupport As New tacsupport("", citysite4, shell)
         Dim laundry As New laundry("", shell)
 
-        Dim blueprint As New product("Sheepskin", industry.Biomedical)
+        Dim blueprint As New product("Sheepskin")
         player.addBlueprint(blueprint)
-        city2.addDemand(industry.Biomedical, 1)
+        city2.addDemand(1)
         player.createTradeRoute(blueprint, factory, city2)
 
         player.consoleReport(0)
         Console.WriteLine()
-        shell.consoleReport(0)
-        For Each holding In shell.holdings
-            Console.WriteLine()
-            holding.consoleReport(1)
-        Next
+        'shell.consoleReport(0)
+        'For Each holding In shell.holdings
+        '    Console.WriteLine()
+        '    holding.consoleReport(1)
+        'Next
         Console.ReadKey()
     End Sub
 

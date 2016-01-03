@@ -1,5 +1,4 @@
 ﻿Public Class enumArrays
-    Friend Shared Property industryArray As Array = System.Enum.GetValues(GetType(industry))
     Friend Shared Property continentArray As Array = System.Enum.GetValues(GetType(continent))
     Friend Shared Property departmentArray As Array = System.Enum.GetValues(GetType(department))
 

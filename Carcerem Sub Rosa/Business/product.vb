@@ -1,14 +1,12 @@
 ﻿Public Class product
     Public Sub New()
     End Sub
-    Public Sub New(aName As String, aIndustry As industry, Optional aCityModifiers As List(Of modifier) = Nothing)
+    Public Sub New(aName As String, Optional aCityModifiers As List(Of modifier) = Nothing)
         name = aName
-        _industry = aIndustry
         If aCityModifiers Is Nothing = False Then cityModifiers.AddRange(aCityModifiers)
     End Sub
     Public Sub New(blueprint As product)
         name = blueprint.name
-        _industry = blueprint.industry
         If blueprint.cityModifiers.Count > 0 Then cityModifiers.AddRange(blueprint.cityModifiers)
     End Sub
     Friend Shared Function fileget(targetName As String) As product
@@ -18,7 +16,6 @@
                 With product
                     Dim n As New rollingCounter(0)
                     .name = line(n.Tick)
-                    ._industry = enumArrays.getEnumFromString(line(n.Tick), enumArrays.industryArray)
 
                     While n.Tick < line.Length AndAlso n.Last <> ""
                         Dim modifier As New modifier(.name, ._cityModifiers, line(n.Last))
@@ -32,7 +29,7 @@
     End Function
     Friend Sub consoleReport(indent As Integer, Optional prefix As String = "")
         Dim ind As String = vbSpace(indent) & prefix
-        Console.Write(ind & name & " (" & industry.ToString & ")")
+        Console.Write(ind & name)
         If manufacturer Is Nothing = False AndAlso importer Is Nothing = False Then
             Console.Write(": " & manufacturer.city.name & " -> " & importer.name)
             Console.Write(" for $" & income)
@@ -40,16 +37,10 @@
         Console.WriteLine()
     End Sub
     Public Overrides Function ToString() As String
-        Return name & " (" & industry.ToString & ")"
+        Return name
     End Function
 
     Friend Property name As String
-    Private Property _industry As industry
-    Friend ReadOnly Property industry As industry
-        Get
-            Return _industry
-        End Get
-    End Property
     Private Property _cityModifiers As New List(Of modifier)
     Friend ReadOnly Property cityModifiers As List(Of modifier)
         Get

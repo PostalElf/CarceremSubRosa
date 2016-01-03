@@ -9,3 +9,8 @@ E:\Visual Studio Projects\Carcerem Sub Rosa\Carcerem Sub Rosa\obj\x86\Debug\Carc
 E:\Visual Studio Projects\CarceremSubRosa\Carcerem Sub Rosa\obj\x86\Debug\Carcerem Sub Rosa.exe
 E:\Visual Studio Projects\CarceremSubRosa\Carcerem Sub Rosa\obj\x86\Debug\Carcerem Sub Rosa.xml
 E:\Visual Studio Projects\CarceremSubRosa\Carcerem Sub Rosa\obj\x86\Debug\Carcerem Sub Rosa.pdb
+E:\Visual Studio Projects\CarceremSubRosa\Carcerem Sub Rosa\bin\Debug\Carcerem Sub Rosa.exe
+E:\Visual Studio Projects\CarceremSubRosa\Carcerem Sub Rosa\bin\Debug\Carcerem Sub Rosa.pdb
+E:\Visual Studio Projects\CarceremSubRosa\Carcerem Sub Rosa\bin\Debug\Carcerem Sub Rosa.xml
+E:\Visual Studio Projects\CarceremSubRosa\Carcerem Sub Rosa\obj\x86\Debug\Carcerem_Sub_Rosa.Resources.resources
+E:\Visual Studio Projects\CarceremSubRosa\Carcerem Sub Rosa\obj\x86\Debug\Carcerem Sub Rosa.vbproj.GenerateResource.Cache

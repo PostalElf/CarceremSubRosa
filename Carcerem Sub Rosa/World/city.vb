@@ -1,10 +1,6 @@
 ﻿Public Class city
     Implements problemReporter
     Public Sub New()
-        For Each industry In enumArrays.industryArray
-            _importProducts.Add(industry, New List(Of product))
-            _demand.Add(industry, 0)
-        Next
     End Sub
     Friend Shared Function buildCity(line As String()) As city
         Dim city As New city
@@ -123,38 +119,35 @@
         _shellcompanies.Add(shellcompany)
         Return Nothing
     End Function
-    Private Property _importProducts As New Dictionary(Of industry, List(Of product))
-    Friend ReadOnly Property importProducts As Dictionary(Of industry, List(Of product))
+    Private Property _importProducts As New List(Of product)
+    Friend ReadOnly Property importProducts As List(Of product)
         Get
             Return _importProducts
         End Get
     End Property
     Friend Function addImportProduct(product As product) As problem
-        Dim industry As industry = product.industry
-        If _importProducts(industry).Contains(product) Then Return New problem(Me, problemType.Duplicate)
-        If _demand(industry) - _importProducts(industry).Count < 1 Then Return New problem(Me, problemType.ExceedCapacity)
+        If _importProducts.Contains(product) Then Return New problem(Me, problemType.Duplicate)
+        If _demand - _importProducts.Count < 1 Then Return New problem(Me, problemType.ExceedCapacity)
 
         product.importer = Me
         addModifiers(product.cityModifiers)
-        _importProducts(industry).Add(product)
+        _importProducts.Add(product)
         Return Nothing
     End Function
-    Private Property _demand As New Dictionary(Of industry, Integer)
-    Friend ReadOnly Property demand As Dictionary(Of industry, Integer)
+    Private Property _demand As Integer
+    Friend ReadOnly Property demand As Integer
         Get
             Return _demand
         End Get
     End Property
-    Friend Sub addDemand(industry As industry, value As Integer)
-        _demand(industry) += value
+    Friend Sub addDemand(value As Integer)
+        _demand += value
     End Sub
     Friend ReadOnly Property income As Integer
         Get
             Dim total As Integer = 0
-            For Each industry In enumArrays.industryArray
-                For Each product In _importProducts(industry)
-                    total += product.income
-                Next
+            For Each product In _importProducts
+                total += product.income
             Next
             Return total
         End Get
