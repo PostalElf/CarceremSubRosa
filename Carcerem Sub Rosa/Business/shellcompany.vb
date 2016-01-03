@@ -88,7 +88,7 @@
             Return total
         End Get
     End Property
-    Friend ReadOnly Property incomeWashed As Integer
+    Friend ReadOnly Property incomeLaundyRate As Integer
         Get
             Dim total As Integer = 0
             For Each holding In holdings
@@ -102,7 +102,7 @@
     End Property
     Friend ReadOnly Property incomeNet As Integer
         Get
-            Return Math.Min(incomeRaw, incomeWashed)
+            Return Math.Min(incomeRaw, incomeLaundyRate)
         End Get
     End Property
     Friend ReadOnly Property research As Integer
