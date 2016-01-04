@@ -83,7 +83,7 @@
         If holding.citysite Is Nothing = False Then Return New problem(Me, problemType.Occupied)
         If TypeOf holding Is laundry Then Return New problem(Me, problemType.NotSuitable)
         If TypeOf holding Is safehouse AndAlso getHoldings("safehouse").Count > 0 Then Return New problem(Me, problemType.ExceedCapacity)
-        If TypeOf holding Is tacsupport AndAlso getHoldings("tacsupport").Count >= 3 Then Return New problem(Me, problemType.ExceedCapacity)
+        If TypeOf holding Is tacsupport AndAlso getHoldings("tacsupport").Count > 0 Then Return New problem(Me, problemType.ExceedCapacity)
 
         citysite.holding = holding
         holding.citysite = citysite

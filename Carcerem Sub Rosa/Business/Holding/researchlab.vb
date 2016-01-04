@@ -58,7 +58,7 @@
         _scientist = Nothing
     End Function
 
-    Friend ReadOnly Property research As Integer
+    Friend ReadOnly Property researchRaw As Integer
         Get
             Dim total As Integer = 0
             Select Case city.standardOfLiving
@@ -71,6 +71,25 @@
 
             If artefact Is Nothing = False Then total += artefact.researchBonus
             If scientist Is Nothing = False Then total += scientist.researchBonus
+
+            Return total
+        End Get
+    End Property
+    Friend ReadOnly Property research As Integer
+        Get
+            Dim total As Integer = researchRaw
+
+            Dim player As player = shellcompany.player
+            Dim rndModifier As Double
+            Select Case player.departmentLevel(department.RnD)
+                Case 1 : rndModifier = 0.5
+                Case 2 : rndModifier = 0.75
+                Case 3 : rndModifier = 1
+                Case 4 : rndModifier = 1.25
+                Case 5 : rndModifier = 1.5
+                Case Else : Return -1
+            End Select
+            total = CInt(total * rndModifier)
 
             Return total
         End Get
