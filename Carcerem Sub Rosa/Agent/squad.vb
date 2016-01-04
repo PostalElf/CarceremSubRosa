@@ -43,6 +43,10 @@
     Friend Function teleportTo(destination As city) As problem
         If _city Is Nothing = False Then _city.removeSquad(Me)
 
+        _travelProgress = 0
+        _travelCost = 0
+        _travelDestination = Nothing
+
         _city = destination
         _city.addSquad(Me)
         Return Nothing
