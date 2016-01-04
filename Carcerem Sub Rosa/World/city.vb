@@ -62,6 +62,9 @@
         End With
         Return xy
     End Function
+    Friend Function getDistanceTo(destination As city) As Integer
+        Return pythogoras(_coords, destination._coords)
+    End Function
 
     Private Property _standardOfLiving As standardOfLiving
     Friend ReadOnly Property standardOfLiving As standardOfLiving
@@ -175,6 +178,25 @@
             total = addModifier(modifier)
             If total Is Nothing = False Then Return total
         Next
+        Return Nothing
+    End Function
+
+    Private Property _squads As New List(Of squad)
+    Friend ReadOnly Property squads As List(Of squad)
+        Get
+            Return _squads
+        End Get
+    End Property
+    Friend Function addSquad(squad As squad) As problem
+        If _squads.Contains(squad) Then Return New problem(Me, problemType.Duplicate)
+
+        _squads.Add(squad)
+        Return Nothing
+    End Function
+    Friend Function removeSquad(squad As squad) As problem
+        If _squads.Contains(squad) = False Then Return New problem(Me, problemType.NotFound)
+
+        _squads.Remove(squad)
         Return Nothing
     End Function
 End Class
