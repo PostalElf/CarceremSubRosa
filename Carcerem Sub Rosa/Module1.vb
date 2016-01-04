@@ -15,12 +15,13 @@
         Dim citysite2 As New citysite(player, city1)
         Dim citysite3 As New citysite(player, city1)
         Dim citysite4 As New citysite(player, city1)
-        Dim shell As New shellcompany("", player, city1)
-        Dim research As New researchlab("", citysite1, shell)
-        Dim factory As New factory("", citysite2, shell)
-        Dim safehouse As New safehouse("", citysite3, shell)
-        Dim tacsupport As New tacsupport("", citysite4, shell)
-        Dim laundry As New laundry("", shell)
+        Dim shell1 As New shellcompany("", player, city1)
+        Dim shell2 As New shellcompany("", player, city2)
+        Dim research As New researchlab("", citysite1, shell2)
+        Dim factory As New factory("", citysite2, shell1)
+        Dim safehouse As New safehouse("", citysite3, shell1)
+        Dim tacsupport As New tacsupport("", citysite4, shell1)
+        Dim laundry As New laundry("", shell1)
 
         Dim blueprint As New product("Sheepskin")
         player.addBlueprint(blueprint)
@@ -33,15 +34,22 @@
         squad.addAgent(agent1)
         squad.addAgent(agent2)
         agent1.changeRelationship(agent2, choiceComponent.Practical)
-
+        squad.moveTo(city2)
 
         While True
             Console.Clear()
             player.consoleReport(1)
             Console.WriteLine(vbCrLf)
 
-            shell.consoleReport(1)
-            For Each holding In shell.holdings
+            shell1.consoleReport(1)
+            For Each holding In shell1.holdings
+                Console.WriteLine()
+                holding.consoleReport(2)
+            Next
+            Console.WriteLine(vbCrLf)
+
+            shell2.consoleReport(1)
+            For Each holding In shell2.holdings
                 Console.WriteLine()
                 holding.consoleReport(2)
             Next

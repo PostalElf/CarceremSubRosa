@@ -222,6 +222,12 @@
         Next
 
 
+        'tick squads
+        For Each squad In _squads
+            squad.tick()
+        Next
+
+
         'add income
         _money += incomeNet
         _researchProject.addProgress(research)

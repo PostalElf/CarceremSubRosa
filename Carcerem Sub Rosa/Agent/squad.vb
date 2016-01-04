@@ -18,14 +18,16 @@
         Dim ind As String = vbSpace(indent) & prefix
         Dim indd As String = vbSpace(indent + 1) & prefix
         Dim inddd As String = vbSpace(indent + 2) & prefix
+        Dim faketabLength As Integer = "Travelling To:  ".Length
 
         Console.WriteLine(ind & "Squad " & name)
         If _city Is Nothing = False Then
-            Console.WriteLine(indd & "Location:  " & _city.briefReport)
+            Console.WriteLine(indd & fakeTab("Location:", faketabLength) & _city.briefReport)
         Else
-            Console.WriteLine(indd & "Travelling To:  " & _travelDestination.briefReport & " (" & _travelProgress & "/" & _travelCost & ")")
+            Console.WriteLine(indd & fakeTab("Travelling To:", faketabLength) & _travelDestination.briefReport & " (" & _travelProgress & "/" & _travelCost & ")")
+            Console.WriteLine(indd & fakeTab("Travel Speed:", faketabLength) & withSign(_travelSpeed))
         End If
-        Console.WriteLine(indd & "Upkeep:  " & withReverseSign(upkeep, "$"))
+        Console.WriteLine(indd & fakeTab("Upkeep:", faketabLength) & withReverseSign(upkeep, "$"))
         Console.WriteLine(indd & "Agents:")
         For Each agent In _agents
             Console.WriteLine(inddd & agent.ToString)
@@ -60,7 +62,7 @@
     Friend Sub tick()
         If _city Is Nothing AndAlso _travelDestination Is Nothing = False Then
             _travelProgress += _travelSpeed
-            If _travelSpeed >= _travelCost Then teleportTo(_travelDestination)
+            If _travelProgress >= _travelCost Then teleportTo(_travelDestination)
         End If
     End Sub
 
@@ -97,7 +99,7 @@
     End Property
 
     Private Property _city As city
-    Private Property _travelSpeed As Integer
+    Private Property _travelSpeed As Integer = 100
     Private Property _travelProgress As Integer
     Private Property _travelCost As Integer
     Private Property _travelDestination As city
