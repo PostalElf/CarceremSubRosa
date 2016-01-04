@@ -83,6 +83,7 @@
     <Compile Include="Business\product.vb" />
     <Compile Include="Business\Holding\researchlab.vb" />
     <Compile Include="Business\shellcompany.vb" />
+    <Compile Include="Development\distanceCalc.vb" />
     <Compile Include="Development\enumArrays.vb" />
     <Compile Include="Development\valve.vb" />
     <Compile Include="modifier.vb" />

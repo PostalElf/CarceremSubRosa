@@ -1,0 +1,1369 @@
+Cairo,Cairo,0
+Cairo,Lagos,3923
+Cairo,Johannesburg,6273
+Cairo,Cape Town,7249
+Cairo,Toronto,9222
+Cairo,New York,9035
+Cairo,Los Angeles,12218
+Cairo,Chicago,9874
+Cairo,Miami,10452
+Cairo,Buenos Aires,11829
+Cairo,Sao Paulo,10234
+Cairo,Rio de Janeiro,9901
+Cairo,Mexico City,12386
+Cairo,Lima,12442
+Cairo,Mumbai,4364
+Cairo,Delhi,4436
+Cairo,Tokyo,9583
+Cairo,Seoul,8498
+Cairo,Jakarta,8998
+Cairo,Manila,9191
+Cairo,Taipei,8687
+Cairo,Bangkok,7280
+Cairo,Ho Chi Minh City,8021
+Cairo,Shanghai,8367
+Cairo,Beijing,7555
+Cairo,Guangzhou,8030
+Cairo,Tianjin,7652
+Cairo,Chengdu,6863
+Cairo,Paris,3215
+Cairo,Berlin,2896
+Cairo,Milan,2576
+Cairo,Moscow,2907
+Cairo,London,3516
+Cairo,Tehran,1986
+Cairo,Baghdad,1301
+Cairo,Lahore,4100
+Cairo,Istanbul,1237
+Lagos,Cairo,3923
+Lagos,Lagos,0
+Lagos,Johannesburg,4507
+Lagos,Cape Town,4767
+Lagos,Toronto,8945
+Lagos,New York,8491
+Lagos,Los Angeles,12432
+Lagos,Chicago,9627
+Lagos,Miami,9072
+Lagos,Buenos Aires,7924
+Lagos,Sao Paulo,6381
+Lagos,Rio de Janeiro,6034
+Lagos,Mexico City,11085
+Lagos,Lima,9141
+Lagos,Mumbai,7632
+Lagos,Delhi,8099
+Lagos,Tokyo,13499
+Lagos,Seoul,12420
+Lagos,Jakarta,11581
+Lagos,Manila,12766
+Lagos,Taipei,12489
+Lagos,Bangkok,10614
+Lagos,Ho Chi Minh City,11321
+Lagos,Shanghai,12246
+Lagos,Beijing,11475
+Lagos,Guangzhou,11742
+Lagos,Tianjin,11571
+Lagos,Chengdu,10667
+Lagos,Paris,4723
+Lagos,Berlin,5211
+Lagos,Milan,4380
+Lagos,Moscow,6266
+Lagos,London,5027
+Lagos,Tehran,5874
+Lagos,Baghdad,5180
+Lagos,Lahore,7840
+Lagos,Istanbul,4610
+Johannesburg,Cairo,6273
+Johannesburg,Lagos,4507
+Johannesburg,Johannesburg,0
+Johannesburg,Cape Town,1263
+Johannesburg,Toronto,13357
+Johannesburg,New York,12858
+Johannesburg,Los Angeles,16698
+Johannesburg,Chicago,14002
+Johannesburg,Miami,12967
+Johannesburg,Buenos Aires,8099
+Johannesburg,Sao Paulo,7440
+Johannesburg,Rio de Janeiro,7133
+Johannesburg,Mexico City,14606
+Johannesburg,Lima,10896
+Johannesburg,Mumbai,6993
+Johannesburg,Delhi,8056
+Johannesburg,Tokyo,13562
+Johannesburg,Seoul,12506
+Johannesburg,Jakarta,8600
+Johannesburg,Manila,11020
+Johannesburg,Taipei,11548
+Johannesburg,Bangkok,9011
+Johannesburg,Ho Chi Minh City,9437
+Johannesburg,Shanghai,11798
+Johannesburg,Beijing,11723
+Johannesburg,Guangzhou,10691
+Johannesburg,Tianjin,11753
+Johannesburg,Chengdu,10269
+Johannesburg,Paris,8741
+Johannesburg,Berlin,8881
+Johannesburg,Milan,8206
+Johannesburg,Moscow,9171
+Johannesburg,London,9083
+Johannesburg,Tehran,7318
+Johannesburg,Baghdad,6852
+Johannesburg,Lahore,8096
+Johannesburg,Istanbul,7485
+Cape Town,Cairo,7249
+Cape Town,Lagos,4767
+Cape Town,Johannesburg,1263
+Cape Town,Cape Town,0
+Cape Town,Toronto,13120
+Cape Town,New York,12583
+Cape Town,Los Angeles,16074
+Cape Town,Chicago,13687
+Cape Town,Miami,12338
+Cape Town,Buenos Aires,6879
+Cape Town,Sao Paulo,6354
+Cape Town,Rio de Janeiro,6071
+Cape Town,Mexico City,13720
+Cape Town,Lima,9773
+Cape Town,Mumbai,8254
+Cape Town,Delhi,9320
+Cape Town,Tokyo,14756
+Cape Town,Seoul,13734
+Cape Town,Jakarta,9491
+Cape Town,Manila,12068
+Cape Town,Taipei,12699
+Cape Town,Bangkok,10160
+Cape Town,Ho Chi Minh City,10528
+Cape Town,Shanghai,12997
+Cape Town,Beijing,12974
+Cape Town,Guangzhou,11856
+Cape Town,Tianjin,13001
+Cape Town,Chengdu,11505
+Cape Town,Paris,9355
+Cape Town,Berlin,9638
+Cape Town,Milan,8889
+Cape Town,Moscow,10151
+Cape Town,London,9685
+Cape Town,Tehran,8479
+Cape Town,Baghdad,7967
+Cape Town,Lahore,9355
+Cape Town,Istanbul,8413
+Toronto,Cairo,9222
+Toronto,Lagos,8945
+Toronto,Johannesburg,13357
+Toronto,Cape Town,13120
+Toronto,Toronto,0
+Toronto,New York,551
+Toronto,Los Angeles,3499
+Toronto,Chicago,702
+Toronto,Miami,1991
+Toronto,Buenos Aires,8971
+Toronto,Sao Paulo,8197
+Toronto,Rio de Janeiro,8282
+Toronto,Mexico City,3266
+Toronto,Lima,6207
+Toronto,Mumbai,12506
+Toronto,Delhi,11647
+Toronto,Tokyo,10363
+Toronto,Seoul,10616
+Toronto,Jakarta,15830
+Toronto,Manila,13233
+Toronto,Taipei,12096
+Toronto,Bangkok,13651
+Toronto,Ho Chi Minh City,13947
+Toronto,Shanghai,11438
+Toronto,Beijing,10605
+Toronto,Guangzhou,12495
+Toronto,Tianjin,10680
+Toronto,Chengdu,11761
+Toronto,Paris,6009
+Toronto,Berlin,6485
+Toronto,Milan,6646
+Toronto,Moscow,7495
+Toronto,London,5721
+Toronto,Tehran,9902
+Toronto,Baghdad,9748
+Toronto,Lahore,11253
+Toronto,Istanbul,8205
+New York,Cairo,9035
+New York,Lagos,8491
+New York,Johannesburg,12858
+New York,Cape Town,12583
+New York,Toronto,551
+New York,New York,0
+New York,Los Angeles,3941
+New York,Chicago,1146
+New York,Miami,1759
+New York,Buenos Aires,8538
+New York,Sao Paulo,7696
+New York,Rio de Janeiro,7768
+New York,Mexico City,3364
+New York,Lima,5884
+New York,Mumbai,12556
+New York,Delhi,11770
+New York,Tokyo,10864
+New York,Seoul,11068
+New York,Jakarta,16200
+New York,Manila,13692
+New York,Taipei,12542
+New York,Bangkok,13952
+New York,Ho Chi Minh City,14304
+New York,Shanghai,11875
+New York,Beijing,11004
+New York,Guangzhou,12894
+New York,Tianjin,11085
+New York,Chengdu,12093
+New York,Paris,5845
+New York,Berlin,6394
+New York,Milan,6473
+New York,Moscow,7521
+New York,London,5578
+New York,Tehran,9870
+New York,Baghdad,9659
+New York,Lahore,11362
+New York,Istanbul,8081
+Los Angeles,Cairo,12218
+Los Angeles,Lagos,12432
+Los Angeles,Johannesburg,16698
+Los Angeles,Cape Town,16074
+Los Angeles,Toronto,3499
+Los Angeles,New York,3941
+Los Angeles,Los Angeles,0
+Los Angeles,Chicago,2808
+Los Angeles,Miami,3760
+Los Angeles,Buenos Aires,9866
+Los Angeles,Sao Paulo,9920
+Los Angeles,Rio de Janeiro,10155
+Los Angeles,Mexico City,2494
+Los Angeles,Lima,6733
+Los Angeles,Mumbai,14011
+Los Angeles,Delhi,12875
+Los Angeles,Tokyo,8825
+Los Angeles,Seoul,9599
+Los Angeles,Jakarta,14470
+Los Angeles,Manila,11760
+Los Angeles,Taipei,10918
+Los Angeles,Bangkok,13322
+Los Angeles,Ho Chi Minh City,13155
+Los Angeles,Shanghai,10449
+Los Angeles,Beijing,10076
+Los Angeles,Guangzhou,11662
+Los Angeles,Tianjin,10097
+Los Angeles,Chengdu,11578
+Los Angeles,Paris,9098
+Los Angeles,Berlin,9323
+Los Angeles,Milan,9728
+Los Angeles,Moscow,9783
+Los Angeles,London,8768
+Los Angeles,Tehran,12203
+Los Angeles,Baghdad,12325
+Los Angeles,Lahore,12621
+Los Angeles,Istanbul,11036
+Chicago,Cairo,9874
+Chicago,Lagos,9627
+Chicago,Johannesburg,14002
+Chicago,Cape Town,13687
+Chicago,Toronto,702
+Chicago,New York,1146
+Chicago,Los Angeles,2808
+Chicago,Chicago,0
+Chicago,Miami,1916
+Chicago,Buenos Aires,9025
+Chicago,Sao Paulo,8419
+Chicago,Rio de Janeiro,8541
+Chicago,Mexico City,2725
+Chicago,Lima,6102
+Chicago,Mumbai,12965
+Chicago,Delhi,12039
+Chicago,Tokyo,10152
+Chicago,Seoul,10525
+Chicago,Jakarta,15821
+Chicago,Manila,13102
+Chicago,Taipei,12004
+Chicago,Bangkok,13793
+Chicago,Ho Chi Minh City,13996
+Chicago,Shanghai,11373
+Chicago,Beijing,10618
+Chicago,Guangzhou,12491
+Chicago,Tianjin,10684
+Chicago,Chengdu,11878
+Chicago,Paris,6660
+Chicago,Berlin,7094
+Chicago,Milan,7299
+Chicago,Moscow,8011
+Chicago,London,6362
+Chicago,Tehran,10451
+Chicago,Baghdad,10341
+Chicago,Lahore,11661
+Chicago,Istanbul,8826
+Miami,Cairo,10452
+Miami,Lagos,9072
+Miami,Johannesburg,12967
+Miami,Cape Town,12338
+Miami,Toronto,1991
+Miami,New York,1759
+Miami,Los Angeles,3760
+Miami,Chicago,1916
+Miami,Miami,0
+Miami,Buenos Aires,7109
+Miami,Sao Paulo,6579
+Miami,Rio de Janeiro,6733
+Miami,Mexico City,2066
+Miami,Lima,4227
+Miami,Mumbai,14262
+Miami,Delhi,13521
+Miami,Tokyo,12012
+Miami,Seoul,12436
+Miami,Jakarta,17737
+Miami,Manila,14992
+Miami,Taipei,13913
+Miami,Bangkok,15640
+Miami,Ho Chi Minh City,15899
+Miami,Shanghai,13287
+Miami,Beijing,12527
+Miami,Guangzhou,14405
+Miami,Tianjin,12595
+Miami,Chengdu,13741
+Miami,Paris,7367
+Miami,Berlin,8007
+Miami,Milan,7966
+Miami,Moscow,9235
+Miami,London,7137
+Miami,Tehran,11516
+Miami,Baghdad,11233
+Miami,Lahore,13110
+Miami,Istanbul,9626
+Buenos Aires,Cairo,11829
+Buenos Aires,Lagos,7924
+Buenos Aires,Johannesburg,8099
+Buenos Aires,Cape Town,6879
+Buenos Aires,Toronto,8971
+Buenos Aires,New York,8538
+Buenos Aires,Los Angeles,9866
+Buenos Aires,Chicago,9025
+Buenos Aires,Miami,7109
+Buenos Aires,Buenos Aires,0
+Buenos Aires,Sao Paulo,1677
+Buenos Aires,Rio de Janeiro,1968
+Buenos Aires,Mexico City,7403
+Buenos Aires,Lima,3143
+Buenos Aires,Mumbai,14956
+Buenos Aires,Delhi,15816
+Buenos Aires,Tokyo,18391
+Buenos Aires,Seoul,19459
+Buenos Aires,Jakarta,15240
+Buenos Aires,Manila,17815
+Buenos Aires,Taipei,18983
+Buenos Aires,Bangkok,16897
+Buenos Aires,Ho Chi Minh City,16989
+Buenos Aires,Shanghai,19667
+Buenos Aires,Beijing,19294
+Buenos Aires,Guangzhou,18530
+Buenos Aires,Tianjin,19408
+Buenos Aires,Chengdu,18342
+Buenos Aires,Paris,11066
+Buenos Aires,Berlin,11926
+Buenos Aires,Milan,11206
+Buenos Aires,Moscow,13495
+Buenos Aires,London,11144
+Buenos Aires,Tehran,13797
+Buenos Aires,Baghdad,13103
+Buenos Aires,Lahore,15659
+Buenos Aires,Istanbul,12262
+Sao Paulo,Cairo,10234
+Sao Paulo,Lagos,6381
+Sao Paulo,Johannesburg,7440
+Sao Paulo,Cape Town,6354
+Sao Paulo,Toronto,8197
+Sao Paulo,New York,7696
+Sao Paulo,Los Angeles,9920
+Sao Paulo,Chicago,8419
+Sao Paulo,Miami,6579
+Sao Paulo,Buenos Aires,1677
+Sao Paulo,Sao Paulo,0
+Sao Paulo,Rio de Janeiro,358
+Sao Paulo,Mexico City,7442
+Sao Paulo,Lima,3460
+Sao Paulo,Mumbai,13794
+Sao Paulo,Delhi,14451
+Sao Paulo,Tokyo,18560
+Sao Paulo,Seoul,18368
+Sao Paulo,Jakarta,15651
+Sao Paulo,Manila,18405
+Sao Paulo,Taipei,18835
+Sao Paulo,Bangkok,16420
+Sao Paulo,Ho Chi Minh City,16875
+Sao Paulo,Shanghai,18591
+Sao Paulo,Beijing,17624
+Sao Paulo,Guangzhou,17990
+Sao Paulo,Tianjin,17737
+Sao Paulo,Chengdu,17043
+Sao Paulo,Paris,9415
+Sao Paulo,Berlin,10268
+Sao Paulo,Milan,9534
+Sao Paulo,Moscow,11823
+Sao Paulo,London,9511
+Sao Paulo,Tehran,12218
+Sao Paulo,Baghdad,11526
+Sao Paulo,Lahore,14217
+Sao Paulo,Istanbul,10598
+Rio de Janeiro,Cairo,9901
+Rio de Janeiro,Lagos,6034
+Rio de Janeiro,Johannesburg,7133
+Rio de Janeiro,Cape Town,6071
+Rio de Janeiro,Toronto,8282
+Rio de Janeiro,New York,7768
+Rio de Janeiro,Los Angeles,10155
+Rio de Janeiro,Chicago,8541
+Rio de Janeiro,Miami,6733
+Rio de Janeiro,Buenos Aires,1968
+Rio de Janeiro,Sao Paulo,358
+Rio de Janeiro,Rio de Janeiro,0
+Rio de Janeiro,Mexico City,7691
+Rio de Janeiro,Lima,3782
+Rio de Janeiro,Mumbai,13436
+Rio de Janeiro,Delhi,14096
+Rio de Janeiro,Tokyo,18593
+Rio de Janeiro,Seoul,18160
+Rio de Janeiro,Jakarta,15446
+Rio de Janeiro,Manila,18140
+Rio de Janeiro,Taipei,18476
+Rio de Janeiro,Bangkok,16086
+Rio de Janeiro,Ho Chi Minh City,16569
+Rio de Janeiro,Shanghai,18267
+Rio de Janeiro,Beijing,17348
+Rio de Janeiro,Guangzhou,17635
+Rio de Janeiro,Tianjin,17458
+Rio de Janeiro,Chengdu,16691
+Rio de Janeiro,Paris,9182
+Rio de Janeiro,Berlin,10024
+Rio de Janeiro,Milan,9275
+Rio de Janeiro,Moscow,11562
+Rio de Janeiro,London,9292
+Rio de Janeiro,Tehran,11882
+Rio de Janeiro,Baghdad,11189
+Rio de Janeiro,Lahore,13866
+Rio de Janeiro,Istanbul,10294
+Mexico City,Cairo,12386
+Mexico City,Lagos,11085
+Mexico City,Johannesburg,14606
+Mexico City,Cape Town,13720
+Mexico City,Toronto,3266
+Mexico City,New York,3364
+Mexico City,Los Angeles,2494
+Mexico City,Chicago,2725
+Mexico City,Miami,2066
+Mexico City,Buenos Aires,7403
+Mexico City,Sao Paulo,7442
+Mexico City,Rio de Janeiro,7691
+Mexico City,Mexico City,0
+Mexico City,Lima,4260
+Mexico City,Mumbai,15667
+Mexico City,Delhi,14677
+Mexico City,Tokyo,11319
+Mexico City,Seoul,12069
+Mexico City,Jakarta,16869
+Mexico City,Manila,14240
+Mexico City,Taipei,13410
+Mexico City,Bangkok,15767
+Mexico City,Ho Chi Minh City,15646
+Mexico City,Shanghai,12926
+Mexico City,Beijing,12476
+Mexico City,Guangzhou,14140
+Mexico City,Tianjin,12508
+Mexico City,Chengdu,13938
+Mexico City,Paris,9209
+Mexico City,Berlin,9741
+Mexico City,Milan,9835
+Mexico City,Moscow,10735
+Mexico City,London,8941
+Mexico City,Tehran,13164
+Mexico City,Baghdad,13007
+Mexico City,Lahore,14324
+Mexico City,Istanbul,11443
+Lima,Cairo,12442
+Lima,Lagos,9141
+Lima,Johannesburg,10896
+Lima,Cape Town,9773
+Lima,Toronto,6207
+Lima,New York,5884
+Lima,Los Angeles,6733
+Lima,Chicago,6102
+Lima,Miami,4227
+Lima,Buenos Aires,3143
+Lima,Sao Paulo,3460
+Lima,Rio de Janeiro,3782
+Lima,Mexico City,4260
+Lima,Lima,0
+Lima,Mumbai,16730
+Lima,Delhi,16798
+Lima,Tokyo,15509
+Lima,Seoul,16328
+Lima,Jakarta,17965
+Lima,Manila,18068
+Lima,Taipei,17605
+Lima,Bangkok,19718
+Lima,Ho Chi Minh City,19618
+Lima,Shanghai,17182
+Lima,Beijing,16671
+Lima,Guangzhou,18394
+Lima,Tianjin,16719
+Lima,Chengdu,17968
+Lima,Paris,10270
+Lima,Berlin,11115
+Lima,Milan,10686
+Lima,Moscow,12664
+Lima,London,10186
+Lima,Tehran,14256
+Lima,Baghdad,13672
+Lima,Lahore,16396
+Lima,Istanbul,12241
+Mumbai,Cairo,4364
+Mumbai,Lagos,7632
+Mumbai,Johannesburg,6993
+Mumbai,Cape Town,8254
+Mumbai,Toronto,12506
+Mumbai,New York,12556
+Mumbai,Los Angeles,14011
+Mumbai,Chicago,12965
+Mumbai,Miami,14262
+Mumbai,Buenos Aires,14956
+Mumbai,Sao Paulo,13794
+Mumbai,Rio de Janeiro,13436
+Mumbai,Mexico City,15667
+Mumbai,Lima,16730
+Mumbai,Mumbai,0
+Mumbai,Delhi,1153
+Mumbai,Tokyo,6738
+Mumbai,Seoul,5603
+Mumbai,Jakarta,4670
+Mumbai,Manila,5136
+Mumbai,Taipei,5042
+Mumbai,Bangkok,3006
+Mumbai,Ho Chi Minh City,3738
+Mumbai,Shanghai,5040
+Mumbai,Beijing,4751
+Mumbai,Guangzhou,4207
+Mumbai,Tianjin,4793
+Mumbai,Chengdu,3390
+Mumbai,Paris,7019
+Mumbai,Berlin,6295
+Mumbai,Milan,6482
+Mumbai,Moscow,5035
+Mumbai,London,7202
+Mumbai,Tehran,2803
+Mumbai,Baghdad,3240
+Mumbai,Lahore,1396
+Mumbai,Istanbul,4816
+Delhi,Cairo,4436
+Delhi,Lagos,8099
+Delhi,Johannesburg,8056
+Delhi,Cape Town,9320
+Delhi,Toronto,11647
+Delhi,New York,11770
+Delhi,Los Angeles,12875
+Delhi,Chicago,12039
+Delhi,Miami,13521
+Delhi,Buenos Aires,15816
+Delhi,Sao Paulo,14451
+Delhi,Rio de Janeiro,14096
+Delhi,Mexico City,14677
+Delhi,Lima,16798
+Delhi,Mumbai,1153
+Delhi,Delhi,0
+Delhi,Tokyo,5848
+Delhi,Seoul,4691
+Delhi,Jakarta,5015
+Delhi,Manila,4761
+Delhi,Taipei,4398
+Delhi,Bangkok,2920
+Delhi,Ho Chi Minh City,3647
+Delhi,Shanghai,4251
+Delhi,Beijing,3783
+Delhi,Guangzhou,3648
+Delhi,Tianjin,3841
+Delhi,Chengdu,2601
+Delhi,Paris,6595
+Delhi,Berlin,5788
+Delhi,Milan,6138
+Delhi,Moscow,4347
+Delhi,London,6720
+Delhi,Tehran,2547
+Delhi,Baghdad,3162
+Delhi,Lahore,427
+Delhi,Istanbul,4558
+Tokyo,Cairo,9583
+Tokyo,Lagos,13499
+Tokyo,Johannesburg,13562
+Tokyo,Cape Town,14756
+Tokyo,Toronto,10363
+Tokyo,New York,10864
+Tokyo,Los Angeles,8825
+Tokyo,Chicago,10152
+Tokyo,Miami,12012
+Tokyo,Buenos Aires,18391
+Tokyo,Sao Paulo,18560
+Tokyo,Rio de Janeiro,18593
+Tokyo,Mexico City,11319
+Tokyo,Lima,15509
+Tokyo,Mumbai,6738
+Tokyo,Delhi,5848
+Tokyo,Tokyo,0
+Tokyo,Seoul,1159
+Tokyo,Jakarta,5795
+Tokyo,Manila,3001
+Tokyo,Taipei,2101
+Tokyo,Bangkok,4613
+Tokyo,Ho Chi Minh City,4336
+Tokyo,Shanghai,1765
+Tokyo,Beijing,2100
+Tokyo,Guangzhou,2910
+Tokyo,Tianjin,2025
+Tokyo,Chengdu,3353
+Tokyo,Paris,9730
+Tokyo,Berlin,8933
+Tokyo,Milan,9733
+Tokyo,Moscow,7493
+Tokyo,London,9576
+Tokyo,Tehran,7675
+Tokyo,Baghdad,8361
+Tokyo,Lahore,5970
+Tokyo,Istanbul,8962
+Seoul,Cairo,8498
+Seoul,Lagos,12420
+Seoul,Johannesburg,12506
+Seoul,Cape Town,13734
+Seoul,Toronto,10616
+Seoul,New York,11068
+Seoul,Los Angeles,9599
+Seoul,Chicago,10525
+Seoul,Miami,12436
+Seoul,Buenos Aires,19459
+Seoul,Sao Paulo,18368
+Seoul,Rio de Janeiro,18160
+Seoul,Mexico City,12069
+Seoul,Lima,16328
+Seoul,Mumbai,5603
+Seoul,Delhi,4691
+Seoul,Tokyo,1159
+Seoul,Seoul,0
+Seoul,Jakarta,5304
+Seoul,Manila,2625
+Seoul,Taipei,1482
+Seoul,Bangkok,3727
+Seoul,Ho Chi Minh City,3606
+Seoul,Shanghai,868
+Seoul,Beijing,954
+Seoul,Guangzhou,2074
+Seoul,Tianjin,870
+Seoul,Chengdu,2241
+Seoul,Paris,8978
+Seoul,Berlin,8138
+Seoul,Milan,8897
+Seoul,Moscow,6615
+Seoul,London,8870
+Seoul,Tehran,6560
+Seoul,Baghdad,7251
+Seoul,Lahore,4811
+Seoul,Istanbul,7965
+Jakarta,Cairo,8998
+Jakarta,Lagos,11581
+Jakarta,Johannesburg,8600
+Jakarta,Cape Town,9491
+Jakarta,Toronto,15830
+Jakarta,New York,16200
+Jakarta,Los Angeles,14470
+Jakarta,Chicago,15821
+Jakarta,Miami,17737
+Jakarta,Buenos Aires,15240
+Jakarta,Sao Paulo,15651
+Jakarta,Rio de Janeiro,15446
+Jakarta,Mexico City,16869
+Jakarta,Lima,17965
+Jakarta,Mumbai,4670
+Jakarta,Delhi,5015
+Jakarta,Tokyo,5795
+Jakarta,Seoul,5304
+Jakarta,Jakarta,0
+Jakarta,Manila,2794
+Jakarta,Taipei,3832
+Jakarta,Bangkok,2331
+Jakarta,Ho Chi Minh City,1897
+Jakarta,Shanghai,4450
+Jakarta,Beijing,5228
+Jakarta,Guangzhou,3341
+Jakarta,Tianjin,5156
+Jakarta,Chengdu,4116
+Jakarta,Paris,11602
+Jakarta,Berlin,10803
+Jakarta,Milan,11112
+Jakarta,Moscow,9325
+Jakarta,London,11735
+Jakarta,Tehran,7431
+Jakarta,Baghdad,7909
+Jakarta,Lahore,5441
+Jakarta,Istanbul,9468
+Manila,Cairo,9191
+Manila,Lagos,12766
+Manila,Johannesburg,11020
+Manila,Cape Town,12068
+Manila,Toronto,13233
+Manila,New York,13692
+Manila,Los Angeles,11760
+Manila,Chicago,13102
+Manila,Miami,14992
+Manila,Buenos Aires,17815
+Manila,Sao Paulo,18405
+Manila,Rio de Janeiro,18140
+Manila,Mexico City,14240
+Manila,Lima,18068
+Manila,Mumbai,5136
+Manila,Delhi,4761
+Manila,Tokyo,3001
+Manila,Seoul,2625
+Manila,Jakarta,2794
+Manila,Manila,0
+Manila,Taipei,1169
+Manila,Bangkok,2212
+Manila,Ho Chi Minh City,1614
+Manila,Shanghai,1853
+Manila,Beijing,2853
+Manila,Guangzhou,1250
+Manila,Tianjin,2752
+Manila,Chengdu,2488
+Manila,Paris,10759
+Manila,Berlin,9880
+Manila,Milan,10484
+Manila,Moscow,8269
+Manila,London,10750
+Manila,Tehran,7246
+Manila,Baghdad,7900
+Manila,Lahore,5092
+Manila,Istanbul,9127
+Taipei,Cairo,8687
+Taipei,Lagos,12489
+Taipei,Johannesburg,11548
+Taipei,Cape Town,12699
+Taipei,Toronto,12096
+Taipei,New York,12542
+Taipei,Los Angeles,10918
+Taipei,Chicago,12004
+Taipei,Miami,13913
+Taipei,Buenos Aires,18983
+Taipei,Sao Paulo,18835
+Taipei,Rio de Janeiro,18476
+Taipei,Mexico City,13410
+Taipei,Lima,17605
+Taipei,Mumbai,5042
+Taipei,Delhi,4398
+Taipei,Tokyo,2101
+Taipei,Seoul,1482
+Taipei,Jakarta,3832
+Taipei,Manila,1169
+Taipei,Taipei,0
+Taipei,Bangkok,2540
+Taipei,Ho Chi Minh City,2237
+Taipei,Shanghai,685
+Taipei,Beijing,1719
+Taipei,Guangzhou,871
+Taipei,Tianjin,1612
+Taipei,Chengdu,1829
+Taipei,Paris,9841
+Taipei,Berlin,8967
+Taipei,Milan,9637
+Taipei,Moscow,7367
+Taipei,London,9794
+Taipei,Tehran,6702
+Taipei,Baghdad,7387
+Taipei,Lahore,4650
+Taipei,Istanbul,8428
+Bangkok,Cairo,7280
+Bangkok,Lagos,10614
+Bangkok,Johannesburg,9011
+Bangkok,Cape Town,10160
+Bangkok,Toronto,13651
+Bangkok,New York,13952
+Bangkok,Los Angeles,13322
+Bangkok,Chicago,13793
+Bangkok,Miami,15640
+Bangkok,Buenos Aires,16897
+Bangkok,Sao Paulo,16420
+Bangkok,Rio de Janeiro,16086
+Bangkok,Mexico City,15767
+Bangkok,Lima,19718
+Bangkok,Mumbai,3006
+Bangkok,Delhi,2920
+Bangkok,Tokyo,4613
+Bangkok,Seoul,3727
+Bangkok,Jakarta,2331
+Bangkok,Manila,2212
+Bangkok,Taipei,2540
+Bangkok,Bangkok,0
+Bangkok,Ho Chi Minh City,742
+Bangkok,Shanghai,2895
+Bangkok,Beijing,3301
+Bangkok,Guangzhou,1703
+Bangkok,Tianjin,3263
+Bangkok,Chengdu,1917
+Bangkok,Paris,9457
+Bangkok,Berlin,8616
+Bangkok,Milan,9037
+Bangkok,Moscow,7075
+Bangkok,London,9546
+Bangkok,Tehran,5462
+Bangkok,Baghdad,6047
+Bangkok,Lahore,3324
+Bangkok,Istanbul,7478
+Ho Chi Minh City,Cairo,8021
+Ho Chi Minh City,Lagos,11321
+Ho Chi Minh City,Johannesburg,9437
+Ho Chi Minh City,Cape Town,10528
+Ho Chi Minh City,Toronto,13947
+Ho Chi Minh City,New York,14304
+Ho Chi Minh City,Los Angeles,13155
+Ho Chi Minh City,Chicago,13996
+Ho Chi Minh City,Miami,15899
+Ho Chi Minh City,Buenos Aires,16989
+Ho Chi Minh City,Sao Paulo,16875
+Ho Chi Minh City,Rio de Janeiro,16569
+Ho Chi Minh City,Mexico City,15646
+Ho Chi Minh City,Lima,19618
+Ho Chi Minh City,Mumbai,3738
+Ho Chi Minh City,Delhi,3647
+Ho Chi Minh City,Tokyo,4336
+Ho Chi Minh City,Seoul,3606
+Ho Chi Minh City,Jakarta,1897
+Ho Chi Minh City,Manila,1614
+Ho Chi Minh City,Taipei,2237
+Ho Chi Minh City,Bangkok,742
+Ho Chi Minh City,Ho Chi Minh City,0
+Ho Chi Minh City,Shanghai,2740
+Ho Chi Minh City,Beijing,3379
+Ho Chi Minh City,Guangzhou,1541
+Ho Chi Minh City,Tianjin,3317
+Ho Chi Minh City,Chengdu,2225
+Ho Chi Minh City,Paris,10136
+Ho Chi Minh City,Berlin,9284
+Ho Chi Minh City,Milan,9737
+Ho Chi Minh City,Moscow,7718
+Ho Chi Minh City,London,10209
+Ho Chi Minh City,Tehran,6193
+Ho Chi Minh City,Baghdad,6785
+Ho Chi Minh City,Lahore,4043
+Ho Chi Minh City,Istanbul,8200
+Shanghai,Cairo,8367
+Shanghai,Lagos,12246
+Shanghai,Johannesburg,11798
+Shanghai,Cape Town,12997
+Shanghai,Toronto,11438
+Shanghai,New York,11875
+Shanghai,Los Angeles,10449
+Shanghai,Chicago,11373
+Shanghai,Miami,13287
+Shanghai,Buenos Aires,19667
+Shanghai,Sao Paulo,18591
+Shanghai,Rio de Janeiro,18267
+Shanghai,Mexico City,12926
+Shanghai,Lima,17182
+Shanghai,Mumbai,5040
+Shanghai,Delhi,4251
+Shanghai,Tokyo,1765
+Shanghai,Seoul,868
+Shanghai,Jakarta,4450
+Shanghai,Manila,1853
+Shanghai,Taipei,685
+Shanghai,Bangkok,2895
+Shanghai,Ho Chi Minh City,2740
+Shanghai,Shanghai,0
+Shanghai,Beijing,1069
+Shanghai,Guangzhou,1214
+Shanghai,Tianjin,957
+Shanghai,Chengdu,1662
+Shanghai,Paris,9276
+Shanghai,Berlin,8409
+Shanghai,Milan,9112
+Shanghai,Moscow,6827
+Shanghai,London,9210
+Shanghai,Tehran,6386
+Shanghai,Baghdad,7080
+Shanghai,Lahore,4445
+Shanghai,Istanbul,7997
+Beijing,Cairo,7555
+Beijing,Lagos,11475
+Beijing,Johannesburg,11723
+Beijing,Cape Town,12974
+Beijing,Toronto,10605
+Beijing,New York,11004
+Beijing,Los Angeles,10076
+Beijing,Chicago,10618
+Beijing,Miami,12527
+Beijing,Buenos Aires,19294
+Beijing,Sao Paulo,17624
+Beijing,Rio de Janeiro,17348
+Beijing,Mexico City,12476
+Beijing,Lima,16671
+Beijing,Mumbai,4751
+Beijing,Delhi,3783
+Beijing,Tokyo,2100
+Beijing,Seoul,954
+Beijing,Jakarta,5228
+Beijing,Manila,2853
+Beijing,Taipei,1719
+Beijing,Bangkok,3301
+Beijing,Ho Chi Minh City,3379
+Beijing,Shanghai,1069
+Beijing,Beijing,0
+Beijing,Guangzhou,1891
+Beijing,Tianjin,114
+Beijing,Chengdu,1520
+Beijing,Paris,8229
+Beijing,Berlin,7368
+Beijing,Milan,8091
+Beijing,Moscow,5802
+Beijing,London,8153
+Beijing,Tehran,5609
+Beijing,Baghdad,6301
+Beijing,Lahore,3877
+Beijing,Istanbul,7066
+Guangzhou,Cairo,8030
+Guangzhou,Lagos,11742
+Guangzhou,Johannesburg,10691
+Guangzhou,Cape Town,11856
+Guangzhou,Toronto,12495
+Guangzhou,New York,12894
+Guangzhou,Los Angeles,11662
+Guangzhou,Chicago,12491
+Guangzhou,Miami,14405
+Guangzhou,Buenos Aires,18530
+Guangzhou,Sao Paulo,17990
+Guangzhou,Rio de Janeiro,17635
+Guangzhou,Mexico City,14140
+Guangzhou,Lima,18394
+Guangzhou,Mumbai,4207
+Guangzhou,Delhi,3648
+Guangzhou,Tokyo,2910
+Guangzhou,Seoul,2074
+Guangzhou,Jakarta,3341
+Guangzhou,Manila,1250
+Guangzhou,Taipei,871
+Guangzhou,Bangkok,1703
+Guangzhou,Ho Chi Minh City,1541
+Guangzhou,Shanghai,1214
+Guangzhou,Beijing,1891
+Guangzhou,Guangzhou,0
+Guangzhou,Tianjin,1815
+Guangzhou,Chengdu,1239
+Guangzhou,Paris,9512
+Guangzhou,Berlin,8633
+Guangzhou,Milan,9234
+Guangzhou,Moscow,7022
+Guangzhou,London,9509
+Guangzhou,Tehran,6061
+Guangzhou,Baghdad,6731
+Guangzhou,Lahore,3941
+Guangzhou,Istanbul,7898
+Tianjin,Cairo,7652
+Tianjin,Lagos,11571
+Tianjin,Johannesburg,11753
+Tianjin,Cape Town,13001
+Tianjin,Toronto,10680
+Tianjin,New York,11085
+Tianjin,Los Angeles,10097
+Tianjin,Chicago,10684
+Tianjin,Miami,12595
+Tianjin,Buenos Aires,19408
+Tianjin,Sao Paulo,17737
+Tianjin,Rio de Janeiro,17458
+Tianjin,Mexico City,12508
+Tianjin,Lima,16719
+Tianjin,Mumbai,4793
+Tianjin,Delhi,3841
+Tianjin,Tokyo,2025
+Tianjin,Seoul,870
+Tianjin,Jakarta,5156
+Tianjin,Manila,2752
+Tianjin,Taipei,1612
+Tianjin,Bangkok,3263
+Tianjin,Ho Chi Minh City,3317
+Tianjin,Shanghai,957
+Tianjin,Beijing,114
+Tianjin,Guangzhou,1815
+Tianjin,Tianjin,0
+Tianjin,Chengdu,1521
+Tianjin,Paris,8343
+Tianjin,Berlin,7482
+Tianjin,Milan,8204
+Tianjin,Moscow,5915
+Tianjin,London,8266
+Tianjin,Tehran,5702
+Tianjin,Baghdad,6395
+Tianjin,Lahore,3946
+Tianjin,Istanbul,7173
+Chengdu,Cairo,6863
+Chengdu,Lagos,10667
+Chengdu,Johannesburg,10269
+Chengdu,Cape Town,11505
+Chengdu,Toronto,11761
+Chengdu,New York,12093
+Chengdu,Los Angeles,11578
+Chengdu,Chicago,11878
+Chengdu,Miami,13741
+Chengdu,Buenos Aires,18342
+Chengdu,Sao Paulo,17043
+Chengdu,Rio de Janeiro,16691
+Chengdu,Mexico City,13938
+Chengdu,Lima,17968
+Chengdu,Mumbai,3390
+Chengdu,Delhi,2601
+Chengdu,Tokyo,3353
+Chengdu,Seoul,2241
+Chengdu,Jakarta,4116
+Chengdu,Manila,2488
+Chengdu,Taipei,1829
+Chengdu,Bangkok,1917
+Chengdu,Ho Chi Minh City,2225
+Chengdu,Shanghai,1662
+Chengdu,Beijing,1520
+Chengdu,Guangzhou,1239
+Chengdu,Tianjin,1521
+Chengdu,Chengdu,0
+Chengdu,Paris,8283
+Chengdu,Berlin,7406
+Chengdu,Milan,7996
+Chengdu,Moscow,5796
+Chengdu,London,8292
+Chengdu,Tehran,4880
+Chengdu,Baghdad,5562
+Chengdu,Lahore,2827
+Chengdu,Istanbul,6669
+Paris,Cairo,3215
+Paris,Lagos,4723
+Paris,Johannesburg,8741
+Paris,Cape Town,9355
+Paris,Toronto,6009
+Paris,New York,5845
+Paris,Los Angeles,9098
+Paris,Chicago,6660
+Paris,Miami,7367
+Paris,Buenos Aires,11066
+Paris,Sao Paulo,9415
+Paris,Rio de Janeiro,9182
+Paris,Mexico City,9209
+Paris,Lima,10270
+Paris,Mumbai,7019
+Paris,Delhi,6595
+Paris,Tokyo,9730
+Paris,Seoul,8978
+Paris,Jakarta,11602
+Paris,Manila,10759
+Paris,Taipei,9841
+Paris,Bangkok,9457
+Paris,Ho Chi Minh City,10136
+Paris,Shanghai,9276
+Paris,Beijing,8229
+Paris,Guangzhou,9512
+Paris,Tianjin,8343
+Paris,Chengdu,8283
+Paris,Paris,0
+Paris,Berlin,879
+Paris,Milan,640
+Paris,Moscow,2490
+Paris,London,344
+Paris,Tehran,4216
+Paris,Baghdad,3867
+Paris,Lahore,6173
+Paris,Istanbul,2259
+Berlin,Cairo,2896
+Berlin,Lagos,5211
+Berlin,Johannesburg,8881
+Berlin,Cape Town,9638
+Berlin,Toronto,6485
+Berlin,New York,6394
+Berlin,Los Angeles,9323
+Berlin,Chicago,7094
+Berlin,Miami,8007
+Berlin,Buenos Aires,11926
+Berlin,Sao Paulo,10268
+Berlin,Rio de Janeiro,10024
+Berlin,Mexico City,9741
+Berlin,Lima,11115
+Berlin,Mumbai,6295
+Berlin,Delhi,5788
+Berlin,Tokyo,8933
+Berlin,Seoul,8138
+Berlin,Jakarta,10803
+Berlin,Manila,9880
+Berlin,Taipei,8967
+Berlin,Bangkok,8616
+Berlin,Ho Chi Minh City,9284
+Berlin,Shanghai,8409
+Berlin,Beijing,7368
+Berlin,Guangzhou,8633
+Berlin,Tianjin,7482
+Berlin,Chengdu,7406
+Berlin,Paris,879
+Berlin,Berlin,0
+Berlin,Milan,843
+Berlin,Moscow,1611
+Berlin,London,933
+Berlin,Tehran,3511
+Berlin,Baghdad,3267
+Berlin,Lahore,5362
+Berlin,Istanbul,1740
+Milan,Cairo,2576
+Milan,Lagos,4380
+Milan,Johannesburg,8206
+Milan,Cape Town,8889
+Milan,Toronto,6646
+Milan,New York,6473
+Milan,Los Angeles,9728
+Milan,Chicago,7299
+Milan,Miami,7966
+Milan,Buenos Aires,11206
+Milan,Sao Paulo,9534
+Milan,Rio de Janeiro,9275
+Milan,Mexico City,9835
+Milan,Lima,10686
+Milan,Mumbai,6482
+Milan,Delhi,6138
+Milan,Tokyo,9733
+Milan,Seoul,8897
+Milan,Jakarta,11112
+Milan,Manila,10484
+Milan,Taipei,9637
+Milan,Bangkok,9037
+Milan,Ho Chi Minh City,9737
+Milan,Shanghai,9112
+Milan,Beijing,8091
+Milan,Guangzhou,9234
+Milan,Tianjin,8204
+Milan,Chengdu,7996
+Milan,Paris,640
+Milan,Berlin,843
+Milan,Milan,0
+Milan,Moscow,2289
+Milan,London,960
+Milan,Tehran,3687
+Milan,Baghdad,3286
+Milan,Lahore,5722
+Milan,Istanbul,1676
+Moscow,Cairo,2907
+Moscow,Lagos,6266
+Moscow,Johannesburg,9171
+Moscow,Cape Town,10151
+Moscow,Toronto,7495
+Moscow,New York,7521
+Moscow,Los Angeles,9783
+Moscow,Chicago,8011
+Moscow,Miami,9235
+Moscow,Buenos Aires,13495
+Moscow,Sao Paulo,11823
+Moscow,Rio de Janeiro,11562
+Moscow,Mexico City,10735
+Moscow,Lima,12664
+Moscow,Mumbai,5035
+Moscow,Delhi,4347
+Moscow,Tokyo,7493
+Moscow,Seoul,6615
+Moscow,Jakarta,9325
+Moscow,Manila,8269
+Moscow,Taipei,7367
+Moscow,Bangkok,7075
+Moscow,Ho Chi Minh City,7718
+Moscow,Shanghai,6827
+Moscow,Beijing,5802
+Moscow,Guangzhou,7022
+Moscow,Tianjin,5915
+Moscow,Chengdu,5796
+Moscow,Paris,2490
+Moscow,Berlin,1611
+Moscow,Milan,2289
+Moscow,Moscow,0
+Moscow,London,2504
+Moscow,Tehran,2467
+Moscow,Baghdad,2552
+Moscow,Lahore,3922
+Moscow,Istanbul,1759
+London,Cairo,3516
+London,Lagos,5027
+London,Johannesburg,9083
+London,Cape Town,9685
+London,Toronto,5721
+London,New York,5578
+London,Los Angeles,8768
+London,Chicago,6362
+London,Miami,7137
+London,Buenos Aires,11144
+London,Sao Paulo,9511
+London,Rio de Janeiro,9292
+London,Mexico City,8941
+London,Lima,10186
+London,Mumbai,7202
+London,Delhi,6720
+London,Tokyo,9576
+London,Seoul,8870
+London,Jakarta,11735
+London,Manila,10750
+London,Taipei,9794
+London,Bangkok,9546
+London,Ho Chi Minh City,10209
+London,Shanghai,9210
+London,Beijing,8153
+London,Guangzhou,9509
+London,Tianjin,8266
+London,Chengdu,8292
+London,Paris,344
+London,Berlin,933
+London,Milan,960
+London,Moscow,2504
+London,London,0
+London,Tehran,4405
+London,Baghdad,4099
+London,Lahore,6295
+London,Istanbul,2504
+Tehran,Cairo,1986
+Tehran,Lagos,5874
+Tehran,Johannesburg,7318
+Tehran,Cape Town,8479
+Tehran,Toronto,9902
+Tehran,New York,9870
+Tehran,Los Angeles,12203
+Tehran,Chicago,10451
+Tehran,Miami,11516
+Tehran,Buenos Aires,13797
+Tehran,Sao Paulo,12218
+Tehran,Rio de Janeiro,11882
+Tehran,Mexico City,13164
+Tehran,Lima,14256
+Tehran,Mumbai,2803
+Tehran,Delhi,2547
+Tehran,Tokyo,7675
+Tehran,Seoul,6560
+Tehran,Jakarta,7431
+Tehran,Manila,7246
+Tehran,Taipei,6702
+Tehran,Bangkok,5462
+Tehran,Ho Chi Minh City,6193
+Tehran,Shanghai,6386
+Tehran,Beijing,5609
+Tehran,Guangzhou,6061
+Tehran,Tianjin,5702
+Tehran,Chengdu,4880
+Tehran,Paris,4216
+Tehran,Berlin,3511
+Tehran,Milan,3687
+Tehran,Moscow,2467
+Tehran,London,4405
+Tehran,Tehran,0
+Tehran,Baghdad,694
+Tehran,Lahore,2169
+Tehran,Istanbul,2041
+Baghdad,Cairo,1301
+Baghdad,Lagos,5180
+Baghdad,Johannesburg,6852
+Baghdad,Cape Town,7967
+Baghdad,Toronto,9748
+Baghdad,New York,9659
+Baghdad,Los Angeles,12325
+Baghdad,Chicago,10341
+Baghdad,Miami,11233
+Baghdad,Buenos Aires,13103
+Baghdad,Sao Paulo,11526
+Baghdad,Rio de Janeiro,11189
+Baghdad,Mexico City,13007
+Baghdad,Lima,13672
+Baghdad,Mumbai,3240
+Baghdad,Delhi,3162
+Baghdad,Tokyo,8361
+Baghdad,Seoul,7251
+Baghdad,Jakarta,7909
+Baghdad,Manila,7900
+Baghdad,Taipei,7387
+Baghdad,Bangkok,6047
+Baghdad,Ho Chi Minh City,6785
+Baghdad,Shanghai,7080
+Baghdad,Beijing,6301
+Baghdad,Guangzhou,6731
+Baghdad,Tianjin,6395
+Baghdad,Chengdu,5562
+Baghdad,Paris,3867
+Baghdad,Berlin,3267
+Baghdad,Milan,3286
+Baghdad,Moscow,2552
+Baghdad,London,4099
+Baghdad,Tehran,694
+Baghdad,Baghdad,0
+Baghdad,Lahore,2809
+Baghdad,Istanbul,1612
+Lahore,Cairo,4100
+Lahore,Lagos,7840
+Lahore,Johannesburg,8096
+Lahore,Cape Town,9355
+Lahore,Toronto,11253
+Lahore,New York,11362
+Lahore,Los Angeles,12621
+Lahore,Chicago,11661
+Lahore,Miami,13110
+Lahore,Buenos Aires,15659
+Lahore,Sao Paulo,14217
+Lahore,Rio de Janeiro,13866
+Lahore,Mexico City,14324
+Lahore,Lima,16396
+Lahore,Mumbai,1396
+Lahore,Delhi,427
+Lahore,Tokyo,5970
+Lahore,Seoul,4811
+Lahore,Jakarta,5441
+Lahore,Manila,5092
+Lahore,Taipei,4650
+Lahore,Bangkok,3324
+Lahore,Ho Chi Minh City,4043
+Lahore,Shanghai,4445
+Lahore,Beijing,3877
+Lahore,Guangzhou,3941
+Lahore,Tianjin,3946
+Lahore,Chengdu,2827
+Lahore,Paris,6173
+Lahore,Berlin,5362
+Lahore,Milan,5722
+Lahore,Moscow,3922
+Lahore,London,6295
+Lahore,Tehran,2169
+Lahore,Baghdad,2809
+Lahore,Lahore,0
+Lahore,Istanbul,4157
+Istanbul,Cairo,1237
+Istanbul,Lagos,4610
+Istanbul,Johannesburg,7485
+Istanbul,Cape Town,8413
+Istanbul,Toronto,8205
+Istanbul,New York,8081
+Istanbul,Los Angeles,11036
+Istanbul,Chicago,8826
+Istanbul,Miami,9626
+Istanbul,Buenos Aires,12262
+Istanbul,Sao Paulo,10598
+Istanbul,Rio de Janeiro,10294
+Istanbul,Mexico City,11443
+Istanbul,Lima,12241
+Istanbul,Mumbai,4816
+Istanbul,Delhi,4558
+Istanbul,Tokyo,8962
+Istanbul,Seoul,7965
+Istanbul,Jakarta,9468
+Istanbul,Manila,9127
+Istanbul,Taipei,8428
+Istanbul,Bangkok,7478
+Istanbul,Ho Chi Minh City,8200
+Istanbul,Shanghai,7997
+Istanbul,Beijing,7066
+Istanbul,Guangzhou,7898
+Istanbul,Tianjin,7173
+Istanbul,Chengdu,6669
+Istanbul,Paris,2259
+Istanbul,Berlin,1740
+Istanbul,Milan,1676
+Istanbul,Moscow,1759
+Istanbul,London,2504
+Istanbul,Tehran,2041
+Istanbul,Baghdad,1612
+Istanbul,Lahore,4157
+Istanbul,Istanbul,0

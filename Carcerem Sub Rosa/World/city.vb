@@ -66,8 +66,11 @@
         Return xy
     End Function
     Friend Function getDistanceTo(destination As city) As Integer
-        Dim straightDistance As Integer = pythogoras(_coords, destination._coords)
-        Return straightDistance / 100
+        Dim rawdata As List(Of String()) = csvFileget("data/distances.csv")
+        For Each line In rawdata
+            If line(0) = name AndAlso line(1) = destination.name Then Return CInt(line(2))
+        Next
+        Return -1
     End Function
 
     Private Property _standardOfLiving As standardOfLiving
