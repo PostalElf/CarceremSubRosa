@@ -9,6 +9,9 @@
         Select Case typeName
             Case "UnlockBlueprint"
                 unlockName = lines(1)
+            Case "DepartmentLevelMax"
+                unlockName = lines(1)
+                value = CInt(lines(2))
         End Select
     End Sub
 
@@ -17,4 +20,5 @@
     Friend Property parent As List(Of modifier)
 
     Friend Property unlockName As String
+    Friend Property value As Integer
 End Class

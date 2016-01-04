@@ -109,14 +109,27 @@
     End Property
     Friend ReadOnly Property departmentLevel(department As department) As Integer
         Get
+            Dim total As Integer = 0
             Select Case _departmentBudgets(department)
-                Case 1000 To 1999 : Return 1
-                Case 2000 To 2999 : Return 2
-                Case 3000 To 3999 : Return 3
-                Case 4000 To 4999 : Return 4
-                Case Is >= 5000 : Return 5
+                Case 1000 To 1999 : total = 1
+                Case 2000 To 2999 : total = 2
+                Case 3000 To 3999 : total = 3
+                Case 4000 To 4999 : total = 4
+                Case Is >= 5000 : total = 5
                 Case Else : Return 0
             End Select
+            Return Math.Min(total, _departmentLevelMax(department))
+        End Get
+    End Property
+    Private ReadOnly Property _departmentLevelMax(department As department) As Integer
+        Get
+            Dim total As Integer = 1
+            For Each modifier In _modifiers
+                If modifier.typeName = "DepartmentLevelMax" AndAlso modifier.unlockName = department.ToString Then
+                    total += modifier.value
+                End If
+            Next
+            Return total
         End Get
     End Property
     Friend Function createTradeRoute(blueprint As product, manufacturer As factory, importer As city) As problem
