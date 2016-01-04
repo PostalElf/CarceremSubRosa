@@ -66,7 +66,8 @@
         Return xy
     End Function
     Friend Function getDistanceTo(destination As city) As Integer
-        Return pythogoras(_coords, destination._coords) / 100
+        Dim straightDistance As Integer = pythogoras(_coords, destination._coords)
+        Return straightDistance / 100
     End Function
 
     Private Property _standardOfLiving As standardOfLiving
