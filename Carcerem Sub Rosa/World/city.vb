@@ -22,6 +22,9 @@
         Console.WriteLine(indd & "Coordinates: " & _coords.ToString)
         Console.WriteLine(indd & "Wealth: " & standardOfLiving.ToString)
     End Sub
+    Friend Function briefReport() As String
+        Return name & ", " & continent.ToString
+    End Function
     Public Overrides Function ToString() As String
         Return name & ", " & parseContinent(continent)
     End Function

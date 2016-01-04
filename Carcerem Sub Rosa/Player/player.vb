@@ -143,7 +143,7 @@
 
         Return Nothing
     End Function
-    Private Property _baseIncome As Integer = 5000
+    Private Property _baseIncome As Integer = 6000
     Private Property _baseResearch As Integer
     Friend ReadOnly Property incomeNet As Integer
         Get

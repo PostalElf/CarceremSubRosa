@@ -27,6 +27,14 @@
         city2.addDemand(1)
         player.createTradeRoute(blueprint, factory, city2)
 
+        Dim agent1 As agent = agent.buildRandomAgent(player)
+        Dim agent2 As agent = agent.buildRandomAgent(player)
+        Dim squad As squad = squad.buildRandomSquad(player, city1)
+        squad.addAgent(agent1)
+        squad.addAgent(agent2)
+        agent1.changeRelationship(agent2, choiceComponent.Practical)
+
+
         While True
             Console.Clear()
             player.consoleReport(1)
@@ -36,6 +44,8 @@
                 Console.WriteLine()
                 holding.consoleReport(2)
             Next
+            Console.WriteLine(vbCrLf)
+            squad.consoleReport(1)
             Console.ReadKey()
 
             player.tick()
