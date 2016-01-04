@@ -69,6 +69,11 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agent\agent.vb" />
+    <Compile Include="Agent\choiceComponent.vb" />
+    <Compile Include="Agent\disposition.vb" />
+    <Compile Include="Agent\relationship.vb" />
+    <Compile Include="Agent\squad.vb" />
     <Compile Include="Business\Holding\factory.vb" />
     <Compile Include="Business\Holding\holding.vb" />
     <Compile Include="Business\Holding\safehouse.vb" />
