@@ -9,15 +9,22 @@
         Dim ind As String = vbSpace(indent)
         Dim indd As String = vbSpace(indent + 1)
         Dim inddd As String = vbSpace(indent + 2)
-        Dim longnameLength As Integer = getLongestShellcompanyNameLength("Departments:  ".Length, " Corp:  ")
+        Dim longnameLength As Integer = "Shell Companies:  ".Length
 
         Console.WriteLine(ind & fakeTab("Money: ", 11) & withSign(money, "$"))
         Console.WriteLine(ind & fakeTab("Income: ", 11) & withSign(incomeNet, "$"))
         Console.WriteLine(indd & fakeTab("Funding: ", longnameLength) & withSign(_baseIncome, "$"))
         Console.WriteLine(indd & fakeTab("Departments: ", longnameLength) & withReverseSign(departmentBudgetTotal, "$"))
+        Dim totalShellcompanyIncome As Integer = 0
         For Each shellcompany In _shellcompanies
-            Console.WriteLine(indd & fakeTab(shellcompany.name & " Corp: ", longnameLength) & withSign(shellcompany.incomeRaw, "$"))
+            totalShellcompanyIncome += shellcompany.incomeNet
         Next
+        Console.WriteLine(indd & fakeTab("Shell Companies: ", longnameLength) & withSign(totalShellcompanyIncome, "$"))
+        Dim totalSquadUpkeep As Integer = 0
+        For Each squad In _squads
+            totalSquadUpkeep += squad.upkeep
+        Next
+        Console.WriteLine(indd & fakeTab("Squads: ", longnameLength) & withReverseSign(totalSquadUpkeep, "$"))
 
         Console.Write(ind & fakeTab("Project: ", 11))
         If _researchProject Is Nothing = False Then Console.Write(_researchProject.briefReport)
@@ -45,6 +52,21 @@
             If name.Length > total Then total = name.Length
         Next
         Return total
+    End Function
+    Private Property _squads As New List(Of squad)
+    Friend Function addSquad(squad As squad) As problem
+        If _squads.Contains(squad) Then Return New problem(Me, problemType.Duplicate)
+
+        squad.player = Me
+        _squads.Add(squad)
+        Return Nothing
+    End Function
+    Friend Function removeSquad(squad As squad) As problem
+        If _squads.Contains(squad) = False Then Return New problem(Me, problemType.NotFound)
+
+        squad.player = Nothing
+        _squads.Remove(squad)
+        Return Nothing
     End Function
 
     Private Property _blueprints As New List(Of product)
@@ -149,6 +171,11 @@
         Get
             Dim total As Integer = _baseIncome
             total -= departmentBudgetTotal
+
+            For Each squad In _squads
+                total -= squad.upkeep
+            Next
+
             For Each shellcompany In _shellcompanies
                 total += shellcompany.incomeNet
             Next

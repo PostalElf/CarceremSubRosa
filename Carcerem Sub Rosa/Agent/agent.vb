@@ -77,6 +77,12 @@
         _squad.removeAgent(Me)
     End Sub
 
+    Friend ReadOnly Property upkeep As Integer
+        Get
+            Return 50
+        End Get
+    End Property
+
     Private Property _disposition As New disposition
     Private Property _relationships As New Dictionary(Of agent, relationship)
     Friend Sub changeRelationship(agent As agent, choiceComponent As choiceComponent)

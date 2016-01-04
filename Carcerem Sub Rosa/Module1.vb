@@ -39,12 +39,14 @@
             Console.Clear()
             player.consoleReport(1)
             Console.WriteLine(vbCrLf)
+
             shell.consoleReport(1)
             For Each holding In shell.holdings
                 Console.WriteLine()
                 holding.consoleReport(2)
             Next
             Console.WriteLine(vbCrLf)
+
             squad.consoleReport(1)
             Console.ReadKey()
 

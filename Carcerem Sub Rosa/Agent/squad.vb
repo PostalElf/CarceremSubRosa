@@ -5,7 +5,9 @@
         With squad
             .name = getRandomName()
             .player = aPlayer
+            .player.addSquad(squad)
             ._city = aCity
+            ._city.addSquad(squad)
         End With
         Return squad
     End Function
@@ -19,10 +21,11 @@
 
         Console.WriteLine(ind & "Squad " & name)
         If _city Is Nothing = False Then
-            Console.WriteLine(indd & "Location: " & _city.briefReport)
+            Console.WriteLine(indd & "Location:  " & _city.briefReport)
         Else
-            Console.WriteLine(indd & "Travelling To: " & _travelDestination.briefReport & " (" & _travelProgress & "/" & _travelCost & ")")
+            Console.WriteLine(indd & "Travelling To:  " & _travelDestination.briefReport & " (" & _travelProgress & "/" & _travelCost & ")")
         End If
+        Console.WriteLine(indd & "Upkeep:  " & withReverseSign(upkeep, "$"))
         Console.WriteLine(indd & "Agents:")
         For Each agent In _agents
             Console.WriteLine(inddd & agent.ToString)
@@ -83,6 +86,15 @@
         agent.squad = Nothing
         Return Nothing
     End Function
+    Friend ReadOnly Property upkeep As Integer
+        Get
+            Dim total As Integer = 0
+            For Each agent In _agents
+                total += agent.upkeep
+            Next
+            Return total
+        End Get
+    End Property
 
     Private Property _city As city
     Private Property _travelSpeed As Integer

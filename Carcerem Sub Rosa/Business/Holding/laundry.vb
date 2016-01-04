@@ -37,12 +37,7 @@
             Return 100
         End Get
     End Property
-    Private Property _laundryRate As laundryRate
-    Friend ReadOnly Property laundryRate As laundryRate
-        Get
-            Return _laundryRate
-        End Get
-    End Property
+    Friend Property laundryRate As laundryRate
 End Class
 
 Public Enum laundryRate
