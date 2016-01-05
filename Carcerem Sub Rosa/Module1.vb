@@ -36,7 +36,7 @@
         agent1.changeRelationship(agent2, choiceComponent.Practical)
         'squad.moveTo(city2)
 
-        Dim stage1 As New missionStage("Dress Up", 5, 1, Nothing, "stonewall", 0)
+        Dim stage1 As New missionStage("Dress Up", 5, 1, New Dictionary(Of choiceComponent, Integer) From {{choiceComponent.Diplomacy, 1}}, "stonewall", 0)
         Dim stage2 As New missionStage("Travel to the Party", 7, 2, Nothing, "stonewall", 0)
         Dim stage3 As New missionStage("Eat!", 7, 3, Nothing, "stonewall", 0)
         Dim stage4 As New missionStage("Kill", 18, 1, Nothing, "health", 5)

@@ -120,6 +120,7 @@
     End Function
     Friend Function bonus(skill As skill) As Integer
         Dim total As Integer = 0
+        If _skills.ContainsKey(skill) Then total += _skills(skill)
         total += bonus(skill.action)
         total += bonus(skill.approach)
         Return total
