@@ -3,6 +3,7 @@
         Dim world As New world
         For Each continent In enumArrays.continentArray
             world._cities.Add(continent, New List(Of city))
+            world._tlaGoodwill.Add(continent, 10)
         Next
 
         Dim rawdata As List(Of String()) = csvFileget("data/worldcities.csv")
@@ -37,6 +38,12 @@
                 total += city.income
             Next
             Return total
+        End Get
+    End Property
+    Private Property _tlaGoodwill As New Dictionary(Of continent, Integer)
+    Friend ReadOnly Property tlaGoodwill As Dictionary(Of continent, Integer)
+        Get
+            Return _tlaGoodwill
         End Get
     End Property
     Private Property _travelDistances As Dictionary(Of String, Dictionary(Of String, Integer)) = buildTravelDistances()

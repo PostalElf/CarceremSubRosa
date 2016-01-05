@@ -15,9 +15,27 @@
 
     Friend Property name As String
     Friend Property mission As mission
+    Friend ReadOnly Property city As city
+        Get
+            If mission Is Nothing = False Then Return mission.city Else Return Nothing
+        End Get
+    End Property
+    Private Property _difficulty As Integer
     Friend Property difficulty As Integer
+        Get
+            Return _difficulty + city.missionDifficultyModifier
+        End Get
+        Set(value As Integer)
+            _difficulty = value
+        End Set
+    End Property
     Friend Property timeCost As Integer
     Friend Property timeProgress As Integer
+    Private ReadOnly Property _timeProgressPerTick As Integer
+        Get
+            Return 10 + city.missionProgressModifier
+        End Get
+    End Property
     Friend Property bonuses As New Dictionary(Of choiceComponent, Integer)
 
     Friend Property penalty As String
@@ -34,10 +52,11 @@
     End Function
 
     Friend Function tick(agent As agent, skill As skill) As String
-        timeProgress += 1
+        timeProgress += _timeProgressPerTick
         If timeProgress >= timeCost Then Return roll(agent, skill) Else Return ""
     End Function
     Private Function roll(agent As agent, skill As skill) As String
+        Dim city As city = agent.squad.city
         Dim rawRoll As Integer = rollDice("3d6")
         Dim bonus As Integer = agent.bonus(skill)
         If bonuses.ContainsKey(skill.action) Then bonus += bonuses(skill.action)

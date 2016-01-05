@@ -25,29 +25,37 @@
     Friend Property missionStages As New Stack(Of missionStage)
 
     Friend Sub tick()
-        Dim currentMissionStage As missionStage = missionStages.Pop
-        Dim agent As agent = squad.agents(rng.Next(squad.agents.Count))
-        Dim skill As New skill(skill.getRandomAction, skill.getRandomApproach)
+        If squad.city.Equals(city) Then
+            Dim currentMissionStage As missionStage = missionStages.Pop
+            Dim agent As agent = squad.agents(rng.Next(squad.agents.Count))
+            Dim skill As New skill(skill.getRandomAction, skill.getRandomApproach)
 
-        Dim result As String = currentMissionStage.tick(agent, skill)
-        If result = "" Then
-            'timer still ticking
-            missionStages.Push(currentMissionStage)
-        ElseIf result <> "Success" Then
-            'complicated or failure; apply penalties to agent
-            Dim rawstr As String() = result.Split(" ")
-            agent.addPenalty(rawstr(1), CInt(rawstr(2)))
-
-            'push back onto stack if failure
-            If rawstr(0) = "Failure" Then
-                currentMissionStage.timeProgress = 0
+            Dim result As String = currentMissionStage.tick(agent, skill)
+            If result = "" Then
+                'timer still ticking
                 missionStages.Push(currentMissionStage)
+            ElseIf result <> "Success" Then
+                'complicated or failure; apply penalties to agent
+                Dim rawstr As String() = result.Split(" ")
+                agent.addPenalty(rawstr(1), CInt(rawstr(2)))
+
+                'push back onto stack if failure
+                If rawstr(0) = "Failure" Then
+                    currentMissionStage.timeProgress = 0
+                    missionStages.Push(currentMissionStage)
+                End If
+            End If
+
+            If missionStages.Count = 0 Then
+                missionSuccess()
             End If
         End If
-
-        If missionStages.Count = 0 Then
-            missionSuccess()
-        End If
+    End Sub
+    Private Sub addPenalty(agent As agent, penalty As String, value As Integer)
+        Select Case penalty.ToLower
+            Case "health" Or "sanity" Or "morale" : agent.addPenalty(penalty, value)
+            Case Else : agent.squad.city.addPenalty(penalty, value)
+        End Select
     End Sub
     Private Sub missionSuccess()
         MsgBox("Mission Success")

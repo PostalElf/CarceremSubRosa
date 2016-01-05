@@ -216,4 +216,46 @@
         _missions.Add(mission)
         Return Nothing
     End Function
+    Private Property _crimespur As Integer
+    Private Property _mediabuzz As Integer
+    Private Property _tlaGoodwill As Integer
+        Get
+            Return world.tlaGoodwill(continent)
+        End Get
+        Set(value As Integer)
+            world.tlaGoodwill(continent) = value
+        End Set
+    End Property
+    Friend Sub addPenalty(penalty As String, value As Integer)
+        Select Case penalty.ToLower
+            Case "crimespur" : _crimespur = constrain(_crimespur + value, 0, 15)
+            Case "mediabuzz" : _mediabuzz = constrain(_mediabuzz + value, 0, 15)
+            Case "tla" : _tlaGoodwill += value
+        End Select
+    End Sub
+    Friend ReadOnly Property visibilityModifier As Integer
+        Get
+            Return constrain(CInt(_mediabuzz / 3), 0, 5)
+        End Get
+    End Property
+    Friend ReadOnly Property missionDifficultyModifier As Integer
+        Get
+            Dim total As Integer = constrain(CInt(_crimespur / 3), 0, 5)
+            Select Case _tlaGoodwill
+                Case Is >= 16 : total -= 1
+                Case 1 To 4 : total += 1
+            End Select
+            Return total
+        End Get
+    End Property
+    Friend ReadOnly Property missionProgressModifier As Integer
+        Get
+            Dim total As Integer = 0
+            Select Case _tlaGoodwill
+                Case 1 To 7 : total -= 5
+                Case Is >= 13 : total += 5
+            End Select
+            Return total
+        End Get
+    End Property
 End Class

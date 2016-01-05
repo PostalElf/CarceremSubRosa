@@ -108,6 +108,11 @@
     End Property
 
     Private Property _city As city
+    Friend ReadOnly Property city As city
+        Get
+            Return _city
+        End Get
+    End Property
     Private Property _travelSpeed As Integer = 100
     Private Property _travelProgress As Integer
     Private Property _travelCost As Integer
