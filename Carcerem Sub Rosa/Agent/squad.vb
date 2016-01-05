@@ -60,6 +60,15 @@
     Friend Property player As player
 
     Friend Sub tick()
+        'handle mission
+        If _city Is Nothing = False Then
+            For Each mission In _city.missions
+                If mission.squad.Equals(Me) Then mission.tick()
+            Next
+        End If
+
+
+        'movement
         If _city Is Nothing AndAlso _travelDestination Is Nothing = False Then
             _travelProgress += _travelSpeed
             If _travelProgress >= _travelCost Then teleportTo(_travelDestination)

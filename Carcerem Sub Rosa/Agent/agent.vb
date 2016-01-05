@@ -64,7 +64,7 @@
     Private Property _health As Integer = 10
     Private Property _sanity As Integer = 10
     Private Property _morale As Integer = 10
-    Friend Sub addDamage(valueStr As String, value As Integer)
+    Friend Sub addPenalty(valueStr As String, value As Integer)
         Select Case valueStr.ToLower
             Case "health" : _health -= value
             Case "sanity" : _sanity -= value
@@ -72,6 +72,10 @@
         End Select
 
         If _health <= 0 OrElse _sanity <= 0 OrElse _morale <= 0 Then dead()
+    End Sub
+    Friend Sub addPenalty(valueStr As String)
+        Dim rawstr As String() = valueStr.Split(" ")
+        addPenalty(rawstr(0), CInt(rawstr(1)))
     End Sub
     Private Sub dead()
         _squad.removeAgent(Me)
@@ -106,4 +110,18 @@
     Friend Sub setSkill(skill As skill, value As Integer)
         If _skills.ContainsKey(skill) = False Then _skills.Add(skill, value) Else _skills(skill) = value
     End Sub
+    Private Property _equipment As New List(Of equipment)
+    Friend Function bonus(choiceComponent As choiceComponent) As Integer
+        Dim total As Integer = 0
+        For Each equipment In _equipment
+            If equipment.bonuses.ContainsKey(choiceComponent) = True Then total += equipment.bonuses(choiceComponent)
+        Next
+        Return total
+    End Function
+    Friend Function bonus(skill As skill) As Integer
+        Dim total As Integer = 0
+        total += bonus(skill.action)
+        total += bonus(skill.approach)
+        Return total
+    End Function
 End Class

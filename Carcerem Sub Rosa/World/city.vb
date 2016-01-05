@@ -23,7 +23,7 @@
         Console.WriteLine(indd & "Wealth: " & standardOfLiving.ToString)
     End Sub
     Friend Function briefReport() As String
-        Return name & ", " & continent.ToString
+        Return name & ", " & parseContinent(continent)
     End Function
     Public Overrides Function ToString() As String
         Return name & ", " & parseContinent(continent)
@@ -200,6 +200,20 @@
         If _squads.Contains(squad) = False Then Return New problem(Me, problemType.NotFound)
 
         _squads.Remove(squad)
+        Return Nothing
+    End Function
+
+    Private Property _missions As New List(Of mission)
+    Friend ReadOnly Property missions As List(Of mission)
+        Get
+            Return _missions
+        End Get
+    End Property
+    Friend Function addMission(mission As mission) As problem
+        If _missions.Contains(mission) Then Return New problem(Me, problemType.Duplicate)
+
+        mission.city = Me
+        _missions.Add(mission)
         Return Nothing
     End Function
 End Class

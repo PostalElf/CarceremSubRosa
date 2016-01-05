@@ -3,6 +3,9 @@
         action = aAction
         approach = aApproach
     End Sub
+    Public Overrides Function ToString() As String
+        Return _approach.ToString & " " & _action.ToString
+    End Function
 
     Private Property _action As choiceComponent
     Friend Property action As choiceComponent
@@ -22,4 +25,11 @@
             If value > 10 AndAlso value < 20 Then _approach = value
         End Set
     End Property
+
+    Friend Shared Function getRandomAction() As choiceComponent
+        Return rng.Next(1, 4)
+    End Function
+    Friend Shared Function getRandomApproach() As choiceComponent
+        If coinFlip() = True Then Return choiceComponent.Supernatural Else Return choiceComponent.Practical
+    End Function
 End Class

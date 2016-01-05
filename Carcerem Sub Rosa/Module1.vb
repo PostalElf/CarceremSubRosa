@@ -34,7 +34,19 @@
         squad.addAgent(agent1)
         squad.addAgent(agent2)
         agent1.changeRelationship(agent2, choiceComponent.Practical)
-        squad.moveTo(city2)
+        'squad.moveTo(city2)
+
+        Dim stage1 As New missionStage("Dress Up", 5, 1, Nothing, "stonewall", 0)
+        Dim stage2 As New missionStage("Travel to the Party", 7, 2, Nothing, "stonewall", 0)
+        Dim stage3 As New missionStage("Eat!", 7, 3, Nothing, "stonewall", 0)
+        Dim stage4 As New missionStage("Kill", 18, 1, Nothing, "health", 5)
+        Dim stageStack As New Stack(Of missionStage)
+        stageStack.Push(stage4)
+        stageStack.Push(stage3)
+        stageStack.Push(stage2)
+        stageStack.Push(stage1)
+        Dim mission As New mission("Sample Cheese & Wines", city1, stageStack)
+        mission.squad = squad
 
         While True
             Console.Clear()

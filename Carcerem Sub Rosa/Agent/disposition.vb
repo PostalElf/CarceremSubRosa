@@ -2,13 +2,12 @@
     Friend Shared Function buildRandomDisposition() As disposition
         Dim disposition As New disposition
         With disposition
-            Dim approachLike As choiceComponent
-            If coinFlip() = True Then approachLike = choiceComponent.Supernatural Else approachLike = choiceComponent.Practical
+            Dim approachLike As choiceComponent = skill.getRandomApproach
             Dim approachDislike As choiceComponent
             If approachLike = choiceComponent.Supernatural Then approachDislike = choiceComponent.Practical Else approachDislike = choiceComponent.Supernatural
 
             Dim actions As New List(Of Integer) From {1, 2, 3}
-            Dim actionLike As choiceComponent = rng.Next(1, 4)
+            Dim actionLike As choiceComponent = skill.getRandomAction
             actions.Remove(actionLike)
             Dim actionDislike As choiceComponent = actions(rng.Next(2))
 

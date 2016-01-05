@@ -72,6 +72,7 @@
     <Compile Include="Agent\agent.vb" />
     <Compile Include="Agent\choiceComponent.vb" />
     <Compile Include="Agent\disposition.vb" />
+    <Compile Include="Agent\equipment.vb" />
     <Compile Include="Agent\relationship.vb" />
     <Compile Include="Agent\skill.vb" />
     <Compile Include="Agent\squad.vb" />
@@ -86,6 +87,8 @@
     <Compile Include="Development\distanceCalc.vb" />
     <Compile Include="Development\enumArrays.vb" />
     <Compile Include="Development\valve.vb" />
+    <Compile Include="Mission\mission.vb" />
+    <Compile Include="Mission\missionStage.vb" />
     <Compile Include="modifier.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
