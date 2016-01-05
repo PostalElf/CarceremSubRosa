@@ -19,6 +19,15 @@
         Console.WriteLine(indd & fakeTab("Net Income: ", 13) & withSign(incomeNet, "$"))
         Console.WriteLine(indd & fakeTab("Research: ", 13) & withSign(research))
     End Sub
+    Friend Sub fullConsoleReport(indent As Integer)
+        Dim ind As String = vbSpace(indent)
+
+        Console.WriteLine(ind & """" & name & """ Corp in " & city.name & ", " & city.parseContinent(continent))
+        For Each holding In _holdings
+            holding.consoleReport(indent + 1)
+            Console.WriteLine()
+        Next
+    End Sub
     Public Overrides Function ToString() As String
         Return """" & name & """ Pte Ltd"
     End Function

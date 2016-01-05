@@ -34,7 +34,10 @@
             If result = "" Then
                 'timer still ticking
                 missionStages.Push(currentMissionStage)
-            ElseIf result <> "Success" Then
+            ElseIf result = "Success" Then
+                'mission success
+                'MsgBox(currentMissionStage.name & " success.")
+            Else
                 'complicated or failure; apply penalties to agent
                 Dim rawstr As String() = result.Split(" ")
                 agent.addPenalty(rawstr(1), CInt(rawstr(2)))
@@ -44,6 +47,7 @@
                     currentMissionStage.timeProgress = 0
                     missionStages.Push(currentMissionStage)
                 End If
+                'MsgBox(result)
             End If
 
             If missionStages.Count = 0 Then

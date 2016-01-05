@@ -93,10 +93,18 @@
     Friend Function removeAgent(agent As agent) As problem
         If _agents.Contains(agent) = False Then Return New problem(Me, problemType.NotFound)
 
-        _agents.Remove(agent)
         agent.squad = Nothing
+        _agents.Remove(agent)
+        If _agents.Count = 0 Then dead()
         Return Nothing
     End Function
+    Private Sub dead()
+        player.removeSquad(Me)
+        _city.removeSquad(Me)
+
+        _travelOrigin = Nothing
+        _travelDestination = Nothing
+    End Sub
     Friend ReadOnly Property upkeep As Integer
         Get
             Dim total As Integer = 0

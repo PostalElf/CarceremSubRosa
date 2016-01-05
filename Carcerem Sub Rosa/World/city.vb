@@ -200,6 +200,9 @@
         If _squads.Contains(squad) = False Then Return New problem(Me, problemType.NotFound)
 
         _squads.Remove(squad)
+        For Each mission In _missions
+            If mission.squad.Equals(squad) Then mission.squad = Nothing
+        Next
         Return Nothing
     End Function
 

@@ -36,10 +36,10 @@
         agent1.changeRelationship(agent2, choiceComponent.Practical)
         'squad.moveTo(city2)
 
-        Dim stage1 As New missionStage("Dress Up", 5, 1, New Dictionary(Of choiceComponent, Integer) From {{choiceComponent.Diplomacy, 1}}, "stonewall", 0)
-        Dim stage2 As New missionStage("Travel to the Party", 7, 2, Nothing, "stonewall", 0)
-        Dim stage3 As New missionStage("Eat!", 7, 3, Nothing, "stonewall", 0)
-        Dim stage4 As New missionStage("Kill", 18, 1, Nothing, "health", 5)
+        Dim stage1 As New missionStage("Dress Up", 5, 10, New Dictionary(Of choiceComponent, Integer) From {{choiceComponent.Diplomacy, 1}}, "stonewall", 1)
+        Dim stage2 As New missionStage("Travel to the Party", 7, 10, Nothing, "stonewall", 1)
+        Dim stage3 As New missionStage("Eat!", 7, 10, Nothing, "stonewall", 1)
+        Dim stage4 As New missionStage("Kill", 18, 10, Nothing, "health", 5)
         Dim stageStack As New Stack(Of missionStage)
         stageStack.Push(stage4)
         stageStack.Push(stage3)
@@ -50,24 +50,10 @@
 
         While True
             Console.Clear()
-            player.consoleReport(1)
+            player.consoleReport(0)
             Console.WriteLine(vbCrLf)
 
-            shell1.consoleReport(1)
-            For Each holding In shell1.holdings
-                Console.WriteLine()
-                holding.consoleReport(2)
-            Next
-            Console.WriteLine(vbCrLf)
-
-            shell2.consoleReport(1)
-            For Each holding In shell2.holdings
-                Console.WriteLine()
-                holding.consoleReport(2)
-            Next
-            Console.WriteLine(vbCrLf)
-
-            squad.consoleReport(1)
+            player.fullConsoleReport(0)
             Console.ReadKey()
 
             player.tick()

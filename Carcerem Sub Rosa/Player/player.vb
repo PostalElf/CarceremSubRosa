@@ -34,6 +34,16 @@
             Console.WriteLine(indd & fakeTab(shellcompany.name & " Corp: ", longnameLength) & withSign(shellcompany.research))
         Next
     End Sub
+    Friend Sub fullConsoleReport(indent As Integer)
+        For Each shellcompany In _shellcompanies
+            shellcompany.fullConsoleReport(indent)
+            Console.WriteLine()
+        Next
+
+        For Each squad In _squads
+            squad.consoleReport(indent)
+        Next
+    End Sub
 
     Friend Property name As String Implements problemReporter.name
 
@@ -217,13 +227,15 @@
 
     Friend Sub tick()
         'tick shellcompanies
-        For Each shellcompany In _shellcompanies
+        For n = _shellcompanies.Count - 1 To 0 Step -1
+            Dim shellcompany As shellcompany = _shellcompanies(n)
             shellcompany.tick()
         Next
 
 
         'tick squads
-        For Each squad In _squads
+        For n = _squads.Count - 1 To 0 Step -1
+            Dim squad As squad = _squads(n)
             squad.tick()
         Next
 
