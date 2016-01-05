@@ -81,7 +81,7 @@
     End Function
 
     Private Property _blueprints As New List(Of product)
-    Friend Function addBlueprint(product As product) As problem
+    Friend Function devAddBlueprint(product As product) As problem
         If _blueprints.Contains(product) Then Return New problem(Me, problemType.Duplicate)
 
         _blueprints.Add(product)
@@ -128,11 +128,20 @@
         Dim rawstr As String() = consequence.Split(" ")
         If rawstr(0) <> "player" Then Return New problem(Me, problemType.NotSuitable)
 
-        Select Case rawstr(1).ToLower
-            Case "departmentlevelmax"
+        Select Case rawstr(1)
+            Case "departmentLevelMax"
                 Dim department As department = enumArrays.getEnumFromString(rawstr(2), enumArrays.departmentArray)
                 Dim value As Integer = CInt(rawstr(3))
                 _departmentLevelMax(department) += value
+
+            Case "unlockBlueprint"
+                Dim blueprintName As String = ""
+                For n = 2 To rawstr.Length - 1
+                    blueprintName &= rawstr(n) & " "
+                Next
+                blueprintName = blueprintName.Trim()
+                Dim blueprint As product = product.fileget(blueprintName)
+                _blueprints.Add(blueprint)
         End Select
         Return Nothing
     End Function

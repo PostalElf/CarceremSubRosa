@@ -24,7 +24,7 @@
         Dim laundry As New laundry("", shell1)
 
         Dim blueprint As New product("Sheepskin")
-        player.addBlueprint(blueprint)
+        player.devAddBlueprint(blueprint)
         city2.addDemand(1)
         player.createTradeRoute(blueprint, factory, city2)
 
