@@ -67,8 +67,10 @@
         Dim value As Integer = CInt(penaltyStr(1))
 
         Select Case penaltyStr(0).ToLower
-            Case "health" Or "sanity" Or "morale" : agent.addPenalty(penalty, value)
-            Case Else : city.addPenalty(penalty, value)
+            Case "health" : agent.addPenalty(penaltyStr(0), value)
+            Case "sanity" : agent.addPenalty(penaltyStr(0), value)
+            Case "morale" : agent.addPenalty(penaltyStr(0), value)
+            Case Else : city.addPenalty(penaltyStr(0), value)
         End Select
     End Sub
     Private Sub missionSuccess()

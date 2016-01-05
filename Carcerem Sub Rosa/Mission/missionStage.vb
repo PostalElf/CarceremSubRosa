@@ -1,13 +1,19 @@
 ﻿Public Class missionStage
     Public Sub New()
     End Sub
-    Public Sub New(aName As String, aDifficulty As Integer, aTimeCost As Integer, aBonuses As Dictionary(Of choiceComponent, Integer), aPenalty As List(Of String), aSeverity As Integer)
+    Public Sub New(aName As String, aDifficulty As Integer, aTimeCost As Integer, aBonuses As Dictionary(Of choiceComponent, Integer), aPenalty As Dictionary(Of String, Integer))
         name = aName
         difficulty = aDifficulty
         timeCost = aTimeCost
         If aBonuses Is Nothing = False Then bonuses = aBonuses
         penalties = aPenalty
-        severity = aSeverity
+    End Sub
+    Public Sub New(aName As String, aDifficulty As Integer, aTimeCost As Integer, aBonuses As Dictionary(Of choiceComponent, Integer), aPenalty As String, aSeverity As Integer)
+        name = aName
+        difficulty = aDifficulty
+        timeCost = aTimeCost
+        If aBonuses Is Nothing = False Then bonuses = aBonuses
+        penalties.Add(aPenalty, aSeverity)
     End Sub
     Public Overrides Function ToString() As String
         Return name & " (TN " & difficulty & ")"
@@ -38,8 +44,7 @@
     End Property
     Friend Property bonuses As New Dictionary(Of choiceComponent, Integer)
 
-    Friend Property penalties As List(Of String)
-    Friend Property severity As Integer
+    Friend Property penalties As New Dictionary(Of String, Integer)
     Private Shared Function getRandomMinorPenalty(skill As skill, Optional additionalPenalties As List(Of String) = Nothing) As String
         Dim possibilities As New List(Of String)
         If additionalPenalties Is Nothing = False Then possibilities.AddRange(additionalPenalties)
@@ -48,7 +53,9 @@
         If skill.action = choiceComponent.Violence Then possibilities.Add("health")
         If skill.action = choiceComponent.Guile OrElse skill.action = choiceComponent.Diplomacy Then possibilities.Add("morale")
 
-        Return possibilities(rng.Next(possibilities.Count))
+        Dim severity As Integer = rng.Next(1, 4)
+
+        Return possibilities(rng.Next(possibilities.Count)) & " " & severity
     End Function
 
     Friend Function tick(agent As agent, skill As skill) As missionStageResult
@@ -85,7 +92,9 @@
                 total.Add(getRandomMinorPenalty(skill))
 
             Case missionStageResult.Failure
-                total.AddRange(penalties)
+                For Each kvp In penalties
+                    total.Add(kvp.Key.ToString & " " & kvp.Value)
+                Next
         End Select
         Return total
     End Function

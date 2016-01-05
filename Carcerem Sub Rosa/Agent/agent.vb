@@ -70,6 +70,7 @@
             Case "sanity" : _sanity -= value
             Case "morale" : _morale -= value
         End Select
+        Debug.Print("Agent " & name & " loses " & value & " " & valueStr & ".")
 
         If _health <= 0 OrElse _sanity <= 0 OrElse _morale <= 0 Then dead()
     End Sub
