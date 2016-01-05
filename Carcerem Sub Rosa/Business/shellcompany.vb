@@ -20,12 +20,13 @@
         Console.WriteLine(indd & fakeTab("Research: ", 13) & withSign(research))
     End Sub
     Friend Sub fullConsoleReport(indent As Integer)
-        Dim ind As String = vbSpace(indent)
+        Dim indd As String = vbSpace(indent + 1)
 
-        Console.WriteLine(ind & """" & name & """ Corp in " & city.name & ", " & city.parseContinent(continent))
+        consoleReport(indent)
+
+        Console.WriteLine(indd & "Holdings:")
         For Each holding In _holdings
-            holding.consoleReport(indent + 1)
-            Console.WriteLine()
+            holding.consoleReport(indent + 2)
         Next
     End Sub
     Public Overrides Function ToString() As String
@@ -80,6 +81,7 @@
             For Each holding In holdings
                 total += holding.visibility
             Next
+            total += city.visibilityModifier
             Return total
         End Get
     End Property

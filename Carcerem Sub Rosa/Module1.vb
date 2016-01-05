@@ -9,8 +9,8 @@
         player.devAddResearchProjectOpen(researchProject)
         player.changeResearchProject(researchProject)
 
-        Dim city1 As city = world.cities(continent.Africa)(0)
-        Dim city2 As city = world.cities(continent.China)(0)
+        Dim city1 As city = world.cities(continent.China)(2)
+        Dim city2 As city = world.cities(continent.AmericaN)(0)
         Dim citysite1 As New citysite(player, city1)
         Dim citysite2 As New citysite(player, city1)
         Dim citysite3 As New citysite(player, city1)
