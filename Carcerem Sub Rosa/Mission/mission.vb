@@ -34,6 +34,7 @@
             Select Case result
                 Case Nothing
                     'timer still ticking
+                    Debug.Print(currentMissionStage.briefReport)
                     missionStages.Push(currentMissionStage)
 
                 Case missionStageResult.Success
@@ -41,20 +42,18 @@
                     Debug.Print(currentMissionStage.name & " success.")
 
                 Case missionStageResult.Complicated
-                    Dim penalties As List(Of String) = currentMissionStage.getPenalties(result, skill)
-                    For Each penalty In penalties
+                    Debug.Print(currentMissionStage.name & " complicated success.")
+                    For Each penalty In currentMissionStage.getPenalties(result, skill)
                         addPenalty(agent, penalty)
                     Next
-                    Debug.Print(currentMissionStage.name & " complicated success.")
 
                 Case missionStageResult.Failure
-                    Dim penalties As List(Of String) = currentMissionStage.getPenalties(result, skill)
-                    For Each penalty In penalties
-                        addPenalty(agent, penalty)
-                    Next
                     currentMissionStage.timeProgress = 0
                     missionStages.Push(currentMissionStage)
                     Debug.Print(currentMissionStage.name & " failure.")
+                    For Each penalty In currentMissionStage.getPenalties(result, skill)
+                        addPenalty(agent, penalty)
+                    Next
             End Select
 
             If missionStages.Count = 0 Then
@@ -70,6 +69,10 @@
             Case "health" : agent.addPenalty(penaltyStr(0), value)
             Case "sanity" : agent.addPenalty(penaltyStr(0), value)
             Case "morale" : agent.addPenalty(penaltyStr(0), value)
+            Case "stonewall"
+                missionStages.Peek.timeProgress = 0
+                missionStages.Peek.timeProgress -= value
+                Debug.Print(missionStages.Peek.name & " time progress -" & value)
             Case Else : city.addPenalty(penaltyStr(0), value)
         End Select
     End Sub

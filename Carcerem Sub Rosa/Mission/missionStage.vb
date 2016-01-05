@@ -1,20 +1,23 @@
 ﻿Public Class missionStage
     Public Sub New()
     End Sub
-    Public Sub New(aName As String, aDifficulty As Integer, aTimeCost As Integer, aBonuses As Dictionary(Of choiceComponent, Integer), aPenalty As Dictionary(Of String, Integer))
+    Public Sub New(aName As String, aDifficulty As Integer, aTimeCost As Integer, aBonuses As Dictionary(Of choiceComponent, Integer), aPenalty As List(Of String))
         name = aName
         difficulty = aDifficulty
         timeCost = aTimeCost
         If aBonuses Is Nothing = False Then bonuses = aBonuses
         penalties = aPenalty
     End Sub
-    Public Sub New(aName As String, aDifficulty As Integer, aTimeCost As Integer, aBonuses As Dictionary(Of choiceComponent, Integer), aPenalty As String, aSeverity As Integer)
+    Public Sub New(aName As String, aDifficulty As Integer, aTimeCost As Integer, aBonuses As Dictionary(Of choiceComponent, Integer), aPenalty As String)
         name = aName
         difficulty = aDifficulty
         timeCost = aTimeCost
         If aBonuses Is Nothing = False Then bonuses = aBonuses
-        penalties.Add(aPenalty, aSeverity)
+        penalties.Add(aPenalty)
     End Sub
+    Friend Function briefReport() As String
+        Return name & " (" & timeProgress & "/" & timeCost & ")"
+    End Function
     Public Overrides Function ToString() As String
         Return name & " (TN " & difficulty & ")"
     End Function
@@ -44,7 +47,7 @@
     End Property
     Friend Property bonuses As New Dictionary(Of choiceComponent, Integer)
 
-    Friend Property penalties As New Dictionary(Of String, Integer)
+    Friend Property penalties As New List(Of String)
     Private Shared Function getRandomMinorPenalty(skill As skill, Optional additionalPenalties As List(Of String) = Nothing) As String
         Dim possibilities As New List(Of String)
         If additionalPenalties Is Nothing = False Then possibilities.AddRange(additionalPenalties)
@@ -92,9 +95,7 @@
                 total.Add(getRandomMinorPenalty(skill))
 
             Case missionStageResult.Failure
-                For Each kvp In penalties
-                    total.Add(kvp.Key.ToString & " " & kvp.Value)
-                Next
+                total.AddRange(penalties)
         End Select
         Return total
     End Function
