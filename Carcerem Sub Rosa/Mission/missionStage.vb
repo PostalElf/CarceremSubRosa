@@ -1,12 +1,12 @@
 ﻿Public Class missionStage
     Public Sub New()
     End Sub
-    Public Sub New(aName As String, aDifficulty As Integer, aTimeCost As Integer, aBonuses As Dictionary(Of choiceComponent, Integer), aPenalty As String, aSeverity As Integer)
+    Public Sub New(aName As String, aDifficulty As Integer, aTimeCost As Integer, aBonuses As Dictionary(Of choiceComponent, Integer), aPenalty As List(Of String), aSeverity As Integer)
         name = aName
         difficulty = aDifficulty
         timeCost = aTimeCost
         If aBonuses Is Nothing = False Then bonuses = aBonuses
-        penalty = aPenalty
+        penalties = aPenalty
         severity = aSeverity
     End Sub
     Public Overrides Function ToString() As String
@@ -38,7 +38,7 @@
     End Property
     Friend Property bonuses As New Dictionary(Of choiceComponent, Integer)
 
-    Friend Property penalty As String
+    Friend Property penalties As List(Of String)
     Friend Property severity As Integer
     Private Shared Function getRandomMinorPenalty(skill As skill, Optional additionalPenalties As List(Of String) = Nothing) As String
         Dim possibilities As New List(Of String)
@@ -51,11 +51,11 @@
         Return possibilities(rng.Next(possibilities.Count))
     End Function
 
-    Friend Function tick(agent As agent, skill As skill) As String
+    Friend Function tick(agent As agent, skill As skill) As missionStageResult
         timeProgress += _timeProgressPerTick
-        If timeProgress >= timeCost Then Return roll(agent, skill) Else Return ""
+        If timeProgress >= timeCost Then Return roll(agent, skill) Else Return Nothing
     End Function
-    Private Function roll(agent As agent, skill As skill) As String
+    Private Function roll(agent As agent, skill As skill) As missionStageResult
         Dim city As city = agent.squad.city
         Dim rawRoll As Integer = rollDice("3d6")
         Dim bonus As Integer = agent.bonus(skill)
@@ -64,14 +64,7 @@
 
         Dim total As Integer = rawRoll + bonus
         Dim result As missionStageResult = getResult(total)
-        If result = missionStageResult.Complicated Then
-            Dim minorPenalty As String = missionStage.getRandomMinorPenalty(skill)
-            Return "Complicated " & minorPenalty & " " & severity
-        ElseIf result = missionStageResult.Failure Then
-            Return "Failure " & penalty & " " & severity
-        Else
-            Return "Success"
-        End If
+        Return result
     End Function
     Private Function getResult(rollTotal As Integer) As missionStageResult
         If rollTotal >= difficulty + 2 Then
@@ -81,6 +74,20 @@
         Else
             Return missionStageResult.Failure
         End If
+    End Function
+    Friend Function getPenalties(result As missionStageResult, skill As skill) As List(Of String)
+        Dim total As New List(Of String)
+        Select Case result
+            Case missionStageResult.Success
+                Return Nothing
+
+            Case missionStageResult.Complicated
+                total.Add(getRandomMinorPenalty(skill))
+
+            Case missionStageResult.Failure
+                total.AddRange(penalties)
+        End Select
+        Return total
     End Function
 End Class
 
