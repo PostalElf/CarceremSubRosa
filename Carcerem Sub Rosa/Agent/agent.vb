@@ -101,14 +101,14 @@
             End Select
         End With
     End Sub
-    Private Property _skills As New Dictionary(Of skill, Integer)
-    Friend ReadOnly Property skills As Dictionary(Of skill, Integer)
+    Private Property _training As New Dictionary(Of skill, Integer)
+    Friend ReadOnly Property training As Dictionary(Of skill, Integer)
         Get
-            Return _skills
+            Return _training
         End Get
     End Property
-    Friend Sub setSkill(skill As skill, value As Integer)
-        If _skills.ContainsKey(skill) = False Then _skills.Add(skill, value) Else _skills(skill) = value
+    Friend Sub setTraining(skill As skill, value As Integer)
+        If _training.ContainsKey(skill) = False Then _training.Add(skill, value) Else _training(skill) = value
     End Sub
     Private Property _equipment As New List(Of equipment)
     Friend Function bonus(choiceComponent As choiceComponent) As Integer
@@ -120,7 +120,7 @@
     End Function
     Friend Function bonus(skill As skill) As Integer
         Dim total As Integer = 0
-        If _skills.ContainsKey(skill) Then total += _skills(skill)
+        If _training.ContainsKey(skill) Then total += _training(skill)
         total += bonus(skill.action)
         total += bonus(skill.approach)
         Return total
