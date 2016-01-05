@@ -136,7 +136,9 @@
         If _demand - _importProducts.Count < 1 Then Return New problem(Me, problemType.ExceedCapacity)
 
         product.importer = Me
-        addModifiers(product.cityModifiers)
+        For Each modifier In product.cityModifiers
+            _modifiers.Add(modifier)
+        Next
         _importProducts.Add(product)
         Return Nothing
     End Function
@@ -159,28 +161,17 @@
         End Get
     End Property
 
-    Private Property _modifiers As New List(Of modifier)
-    Friend ReadOnly Property modifiers As List(Of modifier)
-        Get
-            Return _modifiers
-        End Get
-    End Property
-    Friend Function addModifier(modifier As modifier) As problem
-        If _modifiers.Contains(modifier) Then Return New problem(Me, problemType.Duplicate)
+    Private Property _modifiers As New List(Of String)
+    Friend Function addConsequence(consequence As String) As problem
+        Dim rawstr As String() = consequence.Split(" ")
+        If rawstr(0) <> "city" Then Return New problem(Me, problemType.NotSuitable)
 
-        modifier.parent = _modifiers
-        Select Case modifier.typeName
-
+        Dim value As Integer = CInt(rawstr(2))
+        Select Case rawstr(1)
+            Case "crimespoor" : addPenalty(rawstr(1), value)
+            Case "mediabuzz" : addPenalty(rawstr(1), value)
+            Case "tla" : addPenalty(rawstr(1), value)
         End Select
-        _modifiers.Add(modifier)
-        Return Nothing
-    End Function
-    Friend Function addModifiers(modlist As List(Of modifier)) As problem
-        Dim total As problem = Nothing
-        For Each modifier In modlist
-            total = addModifier(modifier)
-            If total Is Nothing = False Then Return total
-        Next
         Return Nothing
     End Function
 
@@ -219,7 +210,14 @@
         _missions.Add(mission)
         Return Nothing
     End Function
-    Private Property _crimespur As Integer
+    Friend Function removeMission(mission As mission) As problem
+        If _missions.Contains(mission) = False Then Return New problem(Me, problemType.NotFound)
+
+        mission.city = Nothing
+        _missions.Remove(mission)
+        Return Nothing
+    End Function
+    Private Property _crimespoor As Integer
     Private Property _mediabuzz As Integer
     Private Property _tlaGoodwill As Integer
         Get
@@ -231,7 +229,7 @@
     End Property
     Friend Sub addPenalty(penalty As String, value As Integer)
         Select Case penalty.ToLower
-            Case "crimespur" : _crimespur = constrain(_crimespur + value, 0, 15)
+            Case "crimespoor" : _crimespoor = constrain(_crimespoor + value, 0, 15)
             Case "mediabuzz" : _mediabuzz = constrain(_mediabuzz + value, 0, 15)
             Case "tla" : _tlaGoodwill += value
         End Select
@@ -243,7 +241,7 @@
     End Property
     Friend ReadOnly Property missionDifficultyModifier As Integer
         Get
-            Dim total As Integer = constrain(CInt(_crimespur / 3), 0, 5)
+            Dim total As Integer = constrain(CInt(_crimespoor / 3), 0, 5)
             Select Case _tlaGoodwill
                 Case Is >= 16 : total -= 1
                 Case 1 To 4 : total += 1

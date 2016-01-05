@@ -3,6 +3,7 @@
     Public Sub New()
         For Each department In enumArrays.departmentArray
             _departmentBudgets.Add(department, 1000)
+            _departmentLevelMax.Add(department, 1)
         Next
     End Sub
     Friend Sub consoleReport(indent As Integer)
@@ -123,6 +124,19 @@
         _researchProjectsOpen.Add(research)
     End Sub
 
+    Friend Function addConsequence(consequence As String) As problem
+        Dim rawstr As String() = consequence.Split(" ")
+        If rawstr(0) <> "player" Then Return New problem(Me, problemType.NotSuitable)
+
+        Select Case rawstr(1).ToLower
+            Case "departmentlevelmax"
+                Dim department As department = enumArrays.getEnumFromString(rawstr(2), enumArrays.departmentArray)
+                Dim value As Integer = CInt(rawstr(3))
+                _departmentLevelMax(department) += value
+        End Select
+        Return Nothing
+    End Function
+
     Private Property _money As Integer
     Friend ReadOnly Property money As Integer
         Get
@@ -153,17 +167,7 @@
             Return Math.Min(total, _departmentLevelMax(department))
         End Get
     End Property
-    Private ReadOnly Property _departmentLevelMax(department As department) As Integer
-        Get
-            Dim total As Integer = 1
-            For Each modifier In _modifiers
-                If modifier.typeName = "DepartmentLevelMax" AndAlso modifier.unlockName = department.ToString Then
-                    total += modifier.value
-                End If
-            Next
-            Return total
-        End Get
-    End Property
+    Private Property _departmentLevelMax() As New Dictionary(Of department, Integer)
     Friend Function createTradeRoute(blueprint As product, manufacturer As factory, importer As city) As problem
         Dim product As New product(blueprint)
 
@@ -202,29 +206,6 @@
         End Get
     End Property
 
-    Private Property _modifiers As New List(Of modifier)
-    Friend Function addModifier(modifier As modifier) As problem
-        If _modifiers.Contains(modifier) Then Return New problem(Me, problemType.Duplicate)
-
-        modifier.parent = _modifiers
-        Select Case modifier.typeName
-            Case "UnlockBlueprint"
-                Dim blueprint As product = product.fileget(modifier.unlockName)
-                _blueprints.Add(blueprint)
-        End Select
-        _modifiers.Add(modifier)
-        Return Nothing
-    End Function
-    Friend Function addModifiers(modlist As List(Of modifier)) As problem
-        Dim total As problem = Nothing
-        For Each modifier In modlist
-            total = addModifier(modifier)
-            If total Is Nothing = False Then Return total
-        Next
-
-        Return Nothing
-    End Function
-
     Friend Sub tick()
         'tick shellcompanies
         For n = _shellcompanies.Count - 1 To 0 Step -1
@@ -251,7 +232,9 @@
             _researchProjectsOpen.Remove(_researchProject)
             _researchProjectsCompleted.Add(_researchProject)
 
-            addModifiers(_researchProject.modifiers)
+            For Each consequence In _researchProject.consequences
+                addConsequence(consequence)
+            Next
 
             For Each projectName In _researchProject.childProjectNames
                 Dim newProject As researchProject = researchProject.fileget(projectName)

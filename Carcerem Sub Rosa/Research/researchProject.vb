@@ -1,12 +1,12 @@
 ﻿Public Class researchProject
     Public Sub New()
     End Sub
-    Public Sub New(aName As String, aCost As Integer, aRequirements As List(Of requirement), aChildProjectNames As List(Of String), Optional aModifiers As List(Of modifier) = Nothing)
+    Public Sub New(aName As String, aCost As Integer, aRequirements As List(Of requirement), aChildProjectNames As List(Of String), Optional aConsequences As List(Of String) = Nothing)
         name = aName
         _cost = aCost
         _requirements = aRequirements
         childProjectNames = aChildProjectNames
-        modifiers = aModifiers
+        consequences = aConsequences
     End Sub
     Friend Shared Function fileget(name As String)
         Dim raw As List(Of String()) = csvFileget("data/research.csv")
@@ -26,8 +26,7 @@
                     Next
 
                     While n.Tick < line.Length AndAlso n.Last <> ""
-                        Dim modifier As New modifier(.name, .modifiers, line(n.Last))
-                        .modifiers.Add(modifier)
+                        .consequences.Add(line(n.Last))
                     End While
                 End With
                 Return researchProject
@@ -53,7 +52,7 @@
     End Property
 
     Friend Property childProjectNames As New List(Of String)
-    Friend Property modifiers As New List(Of modifier)
+    Friend Property consequences As New List(Of String)
     Private Property _requirements As New List(Of requirement)
     Friend ReadOnly Property requirementsMet As Boolean
         Get

@@ -1,7 +1,7 @@
 ﻿Public Class product
     Public Sub New()
     End Sub
-    Public Sub New(aName As String, Optional aCityModifiers As List(Of modifier) = Nothing)
+    Public Sub New(aName As String, Optional aCityModifiers As List(Of String) = Nothing)
         name = aName
         If aCityModifiers Is Nothing = False Then cityModifiers.AddRange(aCityModifiers)
     End Sub
@@ -18,8 +18,7 @@
                     .name = line(n.Tick)
 
                     While n.Tick < line.Length AndAlso n.Last <> ""
-                        Dim modifier As New modifier(.name, ._cityModifiers, line(n.Last))
-                        ._cityModifiers.Add(modifier)
+                        ._cityModifiers.Add(line(n.Last))
                     End While
                 End With
                 Return product
@@ -41,8 +40,8 @@
     End Function
 
     Friend Property name As String
-    Private Property _cityModifiers As New List(Of modifier)
-    Friend ReadOnly Property cityModifiers As List(Of modifier)
+    Private Property _cityModifiers As New List(Of String)
+    Friend ReadOnly Property cityModifiers As List(Of String)
         Get
             Return _cityModifiers
         End Get

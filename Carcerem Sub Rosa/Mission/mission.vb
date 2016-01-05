@@ -23,6 +23,7 @@
     Friend Property city As city
     Friend Property squad As squad
     Friend Property missionStages As New Stack(Of missionStage)
+    Friend Property consequences As New List(Of String)
 
     Friend Sub tick()
         If squad.city.Equals(city) Then
@@ -76,7 +77,24 @@
             Case Else : city.addPenalty(penaltyStr(0), value)
         End Select
     End Sub
+    Private Sub addConsequence(consequence As String)
+        Dim rawstr As String() = consequence.Split(" ")
+        Select Case rawstr(0).ToLower
+            Case "city" : city.addConsequence(consequence)
+            Case "squad" : squad.addConsequence(consequence)
+            Case "player" : squad.player.addConsequence(consequence)
+        End Select
+    End Sub
     Private Sub missionSuccess()
-        MsgBox("Mission Success")
+        Debug.Print("Mission Success: " & name)
+
+        For Each consequence In consequences
+            addConsequence(consequence)
+        Next
+
+        consequences = Nothing
+        squad = Nothing
+        missionStages = Nothing
+        city.removeMission(Me)
     End Sub
 End Class

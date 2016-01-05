@@ -89,7 +89,6 @@
     <Compile Include="Development\valve.vb" />
     <Compile Include="Mission\mission.vb" />
     <Compile Include="Mission\missionStage.vb" />
-    <Compile Include="modifier.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

@@ -115,6 +115,21 @@
         End Get
     End Property
 
+    Friend Function addConsequence(consequence As String) As problem
+        Dim rawstr As String() = consequence.Split(" ")
+        If rawstr(0) <> "squad" Then Return New problem(Me, problemType.NotSuitable)
+
+        Dim value As Integer = CInt(rawstr(2))
+        For Each agent In agents
+            Select Case rawstr(1)
+                Case "health" : agent.addPenalty("health " & value)
+                Case "sanity" : agent.addPenalty("sanity " & value)
+                Case "morale" : agent.addPenalty("morale " & value)
+            End Select
+        Next
+        Return Nothing
+    End Function
+
     Private Property _city As city
     Friend ReadOnly Property city As city
         Get
