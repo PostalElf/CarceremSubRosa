@@ -39,4 +39,25 @@
             Return total
         End Get
     End Property
+    Private Property _travelDistances As Dictionary(Of String, Dictionary(Of String, Integer)) = buildTravelDistances()
+    Private Function buildTravelDistances() As Dictionary(Of String, Dictionary(Of String, Integer))
+        Dim total As New Dictionary(Of String, Dictionary(Of String, Integer))
+        Dim csv As List(Of String()) = csvFileget("data/distances.csv")
+        For Each line In csv
+            Dim origin As String = line(0)
+            Dim destination As String = line(1)
+            Dim distance As Integer = CInt(line(2))
+
+            If origin <> destination Then
+                If total.ContainsKey(origin) = False Then total.Add(origin, New Dictionary(Of String, Integer))
+                If total(origin).ContainsKey(destination) = False Then total(origin).Add(destination, distance)
+            End If
+        Next
+        Return total
+    End Function
+    Friend Function getDistance(origin As city, destination As city) As Integer
+        If origin.name = destination.name Then Return 0
+
+        Return _travelDistances(origin.name)(destination.name)
+    End Function
 End Class

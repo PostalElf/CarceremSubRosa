@@ -18,13 +18,13 @@
         Dim ind As String = vbSpace(indent) & prefix
         Dim indd As String = vbSpace(indent + 1) & prefix
         Dim inddd As String = vbSpace(indent + 2) & prefix
-        Dim faketabLength As Integer = "Travelling To:  ".Length
+        Dim faketabLength As Integer = "Travel Speed:  ".Length
 
         Console.WriteLine(ind & "Squad " & name)
         If _city Is Nothing = False Then
             Console.WriteLine(indd & fakeTab("Location:", faketabLength) & _city.briefReport)
         Else
-            Console.WriteLine(indd & fakeTab("Travelling To:", faketabLength) & _travelDestination.briefReport & " (" & _travelProgress & "/" & _travelCost & ")")
+            Console.WriteLine(indd & fakeTab("Travelling:", faketabLength) & _travelOrigin.briefReport & " to " & _travelDestination.briefReport & " (" & _travelProgress & "/" & _travelCost & ")")
             Console.WriteLine(indd & fakeTab("Travel Speed:", faketabLength) & withSign(_travelSpeed))
         End If
         Console.WriteLine(indd & fakeTab("Upkeep:", faketabLength) & withReverseSign(upkeep, "$"))
@@ -102,11 +102,13 @@
     Private Property _travelSpeed As Integer = 100
     Private Property _travelProgress As Integer
     Private Property _travelCost As Integer
+    Private Property _travelOrigin As city
     Private Property _travelDestination As city
     Friend Function moveTo(destination As city) As problem
         If _city Is Nothing Then Return New problem(Me, problemType.NotSuitable)
 
         _travelCost = _city.getDistanceTo(destination)
+        _travelOrigin = _city
         _travelDestination = destination
         _travelProgress = 0
         _city.removeSquad(Me)
@@ -118,6 +120,7 @@
 
         _travelProgress = 0
         _travelCost = 0
+        _travelOrigin = Nothing
         _travelDestination = Nothing
 
         _city = destination
