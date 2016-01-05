@@ -30,6 +30,6 @@
         Return rng.Next(1, 4)
     End Function
     Friend Shared Function getRandomApproach() As choiceComponent
-        If coinFlip() = True Then Return choiceComponent.Supernatural Else Return choiceComponent.Practical
+        Return rng.Next(1, 4) + 10
     End Function
 End Class

@@ -70,11 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agent\agent.vb" />
-    <Compile Include="Agent\choiceComponent.vb" />
+    <Compile Include="Mission\choiceComponent.vb" />
     <Compile Include="Agent\disposition.vb" />
     <Compile Include="Agent\equipment.vb" />
     <Compile Include="Agent\relationship.vb" />
-    <Compile Include="Agent\skill.vb" />
+    <Compile Include="Mission\skill.vb" />
     <Compile Include="Agent\squad.vb" />
     <Compile Include="Business\Holding\factory.vb" />
     <Compile Include="Business\Holding\holding.vb" />

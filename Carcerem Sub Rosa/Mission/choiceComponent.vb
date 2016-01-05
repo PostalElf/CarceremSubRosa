@@ -5,4 +5,5 @@
 
     Supernatural = 11
     Practical
+    Digital
 End Enum
