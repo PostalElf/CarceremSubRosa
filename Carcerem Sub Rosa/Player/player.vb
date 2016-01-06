@@ -211,6 +211,8 @@
     End Property
     Private Property _departmentLevelMax() As New Dictionary(Of department, Integer)
     Private Property _hrRecruitment As Integer
+    Private Property _hrCityChoice As city
+    Private Property _hrOpportunityChoice As String
     Friend Function createTradeRoute(blueprint As product, manufacturer As factory, importer As city) As problem
         Dim product As New product(blueprint)
 
@@ -273,35 +275,61 @@
 
 
         'tick HR department
+        hrTick()
+
+
+        'add money and research income
+        _money += incomeNet
+        researchTick()
+    End Sub
+    Private Sub hrTick()
         _hrRecruitment += departmentLevel(department.HR)
         If percentRoll(_hrRecruitment) = True Then
             _hrRecruitment = 0
+
+            Dim city As city = Nothing
+            Dim opportunity As Integer = 0
             If departmentLevel(department.HR) >= 5 Then
-
-            ElseIf departmentLevel(department.HR) >= 3 Then
-
-            Else
-                Dim city As city = _world.getRandomCity()
-                Select Case rng.Next(1, 4)
-                    Case 1
-                        'citysite
-                        Dim cost As New cost(100)
-                        interrupt.Add("Real Estate Opportunity", interruptType.YesNo, Me, city, cost, "Purchase real estate in " & city.ToString & " for $" & cost.money & "?")
-                    Case 2
-                        'shell company
-                        Dim cost As New cost(100)
-                        interrupt.Add("Business Opportunity", interruptType.YesNo, Me, city, cost, "Purchase a business in " & city.ToString & " for $" & cost.money & "?")
-                    Case 3
-                        'recruit agent
-                        Dim cost As New cost(100)
-                        interrupt.Add("Recruitment Opportunity", interruptType.YesNo, Me, city, cost, "Recruit an agent in " & city.ToString & " for $" & cost.money & "?")
+                city = _hrCityChoice
+                Select Case _hrOpportunityChoice
+                    Case "citysite" : opportunity = 1
+                    Case "shellcompany" : opportunity = 2
+                    Case "agent" : opportunity = 3
+                    Case Else : opportunity = 0
                 End Select
+            ElseIf departmentLevel(department.HR) >= 3 Then
+                If coinFlip() = True Then
+                    city = _hrCityChoice
+                Else
+                    Select Case _hrOpportunityChoice
+                        Case "citysite" : opportunity = 1
+                        Case "shellcompany" : opportunity = 2
+                        Case "agent" : opportunity = 3
+                        Case Else : opportunity = 0
+                    End Select
+                End If
             End If
+
+            If city Is Nothing Then city = _world.getRandomCity()
+            If opportunity = 0 Then opportunity = rng.Next(1, 4)
+
+            Select Case opportunity
+                Case 1
+                    'citysite
+                    Dim cost As New cost(100)
+                    interrupt.Add("Real Estate Opportunity", interruptType.YesNo, Me, city, cost, "Purchase real estate in " & city.ToString & " for $" & cost.money & "?")
+                Case 2
+                    'shell company
+                    Dim cost As New cost(100)
+                    interrupt.Add("Business Opportunity", interruptType.YesNo, Me, city, cost, "Purchase a business in " & city.ToString & " for $" & cost.money & "?")
+                Case 3
+                    'recruit agent
+                    Dim cost As New cost(100)
+                    interrupt.Add("Recruitment Opportunity", interruptType.YesNo, Me, city, cost, "Recruit an agent in " & city.ToString & " for $" & cost.money & "?")
+            End Select
         End If
-
-
-        'add income
-        _money += incomeNet
+    End Sub
+    Private Sub researchTick()
         If _researchProject Is Nothing = False Then
             _researchProject.addProgress(research)
 
