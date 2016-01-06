@@ -94,6 +94,7 @@
 
         _agents.Add(agent)
         agent.squad = Me
+        player.removeIdleAgent(agent)
         Return Nothing
     End Function
     Friend Function removeAgent(agent As agent) As problem

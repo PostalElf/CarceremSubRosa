@@ -26,7 +26,7 @@
         For Each squad In _squads
             totalSquadUpkeep += squad.upkeep
         Next
-        Console.WriteLine(indd & fakeTab("Squads: ", longnameLength) & withReverseSign(totalSquadUpkeep, "$"))
+        Console.WriteLine(indd & fakeTab("Agents: ", longnameLength) & withReverseSign(totalSquadUpkeep, "$"))
 
         Console.Write(ind & fakeTab("Project: ", 11))
         If _researchProject Is Nothing = False Then Console.Write(_researchProject.briefReport) Else Console.Write("Nothing")
@@ -35,10 +35,27 @@
         For Each shellcompany In _shellcompanies
             Console.WriteLine(indd & fakeTab(shellcompany.name & " Corp: ", longnameLength) & withSign(shellcompany.research))
         Next
+
+        If _idleAgents.Count > 0 Then
+            Console.WriteLine(ind & fakeTab("Idle Agents: ", 11))
+            For Each agent In _idleAgents
+                Console.WriteLine(indd & agent.ToString)
+            Next
+        End If
     End Sub
     Friend Sub fullConsoleReport(indent As Integer)
+        Dim ind As String = vbSpace(indent)
+
         consoleReport(indent)
         Console.WriteLine(vbCrLf)
+
+        If _openCitysites.Count > 0 Then
+            Console.WriteLine(ind & "Unused Real Estate")
+            For Each citysite In _openCitysites
+                citysite.consoleReport(indent + 1)
+            Next
+            Console.WriteLine(vbCrLf)
+        End If
 
         For Each shellcompany In _shellcompanies
             shellcompany.fullConsoleReport(indent)
@@ -71,6 +88,21 @@
         Next
         Return total
     End Function
+    Private Property _openCitysites As New List(Of citysite)
+    Friend Function addOpenCitysite(citysite As citysite) As problem
+        If _openCitysites.Contains(citysite) Then Return New problem(Me, problemType.Duplicate)
+
+        citysite.player = Me
+        _openCitysites.Add(citysite)
+        Return Nothing
+    End Function
+    Friend Function removeOpenCitysite(citysite As citysite)
+        If _openCitysites.Contains(citysite) = False Then Return New problem(Me, problemType.NotFound)
+
+        _openCitysites.Remove(citysite)
+        Return Nothing
+    End Function
+
     Private Property _squads As New List(Of squad)
     Friend Function addSquad(squad As squad) As problem
         If _squads.Contains(squad) Then Return New problem(Me, problemType.Duplicate)
@@ -86,12 +118,17 @@
         _squads.Remove(squad)
         Return Nothing
     End Function
-
     Private Property _idleAgents As New List(Of agent)
     Friend Function addIdleAgent(agent As agent) As problem
         If _idleAgents.Contains(agent) Then Return New problem(Me, problemType.Duplicate)
 
         _idleAgents.Add(agent)
+        Return Nothing
+    End Function
+    Friend Function removeIdleAgent(agent As agent) As problem
+        If _idleAgents.Contains(agent) = False Then Return New problem(Me, problemType.NotFound)
+
+        _idleAgents.Remove(agent)
         Return Nothing
     End Function
 
@@ -188,6 +225,10 @@
         Get
             Dim total As Integer = _baseIncome
             total -= _departmentBudgetTotal
+
+            For Each agent In _idleAgents
+                total -= agent.upkeep
+            Next
 
             For Each squad In _squads
                 total -= squad.upkeep

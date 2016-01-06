@@ -1,12 +1,14 @@
 ﻿Public Class shellcompany
     Implements problemReporter
-    Public Sub New()
-    End Sub
-    Public Sub New(aName As String, aPlayer As player, aCity As city)
-        If aName = "" Then name = holding.getRandomCodename Else name = aName
-        aPlayer.addShellcompany(Me)
-        aCity.addShellcompany(Me)
-    End Sub
+    Friend Shared Function buildShellcompany(aPlayer As player, aCity As city)
+        Dim shellcompany As New shellcompany
+        With shellcompany
+            .name = holding.getRandomCodename
+            aPlayer.addShellcompany(shellcompany)
+            aCity.addShellcompany(shellcompany)
+        End With
+        Return shellcompany
+    End Function
     Friend Sub consoleReport(indent As Integer, Optional prefix As String = "")
         Dim ind As String = vbSpace(indent) & prefix
         Dim indd As String = vbSpace(indent + 1) & prefix
@@ -53,6 +55,7 @@
 
         holding.shellcompany = Me
         _holdings.Add(holding)
+        player.removeOpenCitysite(holding.citysite)
         Return Nothing
     End Function
     Friend Function removeHolding(holding As holding) As problem
