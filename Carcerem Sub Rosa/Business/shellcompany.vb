@@ -22,10 +22,12 @@
 
         consoleReport(indent)
 
-        Console.WriteLine(indd & "Holdings:")
-        For Each holding In _holdings
-            holding.consoleReport(indent + 2)
-        Next
+        If holdings.Count > 0 Then
+            Console.WriteLine(indd & "Holdings:")
+            For Each holding In _holdings
+                holding.consoleReport(indent + 2)
+            Next
+        End If
     End Sub
     Public Overrides Function ToString() As String
         Return """" & name & """ Pte Ltd"

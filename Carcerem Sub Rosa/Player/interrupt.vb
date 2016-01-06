@@ -51,7 +51,7 @@
                             Dim player As player = CType(parent, player)
                             Dim city As city = CType(target, city)
                             Dim agent As agent = agent.buildRandomAgent(player)
-
+                            player.addIdleAgent(agent)
                     End Select
                 End If
 

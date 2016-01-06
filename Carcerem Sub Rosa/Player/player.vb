@@ -16,7 +16,7 @@
         Console.WriteLine(ind & fakeTab("Money: ", 11) & withSign(money, "$"))
         Console.WriteLine(ind & fakeTab("Income: ", 11) & withSign(incomeNet, "$"))
         Console.WriteLine(indd & fakeTab("Funding: ", longnameLength) & withSign(_baseIncome, "$"))
-        Console.WriteLine(indd & fakeTab("Departments: ", longnameLength) & withReverseSign(departmentBudgetTotal, "$"))
+        Console.WriteLine(indd & fakeTab("Departments: ", longnameLength) & withReverseSign(_departmentBudgetTotal, "$"))
         Dim totalShellcompanyIncome As Integer = 0
         For Each shellcompany In _shellcompanies
             totalShellcompanyIncome += shellcompany.incomeNet
@@ -29,7 +29,7 @@
         Console.WriteLine(indd & fakeTab("Squads: ", longnameLength) & withReverseSign(totalSquadUpkeep, "$"))
 
         Console.Write(ind & fakeTab("Project: ", 11))
-        If _researchProject Is Nothing = False Then Console.Write(_researchProject.briefReport)
+        If _researchProject Is Nothing = False Then Console.Write(_researchProject.briefReport) Else Console.Write("Nothing")
         Console.WriteLine()
         Console.WriteLine(ind & fakeTab("Research: ", 11) & withSign(research))
         For Each shellcompany In _shellcompanies
@@ -37,10 +37,15 @@
         Next
     End Sub
     Friend Sub fullConsoleReport(indent As Integer)
+        consoleReport(indent)
+        Console.WriteLine(vbCrLf)
+
         For Each shellcompany In _shellcompanies
             shellcompany.fullConsoleReport(indent)
             Console.WriteLine()
         Next
+
+        Console.WriteLine()
 
         For Each squad In _squads
             squad.consoleReport(indent)
@@ -79,6 +84,14 @@
 
         squad.player = Nothing
         _squads.Remove(squad)
+        Return Nothing
+    End Function
+
+    Private Property _idleAgents As New List(Of agent)
+    Friend Function addIdleAgent(agent As agent) As problem
+        If _idleAgents.Contains(agent) Then Return New problem(Me, problemType.Duplicate)
+
+        _idleAgents.Add(agent)
         Return Nothing
     End Function
 
@@ -126,28 +139,6 @@
         _researchProjectsOpen.Add(research)
     End Sub
 
-    Friend Function addConsequence(consequence As String) As problem
-        Dim rawstr As String() = consequence.Split(" ")
-        If rawstr(0) <> "player" Then Return New problem(Me, problemType.NotSuitable)
-
-        Select Case rawstr(1)
-            Case "departmentLevelMax"
-                Dim department As department = enumArrays.getEnumFromString(rawstr(2), enumArrays.departmentArray)
-                Dim value As Integer = CInt(rawstr(3))
-                _departmentLevelMax(department) += value
-
-            Case "unlockBlueprint"
-                Dim blueprintName As String = ""
-                For n = 2 To rawstr.Length - 1
-                    blueprintName &= rawstr(n) & " "
-                Next
-                blueprintName = blueprintName.Trim()
-                Dim blueprint As product = product.fileget(blueprintName)
-                _blueprints.Add(blueprint)
-        End Select
-        Return Nothing
-    End Function
-
     Private Property _money As Integer
     Friend ReadOnly Property money As Integer
         Get
@@ -155,7 +146,7 @@
         End Get
     End Property
     Friend Property departmentBudgets As New Dictionary(Of department, Integer)
-    Friend ReadOnly Property departmentBudgetTotal As Integer
+    Private ReadOnly Property _departmentBudgetTotal As Integer
         Get
             Dim total As Integer = 0
             For Each kvp In departmentBudgets
@@ -196,7 +187,7 @@
     Friend ReadOnly Property incomeNet As Integer
         Get
             Dim total As Integer = _baseIncome
-            total -= departmentBudgetTotal
+            total -= _departmentBudgetTotal
 
             For Each squad In _squads
                 total -= squad.upkeep
@@ -290,4 +281,29 @@
             End If
         End If
     End Sub
+    Friend Function addConsequence(consequence As String) As problem
+        Dim rawstr As String() = consequence.Split(" ")
+        If rawstr(0) <> "player" Then Return New problem(Me, problemType.NotSuitable)
+
+        Select Case rawstr(1)
+            Case "departmentLevelMax"
+                Dim department As department = enumArrays.getEnumFromString(rawstr(2), enumArrays.departmentArray)
+                Dim value As Integer = CInt(rawstr(3))
+                _departmentLevelMax(department) += value
+
+            Case "govtFunding"
+                Dim value As Integer = CInt(rawstr(2))
+                _baseIncome += value
+
+            Case "unlockBlueprint"
+                Dim blueprintName As String = ""
+                For n = 2 To rawstr.Length - 1
+                    blueprintName &= rawstr(n) & " "
+                Next
+                blueprintName = blueprintName.Trim()
+                Dim blueprint As product = product.fileget(blueprintName)
+                _blueprints.Add(blueprint)
+        End Select
+        Return Nothing
+    End Function
 End Class

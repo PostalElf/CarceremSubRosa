@@ -1,13 +1,18 @@
 ﻿Public Class squad
     Implements problemReporter
-    Friend Shared Function buildRandomSquad(aPlayer As player, aCity As city) As squad
+    Friend Shared Function buildRandomSquad(aPlayer As player, aCity As city, aAgents As List(Of agent)) As squad
+        If aAgents.Count = 0 Then Return Nothing
+        If aAgents.Count > 3 Then Return Nothing
+
         Dim squad As New squad
         With squad
             .name = getRandomName()
-            .player = aPlayer
-            .player.addSquad(squad)
+            aPlayer.addSquad(squad)
             ._city = aCity
             ._city.addSquad(squad)
+            For Each agent In aAgents
+                .addAgent(agent)
+            Next
         End With
         Return squad
     End Function

@@ -5,6 +5,10 @@
 
         Dim world As world = world.buildWorld
         Dim player As New player(world)
+        player.addConsequence("player departmentLevelMax HR 2")
+        player.addConsequence("player govtFunding 1000")
+        player.departmentBudgets(department.HR) = 2000
+
         Dim researchProject As New researchProject("Top-Secret Project", 1000, Nothing, Nothing)
         player.devAddResearchProjectOpen(researchProject)
         player.changeResearchProject(researchProject)
@@ -30,9 +34,7 @@
 
         Dim agent1 As agent = agent.buildRandomAgent(player)
         Dim agent2 As agent = agent.buildRandomAgent(player)
-        Dim squad As squad = squad.buildRandomSquad(player, city1)
-        squad.addAgent(agent1)
-        squad.addAgent(agent2)
+        Dim squad As squad = squad.buildRandomSquad(player, city1, New List(Of agent) From {agent1, agent2})
         agent1.changeRelationship(agent2, choiceComponent.Practical)
         'squad.moveTo(city2)
 
@@ -50,13 +52,11 @@
 
         While True
             While interrupt.Count > 0
+                Console.WriteLine()
                 interrupt.Pop.handle()
             End While
 
             Console.Clear()
-            player.consoleReport(1)
-            Console.WriteLine(vbCrLf)
-
             player.fullConsoleReport(1)
             Console.ReadKey()
 
