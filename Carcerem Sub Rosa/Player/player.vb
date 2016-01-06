@@ -219,6 +219,10 @@
     End Property
 
     Friend Sub tick()
+        'check for outstanding interrupts
+        If interrupt.Count > 0 Then Exit Sub
+
+
         'tick shellcompanies
         For n = _shellcompanies.Count - 1 To 0 Step -1
             Dim shellcompany As shellcompany = _shellcompanies(n)
@@ -241,10 +245,16 @@
             Select Case rng.Next(1, 4)
                 Case 1
                     'citysite
+                    Dim cost As New cost(100)
+                    interrupt.Add("Real Estate Opportunity", interruptType.YesNo, Me, city, cost, "Purchase real estate in " & city.ToString & " for $" & cost.money & "?")
                 Case 2
                     'shell company
+                    Dim cost As New cost(100)
+                    interrupt.Add("Business Opportunity", interruptType.YesNo, Me, city, cost, "Purchase a business in " & city.ToString & " for $" & cost.money & "?")
                 Case 3
                     'recruit agent
+                    Dim cost As New cost(100)
+                    interrupt.Add("Recruitment Opportunity", interruptType.YesNo, Me, city, cost, "Recruit an agent in " & city.ToString & " for $" & cost.money & "?")
             End Select
         End If
 

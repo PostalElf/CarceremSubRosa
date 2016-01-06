@@ -3,7 +3,7 @@
     End Sub
     Public Sub New(aPlayer As player, aCity As city)
         player = aPlayer
-        city = aCity
+        aCity.addCitysite(Me)
     End Sub
 
     Friend Property city As city

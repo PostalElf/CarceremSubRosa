@@ -4,10 +4,8 @@
     End Sub
     Public Sub New(aName As String, aPlayer As player, aCity As city)
         If aName = "" Then name = holding.getRandomCodename Else name = aName
-        player = aPlayer
-        player.addShellcompany(Me)
-        city = aCity
-        city.addShellcompany(Me)
+        aPlayer.addShellcompany(Me)
+        aCity.addShellcompany(Me)
     End Sub
     Friend Sub consoleReport(indent As Integer, Optional prefix As String = "")
         Dim ind As String = vbSpace(indent) & prefix
