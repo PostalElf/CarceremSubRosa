@@ -15,6 +15,7 @@
 
         Console.WriteLine(ind & """" & name & """ Corp in " & city.name & ", " & city.parseContinent(continent))
         Console.WriteLine(indd & fakeTab("Visibility: ", 13) & visibility)
+        Console.WriteLine(indd & fakeTab("Upkeep: ", 13) & withReverseSign(_companyUpkeep, "$"))
         Console.WriteLine(indd & fakeTab("Raw Income: ", 13) & withSign(incomeRaw, "$"))
         Console.WriteLine(indd & fakeTab("Net Income: ", 13) & withSign(incomeNet, "$"))
         Console.WriteLine(indd & fakeTab("Research: ", 13) & withSign(research))
@@ -89,6 +90,7 @@
         End Get
     End Property
 
+    Private Const _companyUpkeep As Integer = 100
     Friend ReadOnly Property incomeRaw As Integer
         Get
             Dim total As Integer = 0
@@ -116,7 +118,7 @@
     End Property
     Friend ReadOnly Property incomeNet As Integer
         Get
-            Return Math.Min(incomeRaw, incomeLaundyRate)
+            Return Math.Min(incomeRaw, incomeLaundyRate) - _companyUpkeep
         End Get
     End Property
     Friend ReadOnly Property research As Integer

@@ -22,11 +22,14 @@
             totalShellcompanyIncome += shellcompany.incomeNet
         Next
         Console.WriteLine(indd & fakeTab("Shell Companies: ", longnameLength) & withSign(totalShellcompanyIncome, "$"))
-        Dim totalSquadUpkeep As Integer = 0
+        Dim totalAgentUpkeep As Integer = 0
         For Each squad In _squads
-            totalSquadUpkeep += squad.upkeep
+            totalAgentUpkeep += squad.upkeep
         Next
-        Console.WriteLine(indd & fakeTab("Agents: ", longnameLength) & withReverseSign(totalSquadUpkeep, "$"))
+        For Each agent In _idleAgents
+            totalAgentUpkeep += agent.upkeep
+        Next
+        Console.WriteLine(indd & fakeTab("Agents: ", longnameLength) & withReverseSign(totalAgentUpkeep, "$"))
 
         Console.Write(ind & fakeTab("Project: ", 11))
         If _researchProject Is Nothing = False Then Console.Write(_researchProject.briefReport) Else Console.Write("Nothing")

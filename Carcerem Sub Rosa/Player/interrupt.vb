@@ -40,7 +40,7 @@
                         Case "Business Opportunity"
                             Dim player As player = CType(parent, player)
                             Dim city As city = CType(target, city)
-                            Dim shellcompany As New shellcompany("", player, city)
+                            shellcompany.buildShellcompany(player, city)
 
                         Case "Real Estate Opportunity"
                             Dim player As player = CType(parent, player)
