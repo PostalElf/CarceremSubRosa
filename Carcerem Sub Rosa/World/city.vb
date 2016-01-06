@@ -196,7 +196,15 @@
     End Property
     Friend ReadOnly Property visibilityModifier As Integer
         Get
-            Return 0
+            Dim total As Integer = 0
+            Select Case _mediaGoodwill
+                Case Is >= 16 : total -= 2
+                Case 13 To 15 : total -= 1
+                Case 5 To 7 : total += 2
+                Case 1 To 4 : total += 4
+                Case 0 : total += 5
+            End Select
+            Return total
         End Get
     End Property
     Friend ReadOnly Property missionDifficultyModifier As Integer
@@ -206,6 +214,12 @@
                 Case Is >= 16 : total -= 1
                 Case 1 To 4 : total += 1
             End Select
+            Select Case _policeGoodwill
+                Case Is >= 16 : total -= 1
+                Case 5 To 7 : total += 1
+                Case 1 To 4 : total += 2
+                Case 0 : total += 5
+            End Select
             Return total
         End Get
     End Property
@@ -214,6 +228,9 @@
             Dim total As Integer = 0
             Select Case _tlaGoodwill
                 Case 1 To 7 : total -= 5
+                Case Is >= 13 : total += 5
+            End Select
+            Select Case _policeGoodwill
                 Case Is >= 13 : total += 5
             End Select
             Return total
