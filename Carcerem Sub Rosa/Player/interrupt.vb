@@ -1,8 +1,8 @@
 ﻿Public Class interrupt
-    Private Shared _interruptQueue As New Queue(Of interrupt)
+    Private Shared _interruptStack As New Stack(Of interrupt)
     Friend Shared ReadOnly Property Count As Integer
         Get
-            Return _interruptQueue.Count
+            Return _interruptStack.Count
         End Get
     End Property
     Friend Shared Sub Add(aName As String, aType As interruptType, aParent As Object, aTarget As Object, aCost As cost, aDescription As String)
@@ -15,8 +15,14 @@
             .cost = aCost
             .description = aDescription
         End With
-        _interruptQueue.Enqueue(interrupt)
+        _interruptStack.Push(interrupt)
     End Sub
+    Friend Shared Function Pop() As interrupt
+        Return _interruptStack.Pop
+    End Function
+    Friend Shared Function Peek() As interrupt
+        Return _interruptStack.Peek
+    End Function
 
     Friend Property name As String
     Friend Property type As interruptType
@@ -39,16 +45,25 @@
                         Case "Real Estate Opportunity"
                             Dim player As player = CType(parent, player)
                             Dim city As city = CType(target, city)
-                            Dim citysite As New citysite(player, city)
+                            citysite.buildCitysite(player, city)
 
                         Case "Recruitment Opportunity"
                             Dim player As player = CType(parent, player)
                             Dim city As city = CType(target, city)
-                            Dim agent As New agent()
+                            Dim agent As agent = agent.buildRandomAgent(player)
 
                     End Select
                 End If
 
+            Case interruptType.ListChoice
+                Console.WriteLine(name)
+                Select Case name
+                    Case "Choose Research"
+                        Dim player As player = CType(parent, player)
+                        Dim targetList As List(Of researchProject) = CType(target, List(Of researchProject))
+                        Dim targetChoice As researchProject = menu.getListChoice(targetList, 1, description)
+                        player.changeResearchProject(targetChoice)
+                End Select
         End Select
     End Sub
 End Class
@@ -56,5 +71,5 @@ End Class
 
 Public Enum interruptType
     YesNo = 1
-
+    ListChoice
 End Enum

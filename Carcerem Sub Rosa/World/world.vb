@@ -33,7 +33,7 @@
     End Property
     Friend Function getRandomCity(Optional continent As continent = Nothing) As city
         If continent = Nothing Then continent = enumArrays.continentArray(rng.Next(enumArrays.continentArray.Length))
-        Dim roll As Integer = rng.Next(_cities.Count)
+        Dim roll As Integer = rng.Next(_cities(continent).Count)
         Return _cities(continent)(roll)
     End Function
 

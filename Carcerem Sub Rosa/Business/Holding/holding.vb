@@ -17,12 +17,12 @@
     Friend Property citysite As citysite
     Friend ReadOnly Property city As city
         Get
-            Return shellcompany.city
+            If TypeOf Me Is laundry Then Return shellcompany.city Else Return citysite.city
         End Get
     End Property
     Friend ReadOnly Property continent As continent
         Get
-            Return shellcompany.continent
+            Return city.continent
         End Get
     End Property
     Friend MustOverride ReadOnly Property visibility As Integer

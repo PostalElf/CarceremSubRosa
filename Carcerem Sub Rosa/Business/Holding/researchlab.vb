@@ -1,14 +1,17 @@
 ﻿Public Class researchlab
     Inherits holding
-    Public Sub New()
-    End Sub
-    Public Sub New(aName As String, aCitysite As citysite, aShellcompany As shellcompany)
-        If aName = "" Then name = holding.getRandomCodename Else name = aName
-        citysite = aCitysite
-        shellcompany = aShellcompany
-        shellcompany.addHolding(Me)
-        city.addHolding(Me, citysite)
-    End Sub
+    Friend Shared Function buildResearchlab(aCitysite As citysite, aShellcompany As shellcompany) As researchlab
+        If aCitysite.city.Equals(aShellcompany.city) = False Then Return Nothing
+
+        Dim researchlab As New researchlab
+        With researchlab
+            .name = holding.getRandomCodename
+            .citysite = aCitysite
+            .city.addHolding(researchlab, .citysite)
+            aShellcompany.addHolding(researchlab)
+        End With
+        Return researchlab
+    End Function
     Friend Overrides Sub consoleReport(indent As Integer, Optional prefix As String = "")
         Dim ind As String = vbSpace(indent) & prefix
         Dim indd As String = vbSpace(indent + 1) & prefix

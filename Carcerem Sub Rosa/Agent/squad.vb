@@ -62,7 +62,8 @@
     Friend Sub tick()
         'handle mission
         If _city Is Nothing = False Then
-            For Each mission In _city.missions
+            For n = _city.missions.Count - 1 To 0 Step -1
+                Dim mission As mission = _city.missions(n)
                 If mission.squad.Equals(Me) Then mission.tick()
             Next
         End If

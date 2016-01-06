@@ -1,10 +1,12 @@
 ﻿Public Class citysite
-    Public Sub New()
-    End Sub
-    Public Sub New(aPlayer As player, aCity As city)
-        player = aPlayer
-        aCity.addCitysite(Me)
-    End Sub
+    Friend Shared Function buildCitysite(aPlayer As player, aCity As city) As citysite
+        Dim citysite As New citysite
+        With citysite
+            .player = aPlayer
+            aCity.addCitysite(citysite)
+        End With
+        Return citysite
+    End Function
 
     Friend Property city As city
     Friend Property player As player

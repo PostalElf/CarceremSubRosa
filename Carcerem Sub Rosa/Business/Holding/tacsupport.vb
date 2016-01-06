@@ -1,14 +1,17 @@
 ﻿Public Class tacsupport
     Inherits holding
-    Public Sub New()
-    End Sub
-    Public Sub New(aName As String, aCitysite As citysite, aShellcompany As shellcompany)
-        If aName = "" Then name = holding.getRandomCodename Else name = aName
-        citysite = aCitysite
-        shellcompany = aShellcompany
-        shellcompany.addHolding(Me)
-        city.addHolding(Me, citysite)
-    End Sub
+    Friend Shared Function buildTacsupport(aCitysite As citysite, aShellcompany As shellcompany)
+        If aCitysite.city.Equals(aShellcompany.city) = False Then Return Nothing
+
+        Dim tacsupport As New tacsupport
+        With tacsupport
+            .name = holding.getRandomCodename
+            .citysite = aCitysite
+            .city.addHolding(tacsupport, .citysite)
+            aShellcompany.addHolding(tacsupport)
+        End With
+        Return tacsupport
+    End Function
     Friend Overrides Sub consoleReport(indent As Integer, Optional prefix As String = "")
         Dim ind As String = vbSpace(indent) & prefix
         Dim indd As String = vbSpace(indent + 1) & prefix

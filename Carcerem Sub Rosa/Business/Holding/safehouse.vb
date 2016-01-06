@@ -1,14 +1,17 @@
 ﻿Public Class safehouse
     Inherits holding
-    Public Sub New()
-    End Sub
-    Public Sub New(aName As String, aCitysite As citysite, aShellcompany As shellcompany)
-        If aName = "" Then name = holding.getRandomCodename Else name = aName
-        citysite = aCitysite
-        shellcompany = aShellcompany
-        shellcompany.addHolding(Me)
-        city.addHolding(Me, citysite)
-    End Sub
+    Friend Shared Function buildSafehouse(aCitysite As citysite, aShellcompany As shellcompany) As safehouse
+        If aCitysite.city.Equals(aShellcompany.city) = False Then Return Nothing
+
+        Dim safehouse As New safehouse
+        With safehouse
+            .name = holding.getRandomCodename
+            .citysite = aCitysite
+            .city.addHolding(safehouse, .citysite)
+            aShellcompany.addHolding(safehouse)
+        End With
+        Return safehouse
+    End Function
     Friend Overrides Sub consoleReport(indent As Integer, Optional prefix As String = "")
         Dim ind As String = vbSpace(indent) & prefix
         Dim indd As String = vbSpace(indent + 1) & prefix

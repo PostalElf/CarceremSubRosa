@@ -11,17 +11,17 @@
 
         Dim city1 As city = world.cities(continent.China)(2)
         Dim city2 As city = world.cities(continent.AmericaN)(0)
-        Dim citysite1 As New citysite(player, city1)
-        Dim citysite2 As New citysite(player, city1)
-        Dim citysite3 As New citysite(player, city1)
-        Dim citysite4 As New citysite(player, city1)
+        Dim citysite1 As citysite = citysite.buildCitysite(player, city2)
+        Dim citysite2 As citysite = citysite.buildCitysite(player, city1)
+        Dim citysite3 As citysite = citysite.buildCitysite(player, city1)
+        Dim citysite4 As citysite = citysite.buildCitysite(player, city1)
         Dim shell1 As New shellcompany("", player, city1)
         Dim shell2 As New shellcompany("", player, city2)
-        Dim research As New researchlab("", citysite1, shell2)
-        Dim factory As New factory("", citysite2, shell1)
-        Dim safehouse As New safehouse("", citysite3, shell1)
-        Dim tacsupport As New tacsupport("", citysite4, shell1)
-        Dim laundry As New laundry("", shell1)
+        Dim research As researchlab = researchlab.buildResearchlab(citysite1, shell2)
+        Dim factory As factory = factory.buildFactory(citysite2, shell1)
+        Dim safehouse As safehouse = safehouse.buildSafehouse(citysite3, shell1)
+        Dim tacsupport As tacsupport = tacsupport.buildTacsupport(citysite4, shell1)
+        Dim laundry As laundry = laundry.buildLaundry(shell1)
 
         Dim blueprint As New product("Sheepskin")
         player.devAddBlueprint(blueprint)
@@ -49,11 +49,15 @@
         mission.squad = squad
 
         While True
+            While interrupt.Count > 0
+                interrupt.Pop.handle()
+            End While
+
             Console.Clear()
-            player.consoleReport(0)
+            player.consoleReport(1)
             Console.WriteLine(vbCrLf)
 
-            player.fullConsoleReport(0)
+            player.fullConsoleReport(1)
             Console.ReadKey()
 
             player.tick()

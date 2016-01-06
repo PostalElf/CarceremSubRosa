@@ -7,6 +7,4 @@
     China
     Europe
     MiddleEast
-    Antarctica
-    Arctica
 End Enum

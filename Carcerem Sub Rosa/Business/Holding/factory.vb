@@ -1,14 +1,17 @@
 ﻿Public Class factory
     Inherits holding
-    Public Sub New()
-    End Sub
-    Public Sub New(aName As String, aCitysite As citysite, aShellcompany As shellcompany)
-        If aName = "" Then name = holding.getRandomCodename Else name = aName
-        citysite = aCitysite
-        shellcompany = aShellcompany
-        shellcompany.addHolding(Me)
-        city.addHolding(Me, citysite)
-    End Sub
+    Friend Shared Function buildFactory(aCitysite As citysite, aShellcompany As shellcompany) As factory
+        If aCitysite.city.Equals(aShellcompany.city) = False Then Return Nothing
+
+        Dim factory As New factory
+        With factory
+            .name = holding.getRandomCodename
+            .citysite = aCitysite
+            .city.addHolding(factory, .citysite)
+            aShellcompany.addHolding(factory)
+        End With
+        Return factory
+    End Function
     Friend Overrides Sub consoleReport(indent As Integer, Optional prefix As String = "")
         Dim ind As String = vbSpace(indent) & prefix
         Dim indd As String = vbSpace(indent + 1) & prefix

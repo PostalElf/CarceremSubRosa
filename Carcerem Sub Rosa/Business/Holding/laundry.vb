@@ -1,13 +1,14 @@
 ﻿Public Class laundry
     Inherits holding
-    Public Sub New()
-    End Sub
-    Public Sub New(aName As String, aShellcompany As shellcompany)
-        If aName = "" Then name = holding.getRandomCodename Else name = aName
-        shellcompany = aShellcompany
-        shellcompany.addHolding(Me)
-        _laundryRate = laundryRate.Low
-    End Sub
+    Friend Shared Function buildLaundry(aShellcompany As shellcompany) As laundry
+        Dim laundry As New laundry
+        With laundry
+            .name = holding.getRandomCodename
+            aShellcompany.addHolding(laundry)
+            ._laundryRate = laundryRate.Low
+        End With
+        Return laundry
+    End Function
     Friend Overrides Sub consoleReport(indent As Integer, Optional prefix As String = "")
         Dim ind As String = vbSpace(indent) & prefix
         Dim indd As String = vbSpace(indent + 1) & prefix

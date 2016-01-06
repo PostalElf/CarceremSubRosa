@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agent\agent.vb" />
+    <Compile Include="Development\menu.vb" />
     <Compile Include="Mission\choiceComponent.vb" />
     <Compile Include="Agent\disposition.vb" />
     <Compile Include="Agent\equipment.vb" />
@@ -106,7 +107,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Development\problem.vb" />
+    <Compile Include="Player\cost.vb" />
     <Compile Include="Player\department.vb" />
+    <Compile Include="Player\interrupt.vb" />
     <Compile Include="Player\player.vb" />
     <Compile Include="Research\artefact.vb" />
     <Compile Include="Research\prisoner.vb" />

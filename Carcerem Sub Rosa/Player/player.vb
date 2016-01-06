@@ -261,27 +261,33 @@
 
         'add income
         _money += incomeNet
-        _researchProject.addProgress(research)
+        If _researchProject Is Nothing = False Then
+            _researchProject.addProgress(research)
 
+            'check for research completion
+            If _researchProject.spilloverProgress >= 0 Then
+                _researchSpilloverProgress = _researchProject.spilloverProgress
+                _researchProjectsOpen.Remove(_researchProject)
+                _researchProjectsCompleted.Add(_researchProject)
 
-        'check for research completion
-        If _researchProject.spilloverProgress >= 0 Then
-            _researchSpilloverProgress = _researchProject.spilloverProgress
-            _researchProjectsOpen.Remove(_researchProject)
-            _researchProjectsCompleted.Add(_researchProject)
+                If _researchProject.consequences Is Nothing = False Then
+                    For Each consequence In _researchProject.consequences
+                        addConsequence(consequence)
+                    Next
+                End If
 
-            For Each consequence In _researchProject.consequences
-                addConsequence(consequence)
-            Next
+                If _researchProject.childProjectNames Is Nothing = False Then
+                    For Each projectName In _researchProject.childProjectNames
+                        Dim newProject As researchProject = researchProject.fileget(projectName)
+                        If newProject Is Nothing Then Exit For
+                        newProject.player = Me
+                        _researchProjectsOpen.Add(newProject)
+                    Next
+                End If
 
-            For Each projectName In _researchProject.childProjectNames
-                Dim newProject As researchProject = researchProject.fileget(projectName)
-                If newProject Is Nothing Then Exit For
-                newProject.player = Me
-                _researchProjectsOpen.Add(newProject)
-            Next
-
-            _researchProject = Nothing
+                _researchProject = Nothing
+                If _researchProjectsReady.Count > 0 Then interrupt.Add("Choose Research", interruptType.ListChoice, Me, _researchProjectsReady, New cost(0), "")
+            End If
         End If
     End Sub
 End Class
