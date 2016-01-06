@@ -142,6 +142,16 @@
         _importProducts.Add(product)
         Return Nothing
     End Function
+    Friend Function removeImportProduct(product As product) As problem
+        If _importProducts.Contains(product) = False Then Return New problem(Me, problemType.NotFound)
+
+        product.importer = Nothing
+        For Each modifier In product.cityModifiers
+            _modifiers.Remove(modifier)
+        Next
+        _importProducts.Remove(product)
+        Return Nothing
+    End Function
     Private Property _demand As Integer
     Friend ReadOnly Property demand As Integer
         Get
@@ -172,49 +182,6 @@
             Case "mediabuzz" : addPenalty(rawstr(1), value)
             Case "tla" : addPenalty(rawstr(1), value)
         End Select
-        Return Nothing
-    End Function
-
-    Private Property _squads As New List(Of squad)
-    Friend ReadOnly Property squads As List(Of squad)
-        Get
-            Return _squads
-        End Get
-    End Property
-    Friend Function addSquad(squad As squad) As problem
-        If _squads.Contains(squad) Then Return New problem(Me, problemType.Duplicate)
-
-        _squads.Add(squad)
-        Return Nothing
-    End Function
-    Friend Function removeSquad(squad As squad) As problem
-        If _squads.Contains(squad) = False Then Return New problem(Me, problemType.NotFound)
-
-        _squads.Remove(squad)
-        For Each mission In _missions
-            If mission.squad.Equals(squad) Then mission.squad = Nothing
-        Next
-        Return Nothing
-    End Function
-
-    Private Property _missions As New List(Of mission)
-    Friend ReadOnly Property missions As List(Of mission)
-        Get
-            Return _missions
-        End Get
-    End Property
-    Friend Function addMission(mission As mission) As problem
-        If _missions.Contains(mission) Then Return New problem(Me, problemType.Duplicate)
-
-        mission.city = Me
-        _missions.Add(mission)
-        Return Nothing
-    End Function
-    Friend Function removeMission(mission As mission) As problem
-        If _missions.Contains(mission) = False Then Return New problem(Me, problemType.NotFound)
-
-        mission.city = Nothing
-        _missions.Remove(mission)
         Return Nothing
     End Function
     Private Property _crimespoor As Integer
@@ -259,4 +226,47 @@
             Return total
         End Get
     End Property
+
+    Private Property _squads As New List(Of squad)
+    Friend ReadOnly Property squads As List(Of squad)
+        Get
+            Return _squads
+        End Get
+    End Property
+    Friend Function addSquad(squad As squad) As problem
+        If _squads.Contains(squad) Then Return New problem(Me, problemType.Duplicate)
+
+        _squads.Add(squad)
+        Return Nothing
+    End Function
+    Friend Function removeSquad(squad As squad) As problem
+        If _squads.Contains(squad) = False Then Return New problem(Me, problemType.NotFound)
+
+        _squads.Remove(squad)
+        For Each mission In _missions
+            If mission.squad.Equals(squad) Then mission.squad = Nothing
+        Next
+        Return Nothing
+    End Function
+
+    Private Property _missions As New List(Of mission)
+    Friend ReadOnly Property missions As List(Of mission)
+        Get
+            Return _missions
+        End Get
+    End Property
+    Friend Function addMission(mission As mission) As problem
+        If _missions.Contains(mission) Then Return New problem(Me, problemType.Duplicate)
+
+        mission.city = Me
+        _missions.Add(mission)
+        Return Nothing
+    End Function
+    Friend Function removeMission(mission As mission) As problem
+        If _missions.Contains(mission) = False Then Return New problem(Me, problemType.NotFound)
+
+        mission.city = Nothing
+        _missions.Remove(mission)
+        Return Nothing
+    End Function
 End Class

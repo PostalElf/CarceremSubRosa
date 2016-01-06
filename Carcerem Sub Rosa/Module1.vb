@@ -4,7 +4,7 @@
         Console.SetWindowSize(80, 70)
 
         Dim world As world = world.buildWorld
-        Dim player As New player
+        Dim player As New player(world)
         Dim researchProject As New researchProject("Top-Secret Project", 1000, Nothing, Nothing)
         player.devAddResearchProjectOpen(researchProject)
         player.changeResearchProject(researchProject)

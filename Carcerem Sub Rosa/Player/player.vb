@@ -1,6 +1,7 @@
 ﻿Public Class player
     Implements problemReporter
-    Public Sub New()
+    Public Sub New(aWorld As world)
+        _world = aWorld
         For Each department In enumArrays.departmentArray
             _departmentBudgets.Add(department, 1000)
             _departmentLevelMax.Add(department, 1)
@@ -47,6 +48,7 @@
     End Sub
 
     Friend Property name As String Implements problemReporter.name
+    Private Property _world As world
 
     Private Property _shellcompanies As New List(Of shellcompany)
     Friend Function addShellcompany(shellcompany As shellcompany) As problem
@@ -177,6 +179,7 @@
         End Get
     End Property
     Private Property _departmentLevelMax() As New Dictionary(Of department, Integer)
+    Private Property _hrRecruitment As Integer
     Friend Function createTradeRoute(blueprint As product, manufacturer As factory, importer As city) As problem
         Dim product As New product(blueprint)
 
@@ -228,6 +231,22 @@
             Dim squad As squad = _squads(n)
             squad.tick()
         Next
+
+
+        'tick HR department
+        _hrRecruitment += departmentLevel(department.HR)
+        If percentRoll(_hrRecruitment) = True Then
+            _hrRecruitment = 0
+            Dim city As city = _world.getRandomCity()
+            Select Case rng.Next(1, 4)
+                Case 1
+                    'citysite
+                Case 2
+                    'shell company
+                Case 3
+                    'recruit agent
+            End Select
+        End If
 
 
         'add income
