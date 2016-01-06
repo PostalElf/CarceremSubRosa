@@ -178,14 +178,14 @@
 
         Dim value As Integer = CInt(rawstr(2))
         Select Case rawstr(1)
-            Case "crimespoor" : addPenalty(rawstr(1), value)
-            Case "mediabuzz" : addPenalty(rawstr(1), value)
-            Case "tla" : addPenalty(rawstr(1), value)
+            Case "policeGoodwill" : _policeGoodwill = constrain(_policeGoodwill + value, 0, 20)
+            Case "mediaGoodwill" : _mediaGoodwill = constrain(_policeGoodwill + value, 0, 20)
+            Case "tlaGoodwill" : _tlaGoodwill = constrain(_policeGoodwill + value, 0, 20)
         End Select
         Return Nothing
     End Function
-    Private Property _crimespoor As Integer
-    Private Property _mediabuzz As Integer
+    Private Property _policeGoodwill As Integer
+    Private Property _mediaGoodwill As Integer
     Private Property _tlaGoodwill As Integer
         Get
             Return world.tlaGoodwill(continent)
@@ -194,21 +194,14 @@
             world.tlaGoodwill(continent) = value
         End Set
     End Property
-    Friend Sub addPenalty(penalty As String, value As Integer)
-        Select Case penalty.ToLower
-            Case "crimespoor" : _crimespoor = constrain(_crimespoor + value, 0, 15)
-            Case "mediabuzz" : _mediabuzz = constrain(_mediabuzz + value, 0, 15)
-            Case "tla" : _tlaGoodwill += value
-        End Select
-    End Sub
     Friend ReadOnly Property visibilityModifier As Integer
         Get
-            Return constrain(CInt(_mediabuzz / 3), 0, 5)
+            Return 0
         End Get
     End Property
     Friend ReadOnly Property missionDifficultyModifier As Integer
         Get
-            Dim total As Integer = constrain(CInt(_crimespoor / 3), 0, 5)
+            Dim total As Integer = 0
             Select Case _tlaGoodwill
                 Case Is >= 16 : total -= 1
                 Case 1 To 4 : total += 1

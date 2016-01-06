@@ -64,19 +64,19 @@
     Private Property _health As Integer = 10
     Private Property _sanity As Integer = 10
     Private Property _morale As Integer = 10
-    Friend Sub addPenalty(valueStr As String, value As Integer)
-        Select Case valueStr.ToLower
-            Case "health" : _health -= value
-            Case "sanity" : _sanity -= value
-            Case "morale" : _morale -= value
+    Friend Sub addConsequence(consequence As String)
+        Dim rawstr As String() = consequence.Split(" ")
+        If rawstr(0) <> "agent" Then Exit Sub
+
+        Dim value As Integer = CInt(rawstr(2))
+        Select Case rawstr(1)
+            Case "health" : _health = constrain(_health + value, 0, 10)
+            Case "sanity" : _sanity = constrain(_sanity + value, 0, 10)
+            Case "morale" : _morale = constrain(_morale + value, 0, 10)
         End Select
-        Debug.Print("Agent " & name & " loses " & value & " " & valueStr & ".")
+        Debug.Print("Agent " & name & " " & withSign(value) & " " & rawstr(1) & ".")
 
         If _health <= 0 OrElse _sanity <= 0 OrElse _morale <= 0 Then dead()
-    End Sub
-    Friend Sub addPenalty(valueStr As String)
-        Dim rawstr As String() = valueStr.Split(" ")
-        addPenalty(rawstr(0), CInt(rawstr(1)))
     End Sub
     Private Sub dead()
         _squad.removeAgent(Me)

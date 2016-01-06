@@ -276,6 +276,12 @@
         _hrRecruitment += departmentLevel(department.HR)
         If percentRoll(_hrRecruitment) = True Then
             _hrRecruitment = 0
+            If departmentLevel(department.HR) >= 5 Then
+
+            ElseIf departmentLevel(department.HR) >= 3 Then
+
+            End If
+
             Dim city As city = _world.getRandomCity()
             Select Case rng.Next(1, 4)
                 Case 1

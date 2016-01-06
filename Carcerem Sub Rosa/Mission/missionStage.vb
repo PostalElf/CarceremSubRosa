@@ -52,17 +52,16 @@
         Dim possibilities As New List(Of String)
         If additionalPenalties Is Nothing = False Then possibilities.AddRange(additionalPenalties)
 
-        If skill.approach = choiceComponent.Supernatural Then possibilities.Add("sanity")
-        If skill.action = choiceComponent.Violence Then possibilities.Add("health")
-        If skill.action = choiceComponent.Guile OrElse skill.action = choiceComponent.Diplomacy Then possibilities.Add("morale")
-
         Dim severity As Integer = rng.Next(1, 4)
+        If skill.approach = choiceComponent.Supernatural Then possibilities.Add("agent sanity -" & severity)
+        If skill.action = choiceComponent.Violence Then possibilities.Add("agent health -" & severity)
+        If skill.action = choiceComponent.Guile OrElse skill.action = choiceComponent.Diplomacy Then possibilities.Add("agent morale -" & severity)
 
-        Return possibilities(rng.Next(possibilities.Count)) & " " & severity
+        Return possibilities(rng.Next(possibilities.Count))
     End Function
 
     Friend Function tick(agent As agent, skill As skill) As missionStageResult
-        timeProgress += _timeProgressPerTick
+        timeProgress += constrain(_timeProgressPerTick, 1, 20)
         If timeProgress >= timeCost Then Return roll(agent, skill) Else Return Nothing
     End Function
     Private Function roll(agent As agent, skill As skill) As missionStageResult
