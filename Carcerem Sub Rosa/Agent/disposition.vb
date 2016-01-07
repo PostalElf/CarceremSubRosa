@@ -3,12 +3,12 @@
         Dim disposition As New disposition
         With disposition
             Dim approaches As New List(Of Integer) From {11, 12, 13}
-            Dim approachLike As choiceComponent = skill.getRandomApproach
+            Dim approachLike As choiceComponent = rng.Next(1, 4) + 10
             approaches.Remove(approachLike)
             Dim approachDislike As choiceComponent = approaches(rng.Next(2))
 
             Dim actions As New List(Of Integer) From {1, 2, 3}
-            Dim actionLike As choiceComponent = skill.getRandomAction
+            Dim actionLike As choiceComponent = rng.Next(1, 4)
             actions.Remove(actionLike)
             Dim actionDislike As choiceComponent = actions(rng.Next(2))
 
@@ -78,14 +78,14 @@
             Return Nothing
         End If
     End Function
-    Private Function getAction(isLike As Boolean) As choiceComponent
+    Friend Function getAction(isLike As Boolean) As choiceComponent
         If isLike = True Then
             If respect < 10 Then Return respect Else Return admire
         Else
             If fear < 10 Then Return fear Else Return loathe
         End If
     End Function
-    Private Function getApproach(isLike As Boolean) As choiceComponent
+    Friend Function getApproach(isLike As Boolean) As choiceComponent
         If isLike = True Then
             If respect > 10 Then Return respect Else Return admire
         Else

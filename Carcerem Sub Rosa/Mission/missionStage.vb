@@ -48,28 +48,30 @@
     Friend Property bonuses As New Dictionary(Of choiceComponent, Integer)
 
     Friend Property penalties As New List(Of String)
-    Private Shared Function getRandomMinorPenalty(skill As skill, Optional additionalPenalties As List(Of String) = Nothing) As String
+    Private Shared Function getRandomMinorPenalty(approach As choiceComponent, action As choiceComponent, Optional additionalPenalties As List(Of String) = Nothing) As String
         Dim possibilities As New List(Of String)
         If additionalPenalties Is Nothing = False Then possibilities.AddRange(additionalPenalties)
 
         Dim severity As Integer = rng.Next(1, 4)
-        If skill.approach = choiceComponent.Supernatural Then possibilities.Add("agent sanity -" & severity)
-        If skill.action = choiceComponent.Violence Then possibilities.Add("agent health -" & severity)
-        If skill.action = choiceComponent.Guile OrElse skill.action = choiceComponent.Diplomacy Then possibilities.Add("agent morale -" & severity)
+        If approach = choiceComponent.Supernatural Then possibilities.Add("agent sanity -" & severity)
+        If approach = choiceComponent.Practical Then possibilities.Add("city policeGoodwill -" & severity)
+        If approach = choiceComponent.Digital Then possibilities.Add("city mediaGoodwill -" & severity)
+        If action = choiceComponent.Violence Then possibilities.Add("agent health -" & severity)
+        If action = choiceComponent.Guile OrElse action = choiceComponent.Diplomacy Then possibilities.Add("agent morale -" & severity)
 
         Return possibilities(rng.Next(possibilities.Count))
     End Function
 
-    Friend Function tick(agent As agent, skill As skill) As missionStageResult
+    Friend Function tick(agent As agent, approach As choiceComponent, action As choiceComponent) As missionStageResult
         timeProgress += constrain(_timeProgressPerTick, 1, 20)
-        If timeProgress >= timeCost Then Return roll(agent, skill) Else Return Nothing
+        If timeProgress >= timeCost Then Return roll(agent, approach, action) Else Return Nothing
     End Function
-    Private Function roll(agent As agent, skill As skill) As missionStageResult
+    Private Function roll(agent As agent, approach As choiceComponent, action As choiceComponent) As missionStageResult
         Dim city As city = agent.squad.city
         Dim rawRoll As Integer = rollDice("3d6")
-        Dim bonus As Integer = agent.bonus(skill)
-        If bonuses.ContainsKey(skill.action) Then bonus += bonuses(skill.action)
-        If bonuses.ContainsKey(skill.approach) Then bonus += bonuses(skill.approach)
+        Dim bonus As Integer = agent.bonus(approach, action)
+        If bonuses.ContainsKey(approach) Then bonus += bonuses(approach)
+        If bonuses.ContainsKey(action) Then bonus += bonuses(action)
 
         Dim total As Integer = rawRoll + bonus
         Dim result As missionStageResult = getResult(total)
@@ -84,14 +86,14 @@
             Return missionStageResult.Failure
         End If
     End Function
-    Friend Function getPenalties(result As missionStageResult, skill As skill) As List(Of String)
+    Friend Function getPenalties(result As missionStageResult, approach As choiceComponent, action As choiceComponent) As List(Of String)
         Dim total As New List(Of String)
         Select Case result
             Case missionStageResult.Success
                 Return Nothing
 
             Case missionStageResult.Complicated
-                total.Add(getRandomMinorPenalty(skill))
+                total.Add(getRandomMinorPenalty(approach, action))
 
             Case missionStageResult.Failure
                 total.AddRange(penalties)

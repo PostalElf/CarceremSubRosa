@@ -1,7 +1,7 @@
 ﻿Public Class enumArrays
     Friend Shared Property continentArray As Array = System.Enum.GetValues(GetType(continent))
     Friend Shared Property departmentArray As Array = System.Enum.GetValues(GetType(department))
-    Friend Shared Property modifierTypeArray As Array = System.Enum.GetValues(GetType(department))
+    Friend Shared Property choiceComponentArray As Array = System.Enum.GetValues(GetType(choiceComponent))
 
     Friend Shared Function getEnumFromString(str As String, enumArray As Array) As [Enum]
         For Each item In enumArray

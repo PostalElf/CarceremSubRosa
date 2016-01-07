@@ -30,9 +30,10 @@
         If squad.city.Equals(city) Then
             Dim currentMissionStage As missionStage = missionStages.Pop
             _actingAgent = squad.agents(rng.Next(squad.agents.Count))
-            Dim skill As New skill(skill.getRandomAction, skill.getRandomApproach)
+            Dim approach As choiceComponent = getRandomApproach()
+            Dim action As choiceComponent = getRandomAction()
 
-            Dim result As missionStageResult = currentMissionStage.tick(_actingAgent, skill)
+            Dim result As missionStageResult = currentMissionStage.tick(_actingAgent, approach, action)
             Select Case result
                 Case Nothing
                     'timer still ticking
@@ -45,7 +46,7 @@
 
                 Case missionStageResult.Complicated
                     Debug.Print(currentMissionStage.name & " complicated success.")
-                    For Each penalty In currentMissionStage.getPenalties(result, skill)
+                    For Each penalty In currentMissionStage.getPenalties(result, approach, action)
                         addConsequence(penalty)
                     Next
 
@@ -53,7 +54,7 @@
                     currentMissionStage.timeProgress = 0
                     missionStages.Push(currentMissionStage)
                     Debug.Print(currentMissionStage.name & " failure.")
-                    For Each penalty In currentMissionStage.getPenalties(result, skill)
+                    For Each penalty In currentMissionStage.getPenalties(result, approach, action)
                         addConsequence(penalty)
                     Next
             End Select
@@ -92,4 +93,10 @@
         missionStages = Nothing
         city.removeMission(Me)
     End Sub
+    Private Shared Function getRandomApproach()
+        Return rng.Next(1, 4) + 10
+    End Function
+    Private Shared Function getRandomAction()
+        Return rng.Next(1, 4)
+    End Function
 End Class

@@ -102,14 +102,32 @@
             End Select
         End With
     End Sub
-    Private Property _training As New Dictionary(Of skill, Integer)
-    Friend ReadOnly Property training As Dictionary(Of skill, Integer)
-        Get
-            Return _training
-        End Get
-    End Property
-    Friend Sub setTraining(skill As skill, value As Integer)
-        If _training.ContainsKey(skill) = False Then _training.Add(skill, value) Else _training(skill) = value
+    Private Property _training As New Dictionary(Of choiceComponent, Dictionary(Of choiceComponent, Integer))
+    Friend Function getTraining(approach As choiceComponent, action As choiceComponent) As Integer
+        If _training.ContainsKey(approach) = False Then Return 0
+        If _training(approach).ContainsKey(action) = False Then Return 0
+        Return _training(approach)(action)
+    End Function
+    Private Function getHighestTraining() As choiceComponent()
+        Dim highest(1) As choiceComponent
+        Dim highestValue As Integer = -1
+
+        For Each kvp1 In _training
+            For Each kvp2 In kvp1.Value
+                Dim approach As choiceComponent = kvp1.Key
+                Dim action As choiceComponent = kvp2.Key
+                Dim currentBonus As Integer = bonus(approach, action)
+                If currentBonus > highestValue Then
+                    highest(0) = approach
+                    highest(1) = action
+                End If
+            Next
+        Next
+        Return highest
+    End Function
+    Friend Sub setTraining(approach As choiceComponent, action As choiceComponent, value As Integer)
+        If _training.ContainsKey(approach) = False Then _training.Add(approach, New Dictionary(Of choiceComponent, Integer))
+        If _training(approach).ContainsKey(action) = False Then _training(approach).Add(action, value) Else _training(approach)(action) = value
     End Sub
     Private Property _equipment As New List(Of equipment)
     Friend Function bonus(choiceComponent As choiceComponent) As Integer
@@ -119,11 +137,41 @@
         Next
         Return total
     End Function
-    Friend Function bonus(skill As skill) As Integer
+    Friend Function bonus(approach As choiceComponent, action As choiceComponent) As Integer
         Dim total As Integer = 0
-        If _training.ContainsKey(skill) Then total += _training(skill)
-        total += bonus(skill.action)
-        total += bonus(skill.approach)
+        total += getTraining(approach, action)
+        total += bonus(approach)
+        total += bonus(action)
         Return total
     End Function
+
+    Friend ReadOnly Property decisionMatrix() As List(Of Dictionary(Of choiceComponent, Integer))
+        Get
+            Dim approaches As New Dictionary(Of choiceComponent, Integer)
+            Dim actions As New Dictionary(Of choiceComponent, Integer)
+            For Each choiceComponent In enumArrays.choiceComponentArray
+                If choiceComponent < 10 Then approaches.Add(choiceComponent, 5) Else actions.Add(choiceComponent, 5)
+            Next
+
+
+            'liked stuff
+            approaches(_disposition.getApproach(True)) += 2
+            actions(_disposition.getAction(True)) += 2
+
+
+            'highest training
+            Dim highestTraining As choiceComponent() = getHighestTraining()
+            If highestTraining(0) <> Nothing Then
+                approaches(highestTraining(0)) += 2
+                actions(highestTraining(1)) += 2
+            End If
+
+
+            'compile and send off
+            Dim total As New List(Of Dictionary(Of choiceComponent, Integer))
+            total.Add(approaches)
+            total.Add(actions)
+            Return total
+        End Get
+    End Property
 End Class
