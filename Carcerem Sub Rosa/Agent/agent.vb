@@ -150,7 +150,7 @@
             Dim approaches As New Dictionary(Of choiceComponent, Integer)
             Dim actions As New Dictionary(Of choiceComponent, Integer)
             For Each choiceComponent In enumArrays.choiceComponentArray
-                If choiceComponent < 10 Then approaches.Add(choiceComponent, 5) Else actions.Add(choiceComponent, 5)
+                If choiceComponent < 10 Then actions.Add(choiceComponent, 5) Else approaches.Add(choiceComponent, 5)
             Next
 
 

@@ -30,8 +30,9 @@
         If squad.city.Equals(city) Then
             Dim currentMissionStage As missionStage = missionStages.Pop
             _actingAgent = squad.agents(rng.Next(squad.agents.Count))
-            Dim approach As choiceComponent = getRandomApproach()
-            Dim action As choiceComponent = getRandomAction()
+            Dim decisionMatrix As List(Of Dictionary(Of choiceComponent, Integer)) = _actingAgent.decisionMatrix
+            Dim approach As choiceComponent = getRandomChoice(decisionMatrix(0))
+            Dim action As choiceComponent = getRandomChoice(decisionMatrix(1))
 
             Dim result As missionStageResult = currentMissionStage.tick(_actingAgent, approach, action)
             Select Case result
@@ -93,10 +94,13 @@
         missionStages = Nothing
         city.removeMission(Me)
     End Sub
-    Private Shared Function getRandomApproach()
-        Return rng.Next(1, 4) + 10
-    End Function
-    Private Shared Function getRandomAction()
-        Return rng.Next(1, 4)
+    Private Function getRandomChoice(decisionMatrix As Dictionary(Of choiceComponent, Integer))
+        Dim total As New List(Of choiceComponent)
+        For Each kvp In decisionMatrix
+            For n = 1 To kvp.Value
+                total.Add(kvp.Key)
+            Next
+        Next
+        Return total(rng.Next(total.Count))
     End Function
 End Class
