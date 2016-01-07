@@ -20,7 +20,7 @@
         Console.WriteLine(indd & fakeTab("City: ", 16) & city.name & ", " & city.parseContinent(continent))
         Console.WriteLine(indd & fakeTab("Visibility: ", 16) & withSign(visibility))
         Console.WriteLine(indd & fakeTab("Upkeep: ", 16) & withReverseSign(upkeep, "$"))
-        Console.WriteLine(indd & fakeTab("Research: ", 16) & withSign(research))
+        Console.WriteLine(indd & fakeTab("Research: ", 16) & withSign(researchRaw) & " x" & _researchModifier & " = " & research)
     End Sub
     Public Overrides Function ToString() As String
         Return name & " Laboratory"
@@ -81,20 +81,20 @@
     Friend ReadOnly Property research As Integer
         Get
             Dim total As Integer = researchRaw
-
-            Dim player As player = shellcompany.player
-            Dim rndModifier As Double
-            Select Case player.departmentLevel(department.RnD)
-                Case 1 : rndModifier = 0.5
-                Case 2 : rndModifier = 0.75
-                Case 3 : rndModifier = 1
-                Case 4 : rndModifier = 1.25
-                Case 5 : rndModifier = 1.5
-                Case Else : Return -1
-            End Select
-            total = CInt(total * rndModifier)
-
+            total = CInt(total * _researchModifier)
             Return total
+        End Get
+    End Property
+    Private ReadOnly Property _researchModifier As Double
+        Get
+            Select Case shellcompany.player.departmentLevel(department.RnD)
+                Case 1 : Return 0.5
+                Case 2 : Return 0.75
+                Case 3 : Return 1
+                Case 4 : Return 1.25
+                Case 5 : Return 1.5
+                Case Else : Return 0
+            End Select
         End Get
     End Property
     Friend Overrides ReadOnly Property visibility As Integer
