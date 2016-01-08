@@ -27,7 +27,7 @@
     Friend Sub consoleReportTime(indent As Integer)
         Dim ind As String = vbSpace(indent)
         With _dateTime
-            Console.WriteLine(ind & .Day & "/" & .Month & "/" & .Year & ", " & .DayOfWeek.ToString)
+            Console.WriteLine(ind & .Day & " " & MonthName(.Month, True) & " " & .Year & ", " & .DayOfWeek.ToString)
         End With
     End Sub
 

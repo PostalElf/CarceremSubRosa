@@ -118,6 +118,7 @@
     <Compile Include="World\city.vb" />
     <Compile Include="World\citysite.vb" />
     <Compile Include="World\continent.vb" />
+    <Compile Include="World\mayanCalendar.vb" />
     <Compile Include="World\standardOfLiving.vb" />
     <Compile Include="World\world.vb" />
   </ItemGroup>
