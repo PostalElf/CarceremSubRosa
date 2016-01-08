@@ -24,6 +24,12 @@
             Next
         Next
     End Sub
+    Friend Sub consoleReportTime(indent As Integer)
+        Dim ind As String = vbSpace(indent)
+        With _dateTime
+            Console.WriteLine(ind & .Day & "/" & .Month & "/" & .Year & ", " & .DayOfWeek.ToString)
+        End With
+    End Sub
 
     Private Property _cities As New Dictionary(Of continent, List(Of city))
     Friend ReadOnly Property cities As Dictionary(Of continent, List(Of city))
@@ -73,4 +79,29 @@
 
         Return _travelDistances(origin.name)(destination.name)
     End Function
+
+    Private Property _dateTime As New DateTime(2020, 3, 16)
+    Friend ReadOnly Property dateTime As DateTime
+        Get
+            Return _dateTime
+        End Get
+    End Property
+    Private Property _dateTimeNewWeek As Boolean
+    Friend ReadOnly Property dateTimeNewWeek As Boolean
+        Get
+            Return _dateTimeNewWeek
+        End Get
+    End Property
+    Private Property _dateTimeNewMonth As Boolean
+    Friend ReadOnly Property dateTimeNewMonth As Boolean
+        Get
+            Return _dateTimeNewMonth
+        End Get
+    End Property
+    Friend Sub timeTick()
+        Dim prevMonth As Integer = _dateTime.Month
+        _dateTime = _dateTime.AddDays(1)
+        If _dateTime.DayOfWeek = DayOfWeek.Monday Then _dateTimeNewWeek = True Else _dateTimeNewWeek = False
+        If prevMonth <> _dateTime.Month Then _dateTimeNewMonth = True Else _dateTimeNewMonth = False
+    End Sub
 End Class

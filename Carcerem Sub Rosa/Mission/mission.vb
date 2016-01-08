@@ -26,7 +26,7 @@
     Friend Property missionStages As New Stack(Of missionStage)
     Friend Property consequences As New List(Of String)
 
-    Friend Sub tick()
+    Friend Sub dayTick()
         If squad.city.Equals(city) Then
             Dim currentMissionStage As missionStage = missionStages.Pop
             _actingAgent = squad.agents(rng.Next(squad.agents.Count))

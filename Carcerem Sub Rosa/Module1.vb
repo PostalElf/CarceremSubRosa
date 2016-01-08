@@ -58,9 +58,11 @@
             End While
 
             Console.Clear()
+            world.consoleReportTime(0)
             player.fullConsoleReport(1)
             Console.ReadKey()
 
+            world.timeTick()
             player.tick()
         End While
     End Sub

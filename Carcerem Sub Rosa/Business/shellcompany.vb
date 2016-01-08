@@ -133,7 +133,7 @@
             Return total
         End Get
     End Property
-    Friend Sub tick()
+    Friend Sub weekTick()
 
     End Sub
 End Class

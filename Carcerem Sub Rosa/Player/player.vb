@@ -259,28 +259,35 @@
         'check for outstanding interrupts
         If interrupt.Count > 0 Then Exit Sub
 
-
-        'tick shellcompanies
-        For n = _shellcompanies.Count - 1 To 0 Step -1
-            Dim shellcompany As shellcompany = _shellcompanies(n)
-            shellcompany.tick()
-        Next
-
-
+        dayTick()
+        If _world.dateTimeNewWeek = True Then weekTick()
+        If _world.dateTimeNewMonth = True Then monthTick()
+    End Sub
+    Private Sub dayTick()
         'tick squads
         For n = _squads.Count - 1 To 0 Step -1
             Dim squad As squad = _squads(n)
-            squad.tick()
+            squad.dayTick()
         Next
 
 
         'tick HR department
         hrTick()
+    End Sub
+    Private Sub weekTick()
+        'tick shellcompanies
+        For n = _shellcompanies.Count - 1 To 0 Step -1
+            Dim shellcompany As shellcompany = _shellcompanies(n)
+            shellcompany.weekTick()
+        Next
 
 
         'add money and research income
         _money += incomeNet
         researchTick()
+    End Sub
+    Private Sub monthTick()
+
     End Sub
     Private Sub hrTick()
         _hrRecruitment += departmentLevel(department.HR)
