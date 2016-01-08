@@ -30,12 +30,14 @@
         _haabDay = y Mod 20
         _haabMonth = Math.Floor(y / 20)
 
-        Debug.Print(ToString)
-        Debug.Print(tzolkinDate)
-        Debug.Print(haabDate)
+        _lordNight = ((daysFromBeginning - 1) Mod 9) + 1
+
+        'Debug.Print(ToString)
+        'Debug.Print(tzolkinDate)
+        'Debug.Print(haabDate)
     End Sub
     Public Overrides Function ToString() As String
-        Return _baktun & "." & _katun & "." & _tun & "." & _uinal & "." & _kin & " (" & tzolkinDate & ", " & haabDate & ")"
+        Return _baktun & "." & _katun & "." & _tun & "." & _uinal & "." & _kin & " (" & tzolkinDate & ", " & haabDate & ") - " & lordNightName
     End Function
 
     Private Property _kin As Integer        'one day
@@ -68,6 +70,16 @@
         End Get
     End Property
 
+    Private Property _lordNight As Integer
+    Private Function getLordNightName(lordNight As Integer) As String
+        Dim lords As String() = {"Xiuhtecutli", "Itzli", "Pilzintecuhtli", "Cinteotl", "Mictantecutli", "Chalchiuhtlicue", "Tlazolteotl", "Tepeyollotl", "Tlaloc"}
+        Return lords(lordNight - 1)
+    End Function
+    Friend ReadOnly Property lordNightName As String
+        Get
+            Return getLordNightName(_lordNight)
+        End Get
+    End Property
 
     Friend Sub timeTick()
         _kin += 1
@@ -105,9 +117,12 @@
             End If
         End If
 
-        Debug.Print(ToString)
-        Debug.Print(tzolkinDate)
-        Debug.Print(haabDate)
+        _lordNight += 1
+        If _lordNight > 9 Then _lordNight = 1
+
+        'Debug.Print(ToString)
+        'Debug.Print(tzolkinDate)
+        'Debug.Print(haabDate)
     End Sub
     Private Sub resetLongCount()
         _kin = 0
