@@ -31,13 +31,20 @@
         _haabMonth = Math.Floor(y / 20)
 
         _lordNight = ((daysFromBeginning - 1) Mod 9) + 1
+        _aztecTrecena = getAztecTrecenaInitial(_tzolkinDay, _tzolkinGod)
 
         'Debug.Print(ToString)
         'Debug.Print(tzolkinDate)
         'Debug.Print(haabDate)
     End Sub
     Public Overrides Function ToString() As String
-        Return _baktun & "." & _katun & "." & _tun & "." & _uinal & "." & _kin & " (" & tzolkinDate & ", " & haabDate & ") - " & lordNightName
+        Return _baktun & "." & _katun & "." & _tun & "." & _uinal & "." & _kin
+    End Function
+    Friend Function briefReportMayan() As String
+        Return tzolkinDate & ", " & haabDate & " - " & lordNightName
+    End Function
+    Friend Function briefReportAztec() As String
+        Return aztecDate & ", " & getAztecTrecena() & " - " & getAztecDirection(_tzolkinDay, _tzolkinGod)
     End Function
 
     Private Property _kin As Integer        'one day
@@ -81,6 +88,48 @@
         End Get
     End Property
 
+    Private Property _aztecTrecena As Integer
+    Private Function getAztecDaysign(day As Integer, god As Integer) As String
+        Dim daysigns As String() = {"Crocodile", "Wind", "House", "Lizard", "Serpent", "Death", "Deer", "Rabbit", "Water", "Dog", _
+                                    "Monkey", "Grass", "Reed", "Jaguar", "Eagle", "Vulture", "Earthquake", "Flint", "Rain", "Flower"}
+        Return day & " " & daysigns(god - 1)
+    End Function
+    Private Function getAztecDirection(day As Integer, god As Integer) As String
+        Dim directions As String() = {"East", "North", "West", "South"}
+        Dim value As Integer = (god - 1) Mod 4
+        Return directions(value)
+    End Function
+    Private Function getAztecTrecenaInitial(day As Integer, god As Integer) As Integer
+        Dim weeksPassed As Integer = 1
+        Dim x As Integer = 1
+        Dim y As Integer = 1
+        While x <> day OrElse y <> god
+            x += 1
+            y += 1
+            If x > 13 Then
+                x = 1
+                weeksPassed += 1
+            End If
+            If y > 20 Then y = 1
+        End While
+        Return weeksPassed
+    End Function
+    Private Function getAztecTrecena() As String
+        Dim gods As String() = {"Ometeotl", "Quetzalcoatl", "Tepeyollotl", "Huehuecoyotl", "Chalchiuhtlicue", "Tonatiuh", _
+                                "Tlaloc", "Mayahuel", "Xiuhtecuhtli", "Mictlantecuhtli", "Patecatl", "Itztlacoliuhqui", _
+                                "Tlazolteotl", "Xipe Totec", "Itzpapalotl", "Xolotl", "Chalchiuhtotolin", "Chantico", _
+                                "Xochiquetzal", "Xiuhtecuhtli"}
+
+
+        Return gods(_aztecTrecena - 1)
+    End Function
+    Friend ReadOnly Property aztecDate() As String
+        Get
+            Return getAztecDaysign(_tzolkinDay, _tzolkinGod)
+        End Get
+    End Property
+
+
     Friend Sub timeTick()
         _kin += 1
         If _kin = 20 Then
@@ -104,7 +153,11 @@
         End If
 
         _tzolkinDay += 1
-        If _tzolkinDay > 13 Then _tzolkinDay = 1
+        If _tzolkinDay > 13 Then
+            _tzolkinDay = 1
+            _aztecTrecena += 1
+            If _aztecTrecena > 20 Then _aztecTrecena = 1
+        End If
         _tzolkinGod += 1
         If _tzolkinGod > 20 Then _tzolkinGod = 1
 
