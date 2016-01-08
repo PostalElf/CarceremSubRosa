@@ -59,6 +59,7 @@
 
             Console.Clear()
             world.consoleReportTime(0)
+            Console.WriteLine()
             player.fullConsoleReport(1)
             Console.ReadKey()
 

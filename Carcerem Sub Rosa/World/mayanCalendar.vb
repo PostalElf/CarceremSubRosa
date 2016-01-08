@@ -35,7 +35,7 @@
         Debug.Print(haabDate)
     End Sub
     Public Overrides Function ToString() As String
-        Return _baktun & "." & _katun & "." & _tun & "." & _uinal & "." & _kin
+        Return _baktun & "." & _katun & "." & _tun & "." & _uinal & "." & _kin & " (" & tzolkinDate & ", " & haabDate & ")"
     End Function
 
     Private Property _kin As Integer        'one day

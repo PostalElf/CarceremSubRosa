@@ -13,6 +13,11 @@
             world._cities(city.continent).Add(city)
         Next
 
+        With world
+            ._dateTime = New DateTime(2020, 3, 16)
+            ._mayanCalender = New mayanCalendar(.dateTime)
+        End With
+
         Return world
     End Function
     Friend Sub consoleReport(indent As Integer)
@@ -26,8 +31,11 @@
     End Sub
     Friend Sub consoleReportTime(indent As Integer)
         Dim ind As String = vbSpace(indent)
+        Dim indd As String = vbSpace(indent + 1)
+
         With _dateTime
             Console.WriteLine(ind & .Day & " " & MonthName(.Month, True) & " " & .Year & ", " & .DayOfWeek.ToString)
+            Console.WriteLine(indd & _mayanCalender.ToString)
         End With
     End Sub
 
@@ -80,7 +88,7 @@
         Return _travelDistances(origin.name)(destination.name)
     End Function
 
-    Private Property _dateTime As New DateTime(2020, 3, 16)
+    Private Property _dateTime As DateTime
     Friend ReadOnly Property dateTime As DateTime
         Get
             Return _dateTime
@@ -98,10 +106,13 @@
             Return _dateTimeNewMonth
         End Get
     End Property
+    Private Property _mayanCalender As mayanCalendar
     Friend Sub timeTick()
         Dim prevMonth As Integer = _dateTime.Month
         _dateTime = _dateTime.AddDays(1)
         If _dateTime.DayOfWeek = DayOfWeek.Monday Then _dateTimeNewWeek = True Else _dateTimeNewWeek = False
         If prevMonth <> _dateTime.Month Then _dateTimeNewMonth = True Else _dateTimeNewMonth = False
+
+        _mayanCalender.timeTick()
     End Sub
 End Class
