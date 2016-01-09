@@ -2,7 +2,8 @@
     Public Sub New(dateTime As DateTime)
         _dateTime = dateTime
         _lunarDay = getMoonPhaseInitial(_dateTime)
-
+        _lunarMansion = 24
+        _lunarMansionDay = 6
 
         Dim baktunStart As New DateTime(2012, 12, 21)
         Dim daysSince As Integer = (dateTime - baktunStart).TotalDays
@@ -43,13 +44,14 @@
     End Sub
     Friend Sub consoleReport(indent As Integer)
         Dim ind As String = vbSpace(indent)
-        Const len As Integer = 13
+        Const len As Integer = 16
         Console.WriteLine(ind & fakeTab("Long Count: ", len) & ToString())
         Console.WriteLine(ind & fakeTab("Mayan Date: ", len) & tzolkinDate & ", " & haabDate)
-        Console.WriteLine(ind & fakeTab("Weeksign: ", len) & aztecTrecena)
-        Console.WriteLine(ind & fakeTab("Daysign: ", len) & aztecDaysign & " (" & aztecDirection & ")")
+        Console.WriteLine(ind & fakeTab("Weeksign: ", len) & aztecTrecena & " (" & getAztecTrecenaMeaning(_aztecTrecena) & ")")
+        Console.WriteLine(ind & fakeTab("Daysign: ", len) & aztecDirection & " " & aztecDaysign)
         Console.WriteLine(ind & fakeTab("Nightsign: ", len) & lordNightName)
         Console.WriteLine(ind & fakeTab("Moon Phase: ", len) & moonPhase)
+        Console.WriteLine(ind & fakeTab("Lunar Mansion: ", len) & lunarMansion)
     End Sub
     Public Overrides Function ToString() As String
         Return _baktun & "." & _katun & "." & _tun & "." & _uinal & "." & _kin
@@ -96,7 +98,22 @@
             End Select
         End Get
     End Property
+    Private Property _lunarMansionDay As Integer
+    Private Property _lunarMansion As Integer
+    Friend ReadOnly Property lunarMansion As String
+        Get
+            'Dim mansions As String() = {"Sheratan", "Pleione", "Albatain", "Al Tuwaibe", "Heka", "Alhena", "Murzim", "An Nathra", "Alterf", _
+            '                            "Dschuba", "Azzubra", "Assarfa", "Auva", "Simak", "Syrma", "Az Zubana", "Akleel", "Qalb al Akraab", _
+            '                            "Shaula", "Al Naam", "Al Baldaah", "Saad Al Thabib", "Saad Balaa", "Saad Al Saud", "Saad Al Akhbia", _
+            '                            "Almuqaddam", "Al Muakhar", "Alrescha"}
+            Dim mansions As String() = {"Al-Sharatain", "Al-Butain", "Al-Thurayya", "Al-Dabaran", "Al-Haqa", "Al-Hana", "Al-Dhira", "Al-Nathrah", _
+                                        "Al-Tarf", "Al-Jabhah", "Al-Zubrah", "Al-Sarfah", "Al-Awwa", "Al-Simak", "Al-Ghafr", "Al-Zubana", "Al-Iklil", _
+                                        "Al-Qalb", "Al-Shaulah", "Al-Na'am", "Al-Baldah", "Sa'd al-Dhabih", "Sa'd Bula", "Sa'd al-Su'ud", "Sa'd al-Akhbiyah", _
+                                        "Al Fargh al-Awwal", "Al Fargh al-Thani", "Batn al-Hut"}
 
+            Return mansions(_lunarMansion - 1)
+        End Get
+    End Property
 
     Private Property _kin As Integer        'one day
     Private Property _uinal As Integer      '20 kin
@@ -166,7 +183,7 @@
     Friend ReadOnly Property aztecDirection()
         Get
             Dim god As Integer = _tzolkinGod
-            Dim directions As String() = {"East", "North", "West", "South"}
+            Dim directions As String() = {"Eastern", "Northern", "Western", "Southern"}
             Dim value As Integer = (god - 1) Mod 4
             Return directions(value)
         End Get
@@ -181,6 +198,11 @@
             Return gods(_aztecTrecena - 1)
         End Get
     End Property
+    Private Function getAztecTrecenaMeaning(trecena As Integer) As String
+        Dim meanings As String() = {"Duality", "Serpent", "Echo", "Mischief", "Water", "Sun", "Fertility", "Maguey", "Heat", "Death", _
+                                    "Healing", "Frost", "Purification", "Seasons", "Flint", "Lightning", "Plague", "Hearth", "Maiden", "Heat"}
+        Return meanings(trecena - 1)
+    End Function
     Friend ReadOnly Property aztecDate As String
         Get
             Return _tzolkinDay & " " & getMayanMeaning(_tzolkinGod)
@@ -190,6 +212,14 @@
     Friend Sub timeTick()
         _lunarDay += 1
         If _lunarDay > 29 Then _lunarDay = 1
+        _lunarMansionDay += 1
+        If _lunarMansionDay > 13 Then
+            _lunarMansionDay = 1
+            _lunarMansion += 1
+            If _lunarMansion > 28 Then
+                _lunarMansion = 1
+            End If
+        End If
 
         _kin += 1
         If _kin = 20 Then
