@@ -1,4 +1,5 @@
 ﻿Public Class mission
+    Implements problemReporter
     Public Sub New()
     End Sub
     Public Sub New(aName As String, aCity As city, aMissionStages As Stack(Of missionStage))
@@ -19,17 +20,23 @@
         Return "Mission " & name
     End Function
 
-    Friend Property name As String
+    Friend Property name As String Implements problemReporter.name
     Friend Property city As city
     Friend Property squad As squad
-    Private Property _actingAgent As agent
     Friend Property missionStages As New Stack(Of missionStage)
     Friend Property consequences As New List(Of String)
 
+    Private Property _actingAgent As agent
+    Friend Function setAgent(agent As agent) As problem
+        If squad.agents.Contains(agent) = False Then Return New problem(Me, problemType.NotFound)
+
+        _actingAgent = agent
+        Return Nothing
+    End Function
+
     Friend Sub dayTick()
-        If squad.city.Equals(city) Then
+        If squad.city.Equals(city) AndAlso _actingAgent Is Nothing = False Then
             Dim currentMissionStage As missionStage = missionStages.Pop
-            _actingAgent = squad.agents(rng.Next(squad.agents.Count))
             Dim decisionMatrix As List(Of Dictionary(Of choiceComponent, Integer)) = _actingAgent.decisionMatrix
             Dim approach As choiceComponent = getRandomChoice(decisionMatrix(0))
             Dim action As choiceComponent = getRandomChoice(decisionMatrix(1))
@@ -44,12 +51,14 @@
                 Case missionStageResult.Success
                     'mission success
                     Debug.Print(currentMissionStage.name & " success.")
+                    currentMissionStage.Dispose()
 
                 Case missionStageResult.Complicated
                     Debug.Print(currentMissionStage.name & " complicated success.")
                     For Each penalty In currentMissionStage.getPenalties(result, approach, action)
                         addConsequence(penalty)
                     Next
+                    currentMissionStage.Dispose()
 
                 Case missionStageResult.Failure
                     currentMissionStage.timeProgress = 0

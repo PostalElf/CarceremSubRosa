@@ -269,10 +269,6 @@
             Dim squad As squad = _squads(n)
             squad.dayTick()
         Next
-
-
-        'tick HR department
-        hrTick()
     End Sub
     Private Sub weekTick()
         'tick shellcompanies
@@ -285,6 +281,10 @@
         'add money and research income
         _money += incomeNet
         researchTick()
+
+
+        'tick HR department
+        hrTick()
     End Sub
     Private Sub monthTick()
 
@@ -323,15 +323,15 @@
             Select Case opportunity
                 Case 1
                     'citysite
-                    Dim cost As New cost(100)
+                    Dim cost As New cost(1000)
                     interrupt.Add("Real Estate Opportunity", interruptType.YesNo, Me, city, cost, "Purchase real estate in " & city.ToString & " for $" & cost.money & "?")
                 Case 2
                     'shell company
-                    Dim cost As New cost(100)
+                    Dim cost As New cost(1000)
                     interrupt.Add("Business Opportunity", interruptType.YesNo, Me, city, cost, "Purchase a business in " & city.ToString & " for $" & cost.money & "?")
                 Case 3
                     'recruit agent
-                    Dim cost As New cost(100)
+                    Dim cost As New cost(1000)
                     interrupt.Add("Recruitment Opportunity", interruptType.YesNo, Me, city, cost, "Recruit an agent in " & city.ToString & " for $" & cost.money & "?")
             End Select
         End If
