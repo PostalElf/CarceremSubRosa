@@ -144,13 +144,10 @@
     End Property
 
     Private Property _lordNight As Integer
-    Private Function getLordNightName(lordNight As Integer) As String
-        Dim lords As String() = {"Xiuhtecutli", "Itzli", "Pilzintecuhtli", "Cinteotl", "Mictantecutli", "Chalchiuhtlicue", "Tlazolteotl", "Tepeyollotl", "Tlaloc"}
-        Return lords(lordNight - 1)
-    End Function
     Friend ReadOnly Property lordNightName As String
         Get
-            Return getLordNightName(_lordNight)
+            Dim lords As String() = {"Xiuhtecutli", "Itzli", "Pilzintecuhtli", "Cinteotl", "Mictantecutli", "Chalchiuhtlicue", "Tlazolteotl", "Tepeyollotl", "Tlaloc"}
+            Return lords(_lordNight - 1)
         End Get
     End Property
 
