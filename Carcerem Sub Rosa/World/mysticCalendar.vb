@@ -47,9 +47,10 @@
         Const len As Integer = 16
         Console.WriteLine(ind & fakeTab("Long Count: ", len) & ToString())
         Console.WriteLine(ind & fakeTab("Mayan Date: ", len) & tzolkinDate & ", " & haabDate)
-        Console.WriteLine(ind & fakeTab("Weeksign: ", len) & aztecTrecena & " (" & getAztecTrecenaMeaning(_aztecTrecena) & ")")
-        Console.WriteLine(ind & fakeTab("Daysign: ", len) & aztecDirection & " " & aztecDaysign)
-        Console.WriteLine(ind & fakeTab("Nightsign: ", len) & lordNightName)
+        Console.WriteLine(ind & fakeTab("Weeksign: ", len) & aztecTrecena & " (" & getGodDomain(aztecTrecena) & ")")
+        Console.WriteLine(ind & fakeTab("Daysign: ", len) & aztecDay & " (" & getGodDomain(aztecDay) & ")")
+        Console.WriteLine(ind & fakeTab("Nightsign: ", len) & lordNightName & " (" & getGodDomain(lordNightName) & ")")
+        Console.WriteLine(ind & fakeTab("Cardinality: ", len) & aztecDirection)
         Console.WriteLine(ind & fakeTab("Moon Phase: ", len) & moonPhase)
         Console.WriteLine(ind & fakeTab("Lunar Mansion: ", len) & lunarMansion)
     End Sub
@@ -146,7 +147,7 @@
     Private Property _lordNight As Integer
     Friend ReadOnly Property lordNightName As String
         Get
-            Dim lords As String() = {"Xiuhtecutli", "Itzli", "Pilzintecuhtli", "Cinteotl", "Mictantecutli", "Chalchiuhtlicue", "Tlazolteotl", "Tepeyollotl", "Tlaloc"}
+            Dim lords As String() = {"Xiuhtecuhtli", "Itzli", "Piltzintecuhtli", "Centeotl", "Mictlantecuhtli", "Chalchiuhtlicue", "Tlazolteotl", "Tepeyollotl", "Tlaloc"}
             Return lords(_lordNight - 1)
         End Get
     End Property
@@ -168,19 +169,21 @@
         Return weeksPassed
     End Function
     Private Function getMayanMeaning(god As Integer) As String
-        Dim daysigns As String() = {"Crocodile", "Wind", "Night-House", "Maize", "Serpent", "Death", "Deer", "Rabbit", "Water", "Dog", _
+        Dim meanings As String() = {"Crocodile", "Wind", "Night-House", "Maize", "Serpent", "Death", "Deer", "Rabbit", "Water", "Dog", _
                                     "Monkey", "Grass", "Reed", "Jaguar", "Eagle", "Vulture", "Earthquake", "Knife", "Rain", "Lord"}
-        Return daysigns(god - 1)
+        Return meanings(god - 1)
     End Function
-    Friend ReadOnly Property aztecDaysign()
+    Friend ReadOnly Property aztecDay() As String
         Get
-            Return getMayanMeaning(_tzolkinGod)
+            Dim gods As String() = {"Xiuhtecuhtli", "Tlaltecuhtli", "Chalchiuhtlicue", "Tonatiuh", "Tlazolteotl", "Mictlantecuhtli", "Centeotl", _
+                                    "Tlaloc", "Quetzalcoatl", "Tezcatlipoca", "Mictlantecuhtli", "Tlahuizcalpantecuhtli", "Citlalicue"}
+            Return gods(_tzolkinDay - 1)
         End Get
     End Property
     Friend ReadOnly Property aztecDirection()
         Get
             Dim god As Integer = _tzolkinGod
-            Dim directions As String() = {"Eastern", "Northern", "Western", "Southern"}
+            Dim directions As String() = {"East", "North", "West", "South"}
             Dim value As Integer = (god - 1) Mod 4
             Return directions(value)
         End Get
@@ -195,16 +198,44 @@
             Return gods(_aztecTrecena - 1)
         End Get
     End Property
-    Private Function getAztecTrecenaMeaning(trecena As Integer) As String
-        Dim meanings As String() = {"Duality", "Serpent", "Echo", "Mischief", "Water", "Sun", "Fertility", "Maguey", "Heat", "Death", _
-                                    "Healing", "Frost", "Purification", "Seasons", "Flint", "Lightning", "Plague", "Hearth", "Maiden", "Heat"}
-        Return meanings(trecena - 1)
-    End Function
     Friend ReadOnly Property aztecDate As String
         Get
             Return _tzolkinDay & " " & getMayanMeaning(_tzolkinGod)
         End Get
     End Property
+
+    Private Function getGodDomain(god As String) As String
+        Select Case god
+            Case "Xiuhtecuhtli" : Return "Fire"
+            Case "Tlaltecuhtli" : Return "Earth"
+            Case "Chalchiuhtlicue" : Return "Water"
+            Case "Tonatiuh" : Return "Sun"
+            Case "Tlazolteotl" : Return "Love"
+            Case "Mictlantecuhtli" : Return "Death"
+            Case "Centeotl" : Return "Maize"
+            Case "Tlaloc" : Return "Rain"
+            Case "Quetzalcoatl" : Return "Wisdom"
+            Case "Tezcatlipoca" : Return "Twilight"
+            Case "Mictlantecuhtli" : Return "Death"
+            Case "Tlahuizcalpantecuhtli" : Return "Dawn"
+            Case "Citlalicue" : Return "Stars"
+            Case "Itzli" : Return "Obsidian"
+            Case "Piltzintecuhtli" : Return "Vision"
+            Case "Ometeotl" : Return "Duality"
+            Case "Tepeyollotl" : Return "Earthquakes"
+            Case "Huehuecoyotl" : Return "Mischief"
+            Case "Mayahuel" : Return "Alcohol"
+            Case "Patecatl" : Return "Healing"
+            Case "Itztlacoliuhqui" : Return "Frost"
+            Case "Xipe Totec" : Return "Rebirth"
+            Case "Itzpapalotl" : Return "War"
+            Case "Xolotl" : Return "Lightning"
+            Case "Chalchiuhtotolin" : Return "Plague"
+            Case "Chantico" : Return "Hearthfire"
+            Case "Xochiquetzal" : Return "Maiden"
+            Case Else : Return Nothing
+        End Select
+    End Function
 
     Friend Sub timeTick()
         _lunarDay += 1
