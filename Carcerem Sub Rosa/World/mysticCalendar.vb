@@ -1,6 +1,9 @@
-﻿Public Class mayanCalendar
+﻿Public Class mysticCalendar
     Public Sub New(dateTime As DateTime)
         _dateTime = dateTime
+        _lunarDay = getMoonPhaseInitial(_dateTime)
+
+
         Dim baktunStart As New DateTime(2012, 12, 21)
         Dim daysSince As Integer = (dateTime - baktunStart).TotalDays
 
@@ -46,13 +49,54 @@
         Console.WriteLine(ind & fakeTab("Weeksign: ", len) & aztecTrecena)
         Console.WriteLine(ind & fakeTab("Daysign: ", len) & aztecDaysign & " (" & aztecDirection & ")")
         Console.WriteLine(ind & fakeTab("Nightsign: ", len) & lordNightName)
-        Console.WriteLine(ind & fakeTab("Moon Phase: ", len) & getMoonPhase(_dateTime))
+        Console.WriteLine(ind & fakeTab("Moon Phase: ", len) & moonPhase)
     End Sub
     Public Overrides Function ToString() As String
         Return _baktun & "." & _katun & "." & _tun & "." & _uinal & "." & _kin
     End Function
 
     Private Property _dateTime As DateTime
+    Private Property _lunarDay As Integer
+    Private Function getJulianDate(dateTime As DateTime) As Integer
+        Dim year As Integer = dateTime.Year
+        Dim month As Integer = dateTime.Month
+        Dim day As Integer = dateTime.Day
+
+        Dim yy As Integer = year - Math.Floor((12 - month) / 10)
+        Dim mm As Integer = month + 9
+        If mm > 12 Then mm -= 12
+
+        Dim K1 As Integer = Math.Floor(365.25 * (yy + 4712))
+        Dim K2 As Integer = Math.Floor(30.6 * mm + 0.5)
+        Dim K3 As Integer = Math.Floor(Math.Floor((yy / 100) + 49) * 0.75) - 38
+
+        Dim JD As Integer = K1 + K2 + day + 59
+        If (JD > 2299160) Then JD -= K3
+        Return JD
+    End Function
+    Private Function getMoonPhaseInitial(dateTime As DateTime) As Integer
+        Const lunarCycle As Double = 29.530588853
+        Dim knownNewMoon As New DateTime(2000, 1, 6)
+        Dim daysSince As Integer = (dateTime - knownNewMoon).TotalDays
+        Dim phase As Integer = daysSince Mod lunarCycle
+
+        Return phase
+    End Function
+    Friend ReadOnly Property moonPhase() As String
+        Get
+            Select Case _lunarDay
+                Case 2 To 7 : Return "Waxing Crescent"
+                Case 8 : Return "First Quarter"
+                Case 9 To 13 : Return "Waxing Gibbous"
+                Case 14 To 16 : Return "Full Moon"
+                Case 17 To 21 : Return "Waning Gibbous"
+                Case 22 : Return "Third Quarter"
+                Case 23 To 27 : Return "Waning Crescent"
+                Case Else : Return "New Moon"
+            End Select
+        End Get
+    End Property
+
 
     Private Property _kin As Integer        'one day
     Private Property _uinal As Integer      '20 kin
@@ -143,43 +187,10 @@
         End Get
     End Property
 
-    Private Function getMoonPhase(dateTime As DateTime) As String
-        Dim year As Integer = dateTime.Year
-        Dim month As Integer = dateTime.Month
-        Dim day As Integer = dateTime.Day
-
-        Dim b, c, e As Integer
-        Dim jd As Double
-
-        If month < 3 Then
-            year -= 1
-            month += 12
-        End If
-        month += 1
-        c = 365.25 * year
-        e = 30.6 * month
-        jd = c + e + day - 694039.09            'julian date
-
-        jd /= 29.53                             'divide by moon cycle (29.53 days)
-        b = Math.Floor(jd)                      'take integer part of jd
-        jd = jd - b                             'get fractional part of original jd
-        b = jd * 8 + 0.5                        'scale fraction from 0 to 8, round by adding 0.5
-        If b = 8 Then b = 0
-
-        Select Case b
-            Case 0 : Return "New"
-            Case 1 : Return "Waxing Crescent"
-            Case 2 : Return "First Quarter"
-            Case 3 : Return "Waxing Gibbous"
-            Case 4 : Return "Full"
-            Case 5 : Return "Waning Gibbous"
-            Case 6 : Return "Third Quarter"
-            Case 7 : Return "Waning Crescent"
-            Case Else : Return Nothing
-        End Select
-    End Function
-
     Friend Sub timeTick()
+        _lunarDay += 1
+        If _lunarDay > 29 Then _lunarDay = 1
+
         _kin += 1
         If _kin = 20 Then
             _kin = 0

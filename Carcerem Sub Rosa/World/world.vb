@@ -15,7 +15,7 @@
 
         With world
             ._dateTime = New DateTime(2020, 3, 16)
-            ._mayanCalender = New mayanCalendar(.dateTime)
+            ._mysticCalendar = New mysticCalendar(.dateTime)
         End With
 
         Return world
@@ -35,7 +35,7 @@
 
         With _dateTime
             Console.WriteLine(ind & .Day & " " & MonthName(.Month, True) & " " & .Year & ", " & .DayOfWeek.ToString)
-            _mayanCalender.consoleReport(indent + 1)
+            _mysticCalendar.consoleReport(indent + 1)
         End With
     End Sub
 
@@ -106,13 +106,13 @@
             Return _dateTimeNewMonth
         End Get
     End Property
-    Private Property _mayanCalender As mayanCalendar
+    Private Property _mysticCalendar As mysticCalendar
     Friend Sub timeTick()
         Dim prevMonth As Integer = _dateTime.Month
         _dateTime = _dateTime.AddDays(1)
         If _dateTime.DayOfWeek = DayOfWeek.Monday Then _dateTimeNewWeek = True Else _dateTimeNewWeek = False
         If prevMonth <> _dateTime.Month Then _dateTimeNewMonth = True Else _dateTimeNewMonth = False
 
-        _mayanCalender.timeTick()
+        _mysticCalendar.timeTick()
     End Sub
 End Class
