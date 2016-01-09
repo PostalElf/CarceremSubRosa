@@ -1,5 +1,6 @@
 ﻿Public Class mayanCalendar
     Public Sub New(dateTime As DateTime)
+        _dateTime = dateTime
         Dim baktunStart As New DateTime(2012, 12, 21)
         Dim daysSince As Integer = (dateTime - baktunStart).TotalDays
 
@@ -37,15 +38,21 @@
         'Debug.Print(tzolkinDate)
         'Debug.Print(haabDate)
     End Sub
+    Friend Sub consoleReport(indent As Integer)
+        Dim ind As String = vbSpace(indent)
+        Const len As Integer = 13
+        Console.WriteLine(ind & fakeTab("Long Count: ", len) & ToString())
+        Console.WriteLine(ind & fakeTab("Mayan Date: ", len) & tzolkinDate & ", " & haabDate)
+        Console.WriteLine(ind & fakeTab("Weeksign: ", len) & aztecTrecena)
+        Console.WriteLine(ind & fakeTab("Daysign: ", len) & aztecDaysign & " (" & aztecDirection & ")")
+        Console.WriteLine(ind & fakeTab("Nightsign: ", len) & lordNightName)
+        Console.WriteLine(ind & fakeTab("Moon Phase: ", len) & getMoonPhase(_dateTime))
+    End Sub
     Public Overrides Function ToString() As String
         Return _baktun & "." & _katun & "." & _tun & "." & _uinal & "." & _kin
     End Function
-    Friend Function briefReportMayan() As String
-        Return tzolkinDate & ", " & haabDate & " - " & lordNightName
-    End Function
-    Friend Function briefReportAztec() As String
-        Return aztecDate & ", " & getAztecTrecena() & " - " & getAztecDirection(_tzolkinDay, _tzolkinGod)
-    End Function
+
+    Private Property _dateTime As DateTime
 
     Private Property _kin As Integer        'one day
     Private Property _uinal As Integer      '20 kin
@@ -55,25 +62,23 @@
 
     Private Property _tzolkinDay As Integer
     Private Property _tzolkinGod As Integer
-    Private Function getTzolkinDate(day As Integer, god As Integer) As String
-        Dim gods() As String = {"Imix", "Ik", "Akbal", "Kan", "Chicchan", "Cimi", "Manik", "Lamat", "Muluc", "Oc", "Chuen", "Eb", "Ben", "Ix", "Men", "Cib", "Caban", "Etznab", "Cauac", "Ahau"}
-        Return day & " " & gods(god - 1)
-    End Function
-    Friend ReadOnly Property tzolkinDate As String
+    Friend ReadOnly Property tzolkinDate() As String
         Get
-            Return getTzolkinDate(_tzolkinDay, _tzolkinGod)
+            Dim day As Integer = _tzolkinDay
+            Dim god As Integer = _tzolkinGod
+            Dim gods() As String = {"Imix", "Ik", "Akbal", "Kan", "Chicchan", "Cimi", "Manik", "Lamat", "Muluc", "Oc", "Chuen", "Eb", "Ben", "Ix", "Men", "Cib", "Caban", "Etznab", "Cauac", "Ahau"}
+            Return day & " " & gods(god - 1)
         End Get
     End Property
 
     Private Property _haabDay As Integer
     Private Property _haabMonth As Integer
-    Private Function getHaabDate(day As Integer, month As Integer) As String
-        Dim months() As String = {"Pop", "Uo", "Zip", "Zotz", "Tzec", "Xul", "Yaxkin", "Mol", "Chen", "Yax", "Zac", "Ceh", "Mac", "Kankin", "Muan", "Pax", "Kayab", "Cumku", "Uayeb"}
-        Return day & " " & months(month)
-    End Function
-    Friend ReadOnly Property haabDate As String
+    Friend ReadOnly Property haabDate() As String
         Get
-            Return getHaabDate(_haabDay, _haabMonth)
+            Dim day As Integer = _haabDay
+            Dim month As Integer = _haabMonth
+            Dim months() As String = {"Pop", "Uo", "Zip", "Zotz", "Tzec", "Xul", "Yaxkin", "Mol", "Chen", "Yax", "Zac", "Ceh", "Mac", "Kankin", "Muan", "Pax", "Kayab", "Cumku", "Uayeb"}
+            Return day & " " & months(month)
         End Get
     End Property
 
@@ -89,16 +94,6 @@
     End Property
 
     Private Property _aztecTrecena As Integer
-    Private Function getAztecDaysign(day As Integer, god As Integer) As String
-        Dim daysigns As String() = {"Crocodile", "Wind", "House", "Lizard", "Serpent", "Death", "Deer", "Rabbit", "Water", "Dog", _
-                                    "Monkey", "Grass", "Reed", "Jaguar", "Eagle", "Vulture", "Earthquake", "Flint", "Rain", "Flower"}
-        Return day & " " & daysigns(god - 1)
-    End Function
-    Private Function getAztecDirection(day As Integer, god As Integer) As String
-        Dim directions As String() = {"East", "North", "West", "South"}
-        Dim value As Integer = (god - 1) Mod 4
-        Return directions(value)
-    End Function
     Private Function getAztecTrecenaInitial(day As Integer, god As Integer) As Integer
         Dim weeksPassed As Integer = 1
         Dim x As Integer = 1
@@ -114,21 +109,75 @@
         End While
         Return weeksPassed
     End Function
-    Private Function getAztecTrecena() As String
-        Dim gods As String() = {"Ometeotl", "Quetzalcoatl", "Tepeyollotl", "Huehuecoyotl", "Chalchiuhtlicue", "Tonatiuh", _
-                                "Tlaloc", "Mayahuel", "Xiuhtecuhtli", "Mictlantecuhtli", "Patecatl", "Itztlacoliuhqui", _
-                                "Tlazolteotl", "Xipe Totec", "Itzpapalotl", "Xolotl", "Chalchiuhtotolin", "Chantico", _
-                                "Xochiquetzal", "Xiuhtecuhtli"}
-
-
-        Return gods(_aztecTrecena - 1)
+    Private Function getMayanMeaning(god As Integer) As String
+        Dim daysigns As String() = {"Crocodile", "Wind", "Night-House", "Maize", "Serpent", "Death", "Deer", "Rabbit", "Water", "Dog", _
+                                    "Monkey", "Grass", "Reed", "Jaguar", "Eagle", "Vulture", "Earthquake", "Knife", "Rain", "Lord"}
+        Return daysigns(god - 1)
     End Function
-    Friend ReadOnly Property aztecDate() As String
+    Friend ReadOnly Property aztecDaysign()
         Get
-            Return getAztecDaysign(_tzolkinDay, _tzolkinGod)
+            Return getMayanMeaning(_tzolkinGod)
+        End Get
+    End Property
+    Friend ReadOnly Property aztecDirection()
+        Get
+            Dim god As Integer = _tzolkinGod
+            Dim directions As String() = {"East", "North", "West", "South"}
+            Dim value As Integer = (god - 1) Mod 4
+            Return directions(value)
+        End Get
+    End Property
+    Friend ReadOnly Property aztecTrecena
+        Get
+            Dim gods As String() = {"Ometeotl", "Quetzalcoatl", "Tepeyollotl", "Huehuecoyotl", "Chalchiuhtlicue", "Tonatiuh", _
+                                    "Tlaloc", "Mayahuel", "Xiuhtecuhtli", "Mictlantecuhtli", "Patecatl", "Itztlacoliuhqui", _
+                                    "Tlazolteotl", "Xipe Totec", "Itzpapalotl", "Xolotl", "Chalchiuhtotolin", "Chantico", _
+                                    "Xochiquetzal", "Xiuhtecuhtli"}
+
+            Return gods(_aztecTrecena - 1)
+        End Get
+    End Property
+    Friend ReadOnly Property aztecDate As String
+        Get
+            Return _tzolkinDay & " " & getMayanMeaning(_tzolkinGod)
         End Get
     End Property
 
+    Private Function getMoonPhase(dateTime As DateTime) As String
+        Dim year As Integer = dateTime.Year
+        Dim month As Integer = dateTime.Month
+        Dim day As Integer = dateTime.Day
+
+        Dim b, c, e As Integer
+        Dim jd As Double
+
+        If month < 3 Then
+            year -= 1
+            month += 12
+        End If
+        month += 1
+        c = 365.25 * year
+        e = 30.6 * month
+        jd = c + e + day - 694039.09            'julian date
+
+        jd /= 29.53                             'divide by moon cycle (29.53 days)
+        b = Math.Floor(jd)                      'take integer part of jd
+        jd = jd - b                             'get fractional part of original jd
+        b = jd * 8 + 0.5                        'scale fraction from 0 to 8, round by adding 0.5
+        If b = 8 Then b = 0
+
+        Select Case b
+            Case 0 : Return "New"
+            Case 1 : Return "Waxing Crescent"
+            Case 2 : Return "First Quarter"
+            Case 3 : Return "Waxing Gibbous"
+            Case 4 : Return "Full"
+            Case 5 : Return "Waning Gibbous"
+            Case 6 : Return "Third Quarter"
+            Case 7 : Return "Waning Crescent"
+            Case Else : Return Nothing
+        End Select
+    End Function
 
     Friend Sub timeTick()
         _kin += 1

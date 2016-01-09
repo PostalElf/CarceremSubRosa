@@ -35,9 +35,7 @@
 
         With _dateTime
             Console.WriteLine(ind & .Day & " " & MonthName(.Month, True) & " " & .Year & ", " & .DayOfWeek.ToString)
-            Console.WriteLine(indd & _mayanCalender.ToString)
-            Console.WriteLine(indd & _mayanCalender.briefReportMayan)
-            Console.WriteLine(indd & _mayanCalender.briefReportAztec)
+            _mayanCalender.consoleReport(indent + 1)
         End With
     End Sub
 
