@@ -51,8 +51,7 @@
         Console.WriteLine(ind & fakeTab("Daysign: ", len) & aztecDay & " (" & getGodDomain(aztecDay) & ")")
         Console.WriteLine(ind & fakeTab("Nightsign: ", len) & lordNightName & " (" & getGodDomain(lordNightName) & ")")
         Console.WriteLine(ind & fakeTab("Cardinality: ", len) & aztecDirection)
-        Console.WriteLine(ind & fakeTab("Moon Phase: ", len) & moonPhase)
-        Console.WriteLine(ind & fakeTab("Lunar Mansion: ", len) & lunarMansion)
+        Console.WriteLine(ind & fakeTab("Moon Phase: ", len) & moonPhase & " in " & lunarMansion)
     End Sub
     Public Overrides Function ToString() As String
         Return _baktun & "." & _katun & "." & _tun & "." & _uinal & "." & _kin
@@ -89,11 +88,11 @@
         Get
             Select Case _lunarDay
                 Case 2 To 7 : Return "Waxing Crescent"
-                Case 8 : Return "First Quarter"
+                Case 8 : Return "Half Moon"
                 Case 9 To 13 : Return "Waxing Gibbous"
                 Case 14 To 16 : Return "Full Moon"
                 Case 17 To 21 : Return "Waning Gibbous"
-                Case 22 : Return "Third Quarter"
+                Case 22 : Return "Half Moon"
                 Case 23 To 27 : Return "Waning Crescent"
                 Case Else : Return "New Moon"
             End Select
