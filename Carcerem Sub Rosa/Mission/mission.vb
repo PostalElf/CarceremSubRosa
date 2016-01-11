@@ -27,6 +27,11 @@
     Friend Property consequences As New List(Of String)
 
     Private Property _actingAgent As agent
+    Friend ReadOnly Property agent As agent
+        Get
+            Return _actingAgent
+        End Get
+    End Property
     Friend Function setAgent(agent As agent) As problem
         If squad.agents.Contains(agent) = False Then Return New problem(Me, problemType.NotFound)
 
@@ -57,7 +62,7 @@
 
                 Case missionStageResult.Failure
                     Debug.Print(currentMissionStage.name & " failure.")
-                    currentMissionStage.timeProgress = 0
+                    If currentMissionStage.timeProgress > 0 Then currentMissionStage.timeProgress = 0
                     missionStages.Push(currentMissionStage)
             End Select
 

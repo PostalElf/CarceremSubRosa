@@ -47,10 +47,10 @@
         Const len As Integer = 16
         Console.WriteLine(ind & fakeTab("Long Count: ", len) & ToString())
         Console.WriteLine(ind & fakeTab("Mayan Date: ", len) & tzolkinDate & ", " & haabDate)
-        Console.WriteLine(ind & fakeTab("Weeksign: ", len) & aztecTrecena & " (" & getGodDomain(aztecTrecena) & ")")
-        Console.WriteLine(ind & fakeTab("Daysign: ", len) & aztecDay & " (" & getGodDomain(aztecDay) & ")")
-        Console.WriteLine(ind & fakeTab("Nightsign: ", len) & lordNightName & " (" & getGodDomain(lordNightName) & ")")
-        Console.WriteLine(ind & fakeTab("Cardinality: ", len) & aztecDirection)
+        'Console.WriteLine(ind & fakeTab("Weeksign: ", len) & aztecTrecena & " (" & getGodDomain(aztecTrecena) & ")")
+        'Console.WriteLine(ind & fakeTab("Daysign: ", len) & aztecDay & " (" & getGodDomain(aztecDay) & ")")
+        'Console.WriteLine(ind & fakeTab("Nightsign: ", len) & lordNightName & " (" & getGodDomain(lordNightName) & ")")
+        'Console.WriteLine(ind & fakeTab("Cardinality: ", len) & aztecDirection)
         Console.WriteLine(ind & fakeTab("Moon Phase: ", len) & moonPhase & " in " & lunarMansion)
     End Sub
     Public Overrides Function ToString() As String

@@ -79,6 +79,13 @@
         If _health <= 0 OrElse _sanity <= 0 OrElse _morale <= 0 Then dead()
     End Sub
     Private Sub dead()
+        Dim city As city = squad.city
+        If city.squads.Contains(squad) AndAlso city.missions.Count > 0 Then
+            For Each mission In city.missions
+                If mission.squad.Equals(squad) AndAlso mission.agent.equals(Me) Then mission.setAgent(Nothing)
+            Next
+        End If
+
         _squad.removeAgent(Me)
     End Sub
 
