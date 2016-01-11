@@ -38,10 +38,8 @@
         If squad.city.Equals(city) AndAlso _actingAgent Is Nothing = False Then
             Dim currentMissionStage As missionStage = missionStages.Pop
             Dim decisionMatrix As List(Of Dictionary(Of choiceComponent, Integer)) = _actingAgent.decisionMatrix
-            Dim approach As choiceComponent = getRandomChoice(decisionMatrix(0))
-            Dim action As choiceComponent = getRandomChoice(decisionMatrix(1))
 
-            Dim result As missionStageResult = currentMissionStage.tick(_actingAgent, approach, action)
+            Dim result As missionStageResult = currentMissionStage.tick(_actingAgent, decisionMatrix)
             Select Case result
                 Case Nothing
                     'timer still ticking
@@ -55,18 +53,12 @@
 
                 Case missionStageResult.Complicated
                     Debug.Print(currentMissionStage.name & " complicated success.")
-                    For Each penalty In currentMissionStage.getPenalties(result, approach, action)
-                        addConsequence(penalty)
-                    Next
                     currentMissionStage.Dispose()
 
                 Case missionStageResult.Failure
+                    Debug.Print(currentMissionStage.name & " failure.")
                     currentMissionStage.timeProgress = 0
                     missionStages.Push(currentMissionStage)
-                    Debug.Print(currentMissionStage.name & " failure.")
-                    For Each penalty In currentMissionStage.getPenalties(result, approach, action)
-                        addConsequence(penalty)
-                    Next
             End Select
 
             If missionStages.Count = 0 Then
@@ -74,7 +66,7 @@
             End If
         End If
     End Sub
-    Private Sub addConsequence(consequence As String)
+    Friend Sub addConsequence(consequence As String, Optional missionStage As missionStage = Nothing)
         Dim rawstr As String() = consequence.Split(" ")
         Select Case rawstr(0).ToLower
             Case "city" : city.addConsequence(consequence)
@@ -84,10 +76,11 @@
             Case "mission"
                 Select Case rawstr(1)
                     Case "progress"
+                        If missionStage Is Nothing Then Exit Sub
                         Dim value As Integer = CInt(rawstr(2))
-                        missionStages.Peek.timeProgress = 0
-                        missionStages.Peek.timeProgress += value
-                        Debug.Print(missionStages.Peek.name & " time progress " & withSign(value))
+                        missionStage.timeProgress = 0
+                        missionStage.timeProgress += value
+                        Debug.Print(missionStage.name & " time progress " & withSign(value))
                 End Select
         End Select
     End Sub
@@ -103,13 +96,4 @@
         missionStages = Nothing
         city.removeMission(Me)
     End Sub
-    Private Function getRandomChoice(decisionMatrix As Dictionary(Of choiceComponent, Integer))
-        Dim total As New List(Of choiceComponent)
-        For Each kvp In decisionMatrix
-            For n = 1 To kvp.Value
-                total.Add(kvp.Key)
-            Next
-        Next
-        Return total(rng.Next(total.Count))
-    End Function
 End Class

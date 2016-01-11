@@ -50,6 +50,7 @@
         stageStack.Push(stage1)
         Dim mission As New mission("Sample Cheese & Wines", city1, stageStack)
         mission.squad = squad
+        mission.setAgent(squad.agents(0))
 
         While True
             While interrupt.Count > 0

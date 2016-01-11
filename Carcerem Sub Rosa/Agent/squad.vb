@@ -130,6 +130,7 @@
             Dim total As String = "agent " & rawstr(1) & " " & rawstr(2)
             agent.addConsequence(total)
         Next
+        Debug.Print(name & " " & consequence)
         Return Nothing
     End Function
 

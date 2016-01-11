@@ -182,6 +182,7 @@
             Case "mediaGoodwill" : _mediaGoodwill = constrain(_policeGoodwill + value, 0, 20)
             Case "tlaGoodwill" : _tlaGoodwill = constrain(_policeGoodwill + value, 0, 20)
         End Select
+        Debug.Print(name & " " & rawstr(1) & " " & withSign(value))
         Return Nothing
     End Function
     Private Property _policeGoodwill As Integer

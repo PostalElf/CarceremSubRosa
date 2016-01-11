@@ -323,16 +323,13 @@
             Select Case opportunity
                 Case 1
                     'citysite
-                    Dim cost As New cost(1000)
-                    interrupt.Add("Real Estate Opportunity", interruptType.YesNo, Me, city, cost, "Purchase real estate in " & city.ToString & " for $" & cost.money & "?")
+                    interrupt.Add("Real Estate Opportunity", interruptType.YesNo, Me, city, "player money -1000", "Purchase real estate in " & city.ToString & " for $1000?")
                 Case 2
                     'shell company
-                    Dim cost As New cost(1000)
-                    interrupt.Add("Business Opportunity", interruptType.YesNo, Me, city, cost, "Purchase a business in " & city.ToString & " for $" & cost.money & "?")
+                    interrupt.Add("Business Opportunity", interruptType.YesNo, Me, city, "player money -1000", "Purchase a business in " & city.ToString & " for $1000?")
                 Case 3
                     'recruit agent
-                    Dim cost As New cost(1000)
-                    interrupt.Add("Recruitment Opportunity", interruptType.YesNo, Me, city, cost, "Recruit an agent in " & city.ToString & " for $" & cost.money & "?")
+                    interrupt.Add("Recruitment Opportunity", interruptType.YesNo, Me, city, "player money -1000", "Recruit an agent in " & city.ToString & " for $1000?")
             End Select
         End If
     End Sub
@@ -362,7 +359,7 @@
                 End If
 
                 _researchProject = Nothing
-                If _researchProjectsReady.Count > 0 Then interrupt.Add("Choose Research", interruptType.ListChoice, Me, _researchProjectsReady, New cost(0), "")
+                If _researchProjectsReady.Count > 0 Then interrupt.Add("Choose Research", interruptType.ListChoice, Me, _researchProjectsReady, "", "")
             End If
         End If
     End Sub
@@ -371,6 +368,10 @@
         If rawstr(0) <> "player" Then Return New problem(Me, problemType.NotSuitable)
 
         Select Case rawstr(1)
+            Case "money"
+                Dim value As Integer = CInt(rawstr(2))
+                _money += value
+
             Case "departmentLevelMax"
                 Dim department As department = enumArrays.getEnumFromString(rawstr(2), enumArrays.departmentArray)
                 Dim value As Integer = CInt(rawstr(3))
@@ -389,6 +390,7 @@
                 Dim blueprint As product = product.fileget(blueprintName)
                 _blueprints.Add(blueprint)
         End Select
+        Debug.Print(consequence)
         Return Nothing
     End Function
 End Class

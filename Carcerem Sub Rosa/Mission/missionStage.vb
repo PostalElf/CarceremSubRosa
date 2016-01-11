@@ -63,11 +63,14 @@
         Return possibilities(rng.Next(possibilities.Count))
     End Function
 
-    Friend Function tick(agent As agent, approach As choiceComponent, action As choiceComponent) As missionStageResult
+    Friend Function tick(agent As agent, decisionMatrix As List(Of Dictionary(Of choiceComponent, Integer))) As missionStageResult
         timeProgress += constrain(_timeProgressPerTick, 1, 20)
-        If timeProgress >= timeCost Then Return roll(agent, approach, action) Else Return Nothing
+        If timeProgress >= timeCost Then Return roll(agent, decisionMatrix) Else Return Nothing
     End Function
-    Private Function roll(agent As agent, approach As choiceComponent, action As choiceComponent) As missionStageResult
+    Private Function roll(agent As agent, decisionMatrix As List(Of Dictionary(Of choiceComponent, Integer))) As missionStageResult
+        Dim approach As choiceComponent = getRandomChoice(decisionMatrix(0))
+        Dim action As choiceComponent = getRandomChoice(decisionMatrix(1))
+
         Dim city As city = agent.squad.city
         Dim rawRoll As Integer = rollDice("3d6")
         Dim bonus As Integer = agent.bonus(approach, action)
@@ -76,7 +79,20 @@
 
         Dim total As Integer = rawRoll + bonus
         Dim result As missionStageResult = getResult(total)
+        For Each penalty In getPenalties(result, approach, action)
+            mission.addConsequence(penalty, Me)
+        Next
+
         Return result
+    End Function
+    Private Function getRandomChoice(decisionMatrix As Dictionary(Of choiceComponent, Integer))
+        Dim total As New List(Of choiceComponent)
+        For Each kvp In decisionMatrix
+            For n = 1 To kvp.Value
+                total.Add(kvp.Key)
+            Next
+        Next
+        Return total(rng.Next(total.Count))
     End Function
     Private Function getResult(rollTotal As Integer) As missionStageResult
         If rollTotal >= difficulty + 2 Then
@@ -87,11 +103,11 @@
             Return missionStageResult.Failure
         End If
     End Function
-    Friend Function getPenalties(result As missionStageResult, approach As choiceComponent, action As choiceComponent) As List(Of String)
+    Private Function getPenalties(result As missionStageResult, approach As choiceComponent, action As choiceComponent) As List(Of String)
         Dim total As New List(Of String)
         Select Case result
             Case missionStageResult.Success
-                Return Nothing
+                Return total
 
             Case missionStageResult.Complicated
                 total.Add(getRandomMinorPenalty(approach, action))

@@ -5,14 +5,26 @@
             Return _interruptStack.Count
         End Get
     End Property
-    Friend Shared Sub Add(aName As String, aType As interruptType, aParent As Object, aTarget As Object, aCost As cost, aDescription As String)
+    Friend Shared Sub Add(aName As String, aType As interruptType, aParent As Object, aTarget As Object, aConsequences As List(Of String), aDescription As String)
         Dim interrupt As New interrupt
         With interrupt
             .name = aName
             .type = aType
             .parent = aParent
             .target = aTarget
-            .cost = aCost
+            If aConsequences Is Nothing = False Then .consequences = aConsequences
+            .description = aDescription
+        End With
+        _interruptStack.Push(interrupt)
+    End Sub
+    Friend Shared Sub Add(aName As String, aType As interruptType, aParent As Object, aTarget As Object, aConsequence As String, aDescription As String)
+        Dim interrupt As New interrupt
+        With interrupt
+            .name = aName
+            .type = aType
+            .parent = aParent
+            .target = aTarget
+            If aConsequence <> "" Then .consequences.Add(aConsequence)
             .description = aDescription
         End With
         _interruptStack.Push(interrupt)
@@ -28,7 +40,7 @@
     Friend Property type As interruptType
     Friend Property parent As Object
     Friend Property target As Object
-    Friend Property cost As cost
+    Friend Property consequences As New List(Of String)
     Friend Property description As String
 
     Friend Sub handle()
@@ -41,17 +53,20 @@
                             Dim player As player = CType(parent, player)
                             Dim city As city = CType(target, city)
                             shellcompany.buildShellcompany(player, city)
+                            handleConsequences()
 
                         Case "Real Estate Opportunity"
                             Dim player As player = CType(parent, player)
                             Dim city As city = CType(target, city)
                             citysite.buildCitysite(player, city)
+                            handleConsequences()
 
                         Case "Recruitment Opportunity"
                             Dim player As player = CType(parent, player)
                             Dim city As city = CType(target, city)
                             Dim agent As agent = agent.buildRandomAgent(player)
                             player.addIdleAgent(agent)
+                            handleConsequences()
                     End Select
                 End If
 
@@ -63,8 +78,19 @@
                         Dim targetList As List(Of researchProject) = CType(target, List(Of researchProject))
                         Dim targetChoice As researchProject = menu.getListChoice(targetList, 1, description)
                         player.changeResearchProject(targetChoice)
+                        handleConsequences()
                 End Select
         End Select
+    End Sub
+    Private Sub handleConsequences()
+        For Each consequence In consequences
+            Dim rawstr As String() = consequence.Split(" ")
+            Select Case rawstr(0)
+                Case "player"
+                    Dim player As player = CType(parent, player)
+                    player.addConsequence(consequence)
+            End Select
+        Next
     End Sub
 End Class
 
