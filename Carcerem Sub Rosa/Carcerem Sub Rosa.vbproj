@@ -117,6 +117,7 @@
     <Compile Include="World\city.vb" />
     <Compile Include="World\citysite.vb" />
     <Compile Include="World\continent.vb" />
+    <Compile Include="World\god.vb" />
     <Compile Include="World\mysticCalendar.vb" />
     <Compile Include="World\standardOfLiving.vb" />
     <Compile Include="World\world.vb" />

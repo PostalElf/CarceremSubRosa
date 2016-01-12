@@ -130,6 +130,7 @@
 
             ' TODO: free unmanaged resources (unmanaged objects) and override Finalize() below.
             ' TODO: set large fields to null.
+            mission.setAgent(Nothing)
             mission = Nothing
             bonuses = Nothing
             penalties = Nothing
