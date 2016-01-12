@@ -139,8 +139,8 @@
         If _demand - _importProducts.Count < 1 Then Return New problem(Me, problemType.ExceedCapacity)
 
         product.importer = Me
-        For Each modifier In product.cityModifiers
-            _modifiers.Add(modifier)
+        For Each consequence In product.cityConsequences
+            addConsequence(consequence)
         Next
         _importProducts.Add(product)
         Return Nothing
@@ -149,9 +149,6 @@
         If _importProducts.Contains(product) = False Then Return New problem(Me, problemType.NotFound)
 
         product.importer = Nothing
-        For Each modifier In product.cityModifiers
-            _modifiers.Remove(modifier)
-        Next
         _importProducts.Remove(product)
         Return Nothing
     End Function
@@ -174,7 +171,6 @@
         End Get
     End Property
 
-    Private Property _modifiers As New List(Of String)
     Friend Function addConsequence(consequence As String) As problem
         Dim rawstr As String() = consequence.Split(" ")
         If rawstr(0) <> "city" Then Return New problem(Me, problemType.NotSuitable)

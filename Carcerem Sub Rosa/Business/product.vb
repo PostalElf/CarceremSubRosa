@@ -1,13 +1,13 @@
 ﻿Public Class product
     Public Sub New()
     End Sub
-    Public Sub New(aName As String, Optional aCityModifiers As List(Of String) = Nothing)
+    Public Sub New(aName As String, Optional aCityConsequences As List(Of String) = Nothing)
         name = aName
-        If aCityModifiers Is Nothing = False Then cityModifiers.AddRange(aCityModifiers)
+        If aCityConsequences Is Nothing = False Then cityConsequences.AddRange(aCityConsequences)
     End Sub
     Public Sub New(blueprint As product)
         name = blueprint.name
-        If blueprint.cityModifiers.Count > 0 Then cityModifiers.AddRange(blueprint.cityModifiers)
+        If blueprint.cityConsequences.Count > 0 Then _cityConsequences.AddRange(blueprint.cityConsequences)
     End Sub
     Friend Shared Function fileget(targetName As String) As product
         For Each line In csvFileget("data/products.csv")
@@ -18,7 +18,7 @@
                     .name = line(n.Tick)
 
                     While n.Tick < line.Length AndAlso n.Last <> ""
-                        ._cityModifiers.Add(line(n.Last))
+                        ._cityConsequences.Add(line(n.Last))
                     End While
                 End With
                 Return product
@@ -40,10 +40,10 @@
     End Function
 
     Friend Property name As String
-    Private Property _cityModifiers As New List(Of String)
-    Friend ReadOnly Property cityModifiers As List(Of String)
+    Private Property _cityConsequences As New List(Of String)
+    Friend ReadOnly Property cityConsequences As List(Of String)
         Get
-            Return _cityModifiers
+            Return _cityConsequences
         End Get
     End Property
 
