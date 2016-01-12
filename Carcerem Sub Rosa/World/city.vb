@@ -10,6 +10,9 @@
             .continent = enumArrays.getEnumFromString(line(2), enumArrays.continentArray)
             ._coords = getCoordsFromString(line(3))
             ._standardOfLiving = CInt(line(4))
+            For Each god In enumArrays.godArray
+                ._corruption.Add(god, 0)
+            Next
         End With
         Return city
     End Function
@@ -176,13 +179,22 @@
         Dim rawstr As String() = consequence.Split(" ")
         If rawstr(0) <> "city" Then Return New problem(Me, problemType.NotSuitable)
 
-        Dim value As Integer = CInt(rawstr(2))
         Select Case rawstr(1)
-            Case "policeGoodwill" : _policeGoodwill = constrain(_policeGoodwill + value, 0, 20)
-            Case "mediaGoodwill" : _mediaGoodwill = constrain(_policeGoodwill + value, 0, 20)
-            Case "tlaGoodwill" : _tlaGoodwill = constrain(_policeGoodwill + value, 0, 20)
+            Case "policeGoodwill"
+                Dim value As Integer = CInt(rawstr(2))
+                _policeGoodwill = constrain(_policeGoodwill + value, 0, 20)
+            Case "mediaGoodwill"
+                Dim value As Integer = CInt(rawstr(2))
+                _mediaGoodwill = constrain(_mediaGoodwill + value, 0, 20)
+            Case "tlaGoodwill"
+                Dim value As Integer = CInt(rawstr(2))
+                _tlaGoodwill = constrain(_tlaGoodwill + value, 0, 20)
+            Case "corruption"
+                Dim value As Integer = CInt(rawstr(3))
+                Dim god As god = enumArrays.getEnumFromString(rawstr(2), enumArrays.godArray)
+                _corruption(god) = constrain(_corruption(god) + value, 0, 20)
         End Select
-        Debug.Print(name & " " & rawstr(1) & " " & withSign(value))
+        Debug.Print(name & " " & consequence)
         Return Nothing
     End Function
     Private Property _policeGoodwill As Integer
@@ -195,6 +207,7 @@
             world.tlaGoodwill(continent) = value
         End Set
     End Property
+    Private Property _corruption As New Dictionary(Of god, Integer)
     Friend ReadOnly Property visibilityModifier As Integer
         Get
             Dim total As Integer = 0
