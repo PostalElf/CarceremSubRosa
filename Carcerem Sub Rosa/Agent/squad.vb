@@ -126,10 +126,18 @@
         Dim rawstr As String() = consequence.Split(" ")
         If rawstr(0) <> "squad" Then Return New problem(Me, problemType.NotSuitable)
 
-        For Each agent In agents
-            Dim total As String = "agent " & rawstr(1) & " " & rawstr(2)
-            agent.addConsequence(total)
-        Next
+        Select Case rawstr(1)
+            Case "travelspeed"
+                Dim value As Integer = CInt(rawstr(2))
+                _travelSpeed += value
+
+            Case Else
+                For Each agent In agents
+                    Dim total As String = "agent " & rawstr(1) & " " & rawstr(2)
+                    agent.addConsequence(total)
+                Next
+        End Select
+
         Debug.Print(name & " " & consequence)
         Return Nothing
     End Function

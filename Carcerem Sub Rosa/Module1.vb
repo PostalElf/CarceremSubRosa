@@ -38,6 +38,7 @@
         Dim squad As squad = squad.buildRandomSquad(player, city2, New List(Of agent) From {agent1, agent2})
         agent1.changeRelationship(agent2, choiceComponent.Practical)
         squad.moveTo(city1)
+        squad.addConsequence("squad travelspeed +10000")
 
         Dim stage1 As New missionStage("Dress Up", 5, 10, New Dictionary(Of choiceComponent, Integer) From {{choiceComponent.Diplomacy, 1}}, "mission progress 0")
         Dim stage2 As New missionStage("Travel to the Party", 7, 10, Nothing, "mission progress 0")

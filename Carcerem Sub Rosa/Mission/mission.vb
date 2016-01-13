@@ -33,7 +33,7 @@
         End Get
     End Property
     Friend Function setAgent(agent As agent) As problem
-        If squad.agents.Contains(agent) = False Then Return New problem(Me, problemType.NotFound)
+        If agent Is Nothing = False AndAlso squad.agents.Contains(agent) = False Then Return New problem(Me, problemType.NotFound)
 
         _actingAgent = agent
         Return Nothing
