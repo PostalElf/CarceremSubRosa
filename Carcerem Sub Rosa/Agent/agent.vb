@@ -6,6 +6,7 @@
             .player = aPlayer
             ._isMale = coinFlip()
             ._age = 21 + rng.Next(13)
+            ._maslowKerning = rng.Next(14)
             ._firstName = getRandomFirstName(._isMale)
             ._lastName = getRandomLastName()
             ._disposition = disposition.buildRandomDisposition
@@ -37,6 +38,7 @@
     End Property
     Private _isMale As Boolean
     Private _age As Integer
+    Private _maslowKerning As Integer
     Private Shared Property _boyFirstNames As New List(Of String)
     Private Shared Property _girlFirstNames As New List(Of String)
     Private Shared Property _lastNames As New List(Of String)
@@ -164,6 +166,13 @@
             'liked stuff
             approaches(_disposition.getApproach(True)) += 2
             actions(_disposition.getAction(True)) += 2
+            If _maslowKerning >= 7 Then
+                Dim respect As choiceComponent = _disposition.respect
+                If approaches.ContainsKey(respect) Then approaches(respect) += 1 Else actions(respect) += 1
+            Else
+                Dim admire As choiceComponent = _disposition.admire
+                If approaches.ContainsKey(admire) Then approaches(admire) += 1 Else actions(admire) += 1
+            End If
 
 
             'highest training
