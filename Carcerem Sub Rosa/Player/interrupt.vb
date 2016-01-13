@@ -79,6 +79,15 @@
                         Dim targetChoice As researchProject = menu.getListChoice(targetList, 1, description)
                         player.changeResearchProject(targetChoice)
                         handleConsequences()
+
+                    Case "Select Active Agent"
+                        Dim mission As mission = CType(parent, mission)
+                        Dim squad As squad = CType(target, squad)
+                        Dim choice As agent = Nothing
+                        While choice Is Nothing
+                            choice = menu.getListChoice(squad.agents, 1, description)
+                        End While
+                        mission.setAgent(choice)
                 End Select
         End Select
     End Sub

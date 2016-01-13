@@ -33,10 +33,20 @@
         End Get
     End Property
     Friend Function setAgent(agent As agent) As problem
-        If agent Is Nothing = False AndAlso squad.agents.Contains(agent) = False Then Return New problem(Me, problemType.NotFound)
+        If agent Is Nothing Then
+            _actingAgent = Nothing
+            Dim ind As String = vbSpace(1)
+            Dim description As String = ind & fakeTab("Squad: ", 10) & squad.name & vbCrLf
+            description &= ind & fakeTab("Mission: ", 10) & name & vbCrLf
+            description &= ind & fakeTab("Stage: ", 10) & missionStages.Peek().ToString & vbCrLf
+            interrupt.Add("Select Active Agent", interruptType.ListChoice, Me, squad, "", description)
+            Return Nothing
+        Else
+            If squad.agents.Contains(agent) = False Then Return New problem(Me, problemType.NotFound)
 
-        _actingAgent = agent
-        Return Nothing
+            _actingAgent = agent
+            Return Nothing
+        End If
     End Function
 
     Friend Sub dayTick()
