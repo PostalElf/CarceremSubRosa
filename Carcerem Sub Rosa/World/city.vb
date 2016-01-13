@@ -134,9 +134,9 @@
             Return _importProducts
         End Get
     End Property
-    Friend Function addImportProduct(product As product) As problem
+    Friend Function addImportProduct(product As product, player As player) As problem
         If _importProducts.Contains(product) Then Return New problem(Me, problemType.Duplicate)
-        If _demand - _importProducts.Count < 1 Then Return New problem(Me, problemType.ExceedCapacity)
+        If demand(player) - _importProducts.Count < 1 Then Return New problem(Me, problemType.ExceedCapacity)
 
         product.importer = Me
         For Each consequence In product.cityConsequences
@@ -152,15 +152,11 @@
         _importProducts.Remove(product)
         Return Nothing
     End Function
-    Private Property _demand As Integer
-    Friend ReadOnly Property demand As Integer
+    Friend ReadOnly Property demand(player As player) As Integer
         Get
-            Return _demand
+            If player.marketingCampaigns.ContainsKey(Me) Then Return player.marketingCampaigns(Me) + 1 Else Return 1
         End Get
     End Property
-    Friend Sub addDemand(value As Integer)
-        _demand += value
-    End Sub
     Friend ReadOnly Property income As Integer
         Get
             Dim total As Integer = 0

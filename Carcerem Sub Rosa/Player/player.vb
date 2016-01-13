@@ -148,6 +148,7 @@
         Next
         Return False
     End Function
+    Friend Property marketingCampaigns As New Dictionary(Of city, Integer)
 
     Private Property _researchProject As researchProject
     Private Property _researchProjectsOpen As New List(Of researchProject)
@@ -219,7 +220,7 @@
         Dim total As problem = Nothing
         total = manufacturer.addExportProduct(product)
         If total Is Nothing = False Then Return total
-        total = importer.addImportProduct(product)
+        total = importer.addImportProduct(product, Me)
         If total Is Nothing = False Then Return total
 
         Return Nothing

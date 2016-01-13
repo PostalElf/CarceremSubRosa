@@ -30,7 +30,6 @@
 
         Dim blueprint As New product("Sheepskin")
         player.devAddBlueprint(blueprint)
-        city2.addDemand(1)
         player.createTradeRoute(blueprint, factory, city2)
 
         Dim agent1 As agent = agent.buildRandomAgent(player)
